@@ -3,9 +3,31 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+	<!--
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	-->
+	<link href="{{ site.url }}/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="{{ site.url }}/css/main.css" rel="stylesheet">
+	<link rel="icon" type="image/ico" href="favicon.ico">
 </head>
 <body>
-	{{ content }}
+	<header class="site-header">
+		<h1><a href="{{ site.url }}">Chedy Missaoui Blogs Here</a></h1>
+			<ul>
+				<li><a href="https://twitter.com/ChedyMissaoui"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+				<li>&nbsp;</li>
+				<li><a href="https://github.com/MissaouiChedy"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+				<li>&nbsp;</li>
+				<li><a href="https://tn.linkedin.com/in/chedy-missaoui-b184b558"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+				<li>&nbsp;</li>
+				<li><a href="{{ site.url }}/archives.html">archives</a></li>
+				<li>&nbsp;</li>
+				<li><a href="{{ site.url }}/about.html">about</a></li>
+			</ul>
+	</header>
+	<div class="main-content">
+		{{ content }}
+	</div>
+	
 </body>
 </html>

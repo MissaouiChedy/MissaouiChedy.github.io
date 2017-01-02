@@ -1,0 +1,15 @@
+---
+layout: default
+---
+<article class="post">
+	<header class="article-header">
+		<h1>{{ page.title }}</h1>
+		<time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date_to_long_string}}</time>
+	</header>
+	<div class="main-content">
+		{{ content }}
+	</div>
+	<footer class="article-footer">
+		SHARE THIS !
+	</footer>
+</article>

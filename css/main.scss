@@ -1,13 +1,105 @@
 ---
 # This is the Front Matter block
 ---
+@import url('https://fonts.googleapis.com/css?family=Oswald');
 
-@import url('https://fonts.googleapis.com/css?family=Fjalla+One');
-
-.main 
+body {
+	color: black;
+	font-family: "Oswald", "Helvetica Neue", "Helvetica";
+	padding: 0;
+	margin: 0;
+}
+header.site-header {
+	color: white;
+	background-color: black;
+	margin: 0;
+	h1 {
+		margin: 0;
+		padding: 1em;
+		padding-bottom: 0;	
+	}
+	ul {
+		text-align: right;
+		padding-right: 4em;
+		margin: 0;
+	}
+	li {
+		display: inline;
+		font-size: 1.2em;
+	}
+	a {
+		color: white;
+		text-decoration: none;
+	}
+}
+.main-content
 {
-	font-family: "Fjalla One";
-	text-align: center;
-	font-size: 2.5em;
-	margin-top: 15%;
+	margin: 0 auto;
+	max-width: 45em;
+}
+article.post 
+{
+	padding: 0.4em;
+	header
+	{
+		text-align: center;
+		margin-bottom: 1.4em;
+	}
+	h1 
+	{
+		font-size: 3.998em;
+		margin: 0.5em;
+		margin-bottom: 0.2em;
+	}
+	h2 {
+		font-size: 2.827em;
+		margin: 0em;
+		padding: 0em;
+		margin-bottom: -0.4em;
+	}
+	h3 {
+		font-size: 1.999em;
+	}
+	h4
+	{
+		font-size: 1.414em;
+	}
+	ul {
+		list-style-type: square;	
+	}
+	p,ul
+	{
+		font-family: "Georgia";
+		text-align: justify;
+		font-size: 1.05em;
+		line-height: 1.37;
+	}
+	time 
+	{
+		font-family: "Georgia";
+	}
+	footer {
+		font-size: 2.827em;
+		padding: 0.4em;
+		background-color: black;
+		color: white;
+		margin-bottom: 0.5em;
+	}
+
+}
+div.archives 
+{
+	margin-top: 2em;
+	time 
+	{
+		font-family: georgia;
+	}
+	h1 {
+		display: inline;
+		a
+		{
+			color: black;
+			text-decoration: none;
+		}
+	}
 }
