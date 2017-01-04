@@ -5,11 +5,15 @@ layout: default
 	<header class="article-header">
 		<h1>{{ page.title }}</h1>
 		<time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date_to_long_string}}</time>
+		<div class="navigation">
+			<a href="#">previous</a>
+			<a href="#">next</a>
+		</div>
 	</header>
 	<div class="main-content">
 		{{ content }}
 	</div>
 	<footer class="article-footer">
-		SHARE THIS !
+		SHARE THIS <i class="fa fa-thumbs-up"></i>
 	</footer>
 </article>
