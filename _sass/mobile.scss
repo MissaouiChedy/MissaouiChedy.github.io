@@ -1,0 +1,22 @@
+$breakpoint: 320px;
+@media screen and (max-width: $breakpoint) {
+	article.post {
+		h1 {
+			font-size: 2.827em;
+		}
+		h2 {
+			font-size: 1.999em;
+		}
+		h3 {
+			font-size: 1.414em;
+		}
+		ul {
+			text-align: left;
+		}
+	}
+	div.archives {
+		h1 {
+			font-size: 1.999em;
+		}
+	}
+}
