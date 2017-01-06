@@ -2,7 +2,7 @@
 # This is the Front Matter block
 ---
 @import url('https://fonts.googleapis.com/css?family=Oswald|PT+Serif');
-//$my-orange: orange;
+
 $my-orange: #c97800;
 body {
 	color: black;
@@ -13,7 +13,14 @@ body {
 a {
 	text-decoration: none;
 }
-
+div.main {
+	h1 {
+		text-align: center;
+	}
+}
+time {
+	font-family: georgia;
+}
 header.site-header {
 	color: white;
 	background-color: black;
@@ -54,6 +61,10 @@ article.post
 	{
 		text-align: center;
 		margin-bottom: 1.4em;
+		a {
+			text-decoration: none;
+			color: black;
+		}
 		div.navigation
 		{
 			display: none;
@@ -65,7 +76,7 @@ article.post
 				color: white;
 				font-family: "Oswald";
 				font-size: 1em;
-				text-decoration: none;
+				
 				padding: 1%;
 				&:hover {
 					color: $my-orange;
@@ -106,10 +117,7 @@ article.post
 		background: black;
 		color: white;
 	}
-	time 
-	{
-		font-family: "Georgia";
-	}
+	
 	a {
 		text-decoration: underline;
 		color: $my-orange;
@@ -120,6 +128,21 @@ article.post
 		background-color: black;
 		color: white;
 		margin-bottom: 0.5em;
+		.permalink {
+			display: inline-block;
+			float: right;
+			padding: 0.15em;
+			margin-top: 0.5em;
+			font-size: 0.5em;
+			font-family: "Helvetica";
+			font-weight: bold;
+			a {
+				text-decoration: none;
+				color: white;
+			}
+			border: solid white 0.3em;
+
+		}
 	}
 
 }
@@ -130,10 +153,7 @@ div.archives
 		padding: 0.1em;
 	}
 	margin-top: 2em;
-	time 
-	{
-		font-family: georgia;
-	}
+	 
 	h1 {
 		display: inline;
 		a
@@ -171,5 +191,19 @@ div.about {
 			font-size: 1.4em;
 		}
 	}
-	
+}
+footer.site-footer 
+{
+
+	text-align: center;
+	font-size: 0.75em;
+	font-family: "PT Serif";
+	margin: 0 auto;
+	margin-top: 1em;
+	margin-bottom: 0.2em;
+	max-width: 30em;
+	a {
+		color: $my-orange;
+		text-decoration: underline;
+	}
 }

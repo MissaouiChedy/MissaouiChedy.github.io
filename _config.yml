@@ -17,7 +17,8 @@ title: Tech Dominator
 description: > # this means to ignore newlines until "baseurl:"
   Where Chedy Missaoui comes to blog and you come to read
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://blog.techdominator.com" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: TechDominator
 
 # Build settings
 markdown: kramdown

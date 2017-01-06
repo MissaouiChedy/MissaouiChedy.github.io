@@ -2,9 +2,12 @@
 layout: default
 ---
 <div class="main">
-	{% for post in site.posts %}
-	<h1>
-		<a href="{{ post.url }}"> {{ post.title }}</a>
-	</h1>
-	{% endfor %}
+	{% assign page = site.posts.last %}
+	<article class="post">
+		{% include article-header.html %}
+		<div class="main-content">
+			{{ site.posts.last.content }}
+		</div>
+		{% include article-footer.html %}
+	</article>
 </div>

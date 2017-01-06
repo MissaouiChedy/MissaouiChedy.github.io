@@ -1,0 +1,8 @@
+<header class="article-header">
+		<h1><a href="{{ page.url }}">{{ page.title }}</a></h1>
+		<time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date_to_long_string}}</time>
+		<div class="navigation">
+			<a href="#">previous</a>
+			<a href="#">next</a>
+		</div>
+</header>
