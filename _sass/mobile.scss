@@ -1,5 +1,5 @@
-$breakpoint: 320px;
-@media screen and (max-width: $breakpoint) {
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
 	article.post {
 		h1 {
 			font-size: 1.999em;
