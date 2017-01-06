@@ -1,9 +1,9 @@
 ---
 layout: default
 ---
-<article class="post">
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 	{% include article-header.html %}
-	<div class="main-content">
+	<div class="main-content" itemprop="articleBody">
 		{{ content }}
 	</div>
 	{% include article-footer.html %}
