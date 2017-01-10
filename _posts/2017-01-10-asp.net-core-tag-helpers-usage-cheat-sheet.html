@@ -1,0 +1,64 @@
+---
+layout: post
+title: "ASP.net core tag helpers usage cheat sheet"
+date: 2017-01-10 10:00:00 +0100
+categories: article
+---
+<p>Tag helpers represent the way to create custom html elements in asp.net core's Razor templating engine they replace the old and deprecated <a href="http://www.tutorialsteacher.com/mvc/html-helpers">Html Helper facility</a>.</p>
+<p>This document is a cheat sheet that outlines briefly the key-points of using existing tag helpers will not be very helpful if you need to understand tag helpers from scratch</p>
+<p>A lot of introductory resources are available online if you are not familiar with the concept. The following articles are a good starting point:</p>
+<ul>
+ <li> <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/intro">Introduction to Tag Helpers</a></li>
+ <li> <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/authoring">Authoring Tag Helpers</a></li>
+ </ul>
+<h2>Keypoints</h2>
+<ul>
+	<li>Tag Helpers substitute markup in cshtml files with standard html markup:</li>
+		{% highlight html linenos %} <hello-world> </hello-world> {% endhighlight %}
+		<p>turns to:</p>
+		{% highlight html linenos %} <p>Hello World!</p> {% endhighlight %}
+	<li>Built-in tag helpers are available under the <pre>Microsoft.AspNetCore.Mvc.TagHelpers</pre> assembly</li>
+	<li>Substitution can be activated by custom html tag name, custom html attribute and standard html elements name:</li>
+	{% highlight html linenos %} <label asp-for="Email"></label> {% endhighlight %}
+</ul>
+
+<h2>Usage</h2>
+
+<ul>
+	<li>Tag helpers need to be included in cshtml files by using the <pre>@addTagHelper</pre> directive:</li>
+{% highlight cshtml linenos %} @* <tag helper name>, <assembly containing the tag helper definition>*@
+ @addTagHelper HelloWorld, TechDominator.TagHelpersAssembly
+
+ @*Possible to specify wildcard to include all tag helpers*@
+ @addTagHelper *, TechDominator.TagHelpersAssembly{% endhighlight %}
+	<li>The default asp.net core project template includes <pre>@addTagHelper</pre> in <pre>View/Shared/_ViewImports.cshtml</pre>:</li>
+{% highlight c# linenos %} @using AspNetTagHelpersCheatSheet
+ @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+ @*usually custom tag helpers are included here*@
+ @addTagHelper *, TechDominator.TagHelpersAssembly{% endhighlight %}	
+	<li>There is a variety of useful built-in tag helpers (<a href="http://www.davepaquette.com/archive/2015/06/03/mvc-6-cache-tag-helper.aspx">cache</a>, <a href="http://www.davepaquette.com/archive/2015/07/01/mvc-6-image-tag-helper.aspx">img</a>, ...)</li>
+	<li>Once included tag helpers can be used in cshtml files and <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/intro#intellisense-support-for-tag-helpers">IntelliSense support</a> is available in visual studio</li>
+	<li>Some tag helpers provide custom attributes:</li>
+	{% highlight html linenos %} <hello-world name="Ali"></hello-world>{% endhighlight %}
+	<li>Some tag helpers can accept a C# expression:</li>
+	{% highlight html linenos %} <hello-world name="new SomeModel() { Id=2149 }"></hello-world>{% endhighlight %}
+	<li>It is possible to use standard html attributes:</li>
+	{% highlight html linenos %} <hello-world id="the-hello-world" class="a-hello-world"></hello-world>{% endhighlight %}
+	<p>
+		turns to:
+	</p>
+	{% highlight html linenos %} <p id="the-hello-world" class="a-hello-world">Hello World!</p>{% endhighlight %}
+	<li>It is possible to remove (uninclude) tag helpers from a specific view by using the <pre>@removeTagHelper</pre> directive:</li>
+	{% highlight html linenos %} @removeTagHelper img, TechDominator.TagHelpersAssembly{% endhighlight %}
+	<li>It is possible to disable tag helper activation for specific element by using the <pre>!</pre> operator:</li>
+	{% highlight html linenos %} <!hello-world></!hello-world>{% endhighlight %}
+	<p>
+		turns to:
+	</p>
+	{% highlight html linenos %} <hello-world></hello-world>{% endhighlight %}
+	<li>Some tag helpers can accept content and even nested elements which can be tag helpers as well</li>
+	{% highlight html linenos %} <hello-world>
+	<h1>Title</h1>
+	<child-tag-helper></child-tag-helper>
+ </hello-world>{% endhighlight %}
+</ul>

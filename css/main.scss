@@ -1,8 +1,8 @@
 ---
 # This is the Front Matter block
 ---
-@import url('https://fonts.googleapis.com/css?family=Oswald|PT+Serif');
-
+@import url('https://fonts.googleapis.com/css?family=Oswald|PT+Serif|Inconsolata');
+@import 'highlight.scss';
 $my-orange: #c97800;
 body {
 	color: black;
@@ -67,7 +67,6 @@ article.post
 		}
 		div.navigation
 		{
-			display: none;
 			text-align: right;
 			a {
 				display: inline-block;
@@ -78,12 +77,23 @@ article.post
 				font-size: 1em;
 				
 				padding: 1%;
-				&:hover {
-					color: $my-orange;
-				}
 			}
 		}
 	}
+	
+	figure.highlight 
+	{
+		border-left: solid $my-orange 6px;
+		background-color: lightgrey;
+		padding: 0.2em;
+	}
+	pre {
+		display: inline;
+		font-family: "Inconsolata";
+		font-size: 1.05em;
+		background-color: lightgrey;
+	}
+
 	h1 
 	{
 		font-size: 3.998em;
@@ -104,7 +114,8 @@ article.post
 		font-size: 1.414em;
 	}
 	ul {
-		list-style-type: square;	
+		list-style-type: square;
+		text-align:left;	
 	}
 	p,ul
 	{

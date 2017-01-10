@@ -2,11 +2,11 @@
 layout: default
 ---
 <div class="main">
-	{% assign page = site.posts.last %}
+	{% assign page = site.posts.first %}
 	<article class="post">
 		{% include article-header.html %}
 		<div class="main-content">
-			{{ site.posts.last.content }}
+			{{ page.content }}
 		</div>
 		{% include article-footer.html %}
 	</article>
