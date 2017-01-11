@@ -1,0 +1,53 @@
+---
+layout: post
+title: "Tag helpers creation cheat sheet"
+date: 2017-01-09 10:00:00 +0100
+categories: article
+comments: true
+---
+
+<p>Creating a tag helper</p>
+<h2>Creating Custom Tag Helpers</h2>
+
+<ul>
+<li>Tag helpers are created by subclassing the TagHelper Class:</li>
+{% highlight C# linenos %} public abstract class TagHelper : ITagHelper
+ {
+ 	... Code Omitted ...
+    //Represents the execution priority of the tag helper
+    //the smallest number has more priority
+    //Defaults to 0
+    public virtual int Order { get; }
+
+    //Hook for initializing the TagHelperContext
+    public virtual void Init(TagHelperContext context);
+    
+    //The method responsible for the actual rendering logic
+    public virtual Task ProcessAsync(TagHelperContext context, 
+    	TagHelperOutput output);
+	
+    //The synchronous version of ProcessAsync
+    public virtual void Process(TagHelperContext context, 
+    	TagHelperOutput output);     
+ }{% endhighlight %}
+ <li>Custom tag helpers classes are usually placed under the <pre>Project/TagHelpers</pre> folder and their names are post-fixed with "TagHelper"</li>
+ <li>The Process method acts on the output argument and populates it with the desired output</li>
+ {% highlight C# linenos %} public class HelloWorldTagHelper : TagHelper
+ {
+ 	public override void Process(TagHelperContext context, 
+ 		TagHelperOutput output)
+ 	{
+ 	    output.TagName = "p";
+            output.Content.SetHtmlContent("Hello World!");
+ 	}
+ }{% endhighlight %}
+
+<li>You can leverage interpolated strings, String.Format or regexes to render the output html</li>
+<li>Inside the Process method you get the content of the tag by using GetContent</li>
+<li>You get custom attribute values by declaring properties on the subclass</li>
+<li>You get standard html attributes from Attributes property.</li>
+<li>You set standard attributes with the Attributes property</li>
+<li>You configure the activation with the TargetHtmlElement attribute</li>
+<li>It is possible to render an existing razor template inside the taghelper(link)</li>
+<li>It is possible to treat a view compoenent as a tag helper starting from asp.net core 1.1</li>
+</ul>
