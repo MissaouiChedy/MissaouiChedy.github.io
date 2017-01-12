@@ -1,22 +1,31 @@
-
 @media screen and (min-width: 320px) and (max-width: 480px) {
-	article.post {
-		padding: 0.8em;
-		h1 {
-			font-size: 2.827em;
-		}
-		h2 {
-			font-size: 1.999em;
-		}
-		
-		ul {
-			text-align: left;
-			padding-left: 1.414em;
-		}
+	h1 {
+		font-size: 2.441em;
 	}
-	div.archives {
-		h1 {
-			font-size: 1.414em;
+	h2 {
+		font-size: 1.953em;
+	}
+	h3 {
+		font-size: 1.563em;
+	}
+
+	h4 {
+		font-size: 1.25em;
+	}
+
+
+	article.post {
+		padding: 0.5em;
+		div.navigation {
+			padding-top: 0.6em;
+		}
+		p, a {
+			font-size: 1em;
+		}
+
+		figure.highlight {
+			overflow-y: scroll;
+			margin-left: -2em; 
 		}
 	}
 }

@@ -8,9 +8,9 @@ $default-font-family: "PT Serif", "Georgia", "Serif";
 $title-fonts: "Oswald", "Helvetica", "Sans Serif";
 $code-font: "consolas", "Inconsolata", "monospace", "Sans Serif";
 $my-orange: #c97800;
+$code-background-color: #ededed;
 
 @import 'reset.scss';
-@import 'highlight.scss';
 
 
 %title {
@@ -19,7 +19,6 @@ $my-orange: #c97800;
 	font-family: $title-fonts;
 	line-height: 1.05;
 }
-
 h1 {
 	@extend %title;
 	font-size: 3.998em;
@@ -100,19 +99,21 @@ article.post
 		}
 	}
 	div.content {
+		%regular-text {
+			font-size: 1.02em;
+		}
+
 		a {
+			@extend %regular-text;
 			text-decoration: underline;
 			color: $my-orange;
 		}
-		%regular-text {
-			font-size: 1.05em;
-		}
+		
 
 		ul {
 			li {
 				@extend %regular-text;
-				padding-top: 0.10em;
-				padding-bottom: 0.10em;
+				padding-bottom: 0.8em;
 			}
 			list-style-type: square;
 			text-align:left;
@@ -121,8 +122,7 @@ article.post
 			padding-bottom: 1em;
 			line-height: 1.2;	
 		}
-		p
-		{
+		p {
 			@extend %regular-text;
 			text-align: justify;
 			line-height: 1.37;
@@ -130,17 +130,29 @@ article.post
 			padding-bottom: 0.5em;
 		}
 		
-		figure.highlight 
-		{
-			border-left: solid $my-orange 6px;
-			background-color: lightgrey;
-			padding: 0.2em;
+		%code-text {
+			font-family: $code-font;
+			background-color: $code-background-color;
+			font-size: 0.8em;
 		}
 		
-		pre {
+		span.code 
+		{
 			display: inline;
-			font-family: $code-font;
-			background-color: lightgrey;
+			@extend %code-text;
+		}
+		div.gist {
+			padding-top: 0.5em;
+			padding-bottom: 0.1em;
+			tr, td {
+				background-color: $code-background-color;
+			}
+			a {
+				@extend %code-text;
+				font-size: 1em;
+				text-decoration: none;
+				background-color: transparent;
+			}
 		}
 	}
 	
