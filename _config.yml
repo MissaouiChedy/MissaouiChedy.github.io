@@ -16,6 +16,7 @@
 title: Tech Dominator
 description: > # this means to ignore newlines until "baseurl:"
   Imposing technical domination on ASP.NET Core, Angular 2 and many others Web related technologies.
+  Also where Chedy Missaoui comes to blog.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://blog.techdominator.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: TechDominator
