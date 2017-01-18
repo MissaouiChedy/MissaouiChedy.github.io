@@ -100,6 +100,8 @@ article.post
 	}
 	div.content {
 		%regular-text {
+			font-size: $default-font-size;
+			font-family: $default-font-family;
 			font-size: 1.02em;
 		}
 
@@ -141,15 +143,17 @@ article.post
 			display: inline;
 			@extend %code-text;
 		}
+		
 		div.gist {
 			padding-top: 0.5em;
 			padding-bottom: 0.1em;
 			tr, td {
 				background-color: $code-background-color;
 			}
+			
 			a {
-				@extend %code-text;
-				font-size: 1em;
+				//@extend %code-text;
+				//font-size: 1em;
 				text-decoration: none;
 				background-color: transparent;
 			}

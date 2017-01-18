@@ -1,0 +1,78 @@
+---
+layout: post
+title: "Basic tag helpers creation cheat sheet"
+date: 2017-01-18 10:00:00 +0100
+categories: article
+comments: true
+---
+<p>Here is another asp.net core tag helper cheat sheet, this time it is about creating simple custom tag helpers.</p>
+<p>Again this document is not suitable for absolute beginners, so if you are seeking to understand tag helper creation forthe first time I would recommend the following articles:</p>
+<ul>
+    <li><a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/authoring">Authoring tag helpers</a></li>
+    <li><a href="http://www.davepaquette.com/archive/2015/06/22/creating-custom-mvc-6-tag-helpers.aspx">Creating custom ASP.NET Core Tag Helpers</a></li>
+</ul>
+<p><a href="https://github.com/MissaouiChedy/AspNetTagHelpersCheatSheet">The full code is available on Github</a> if you want to build, run and hack the examples in this document.</p>
+
+<h2>Super simple hello world tag helper</h2>
+<p>Tag helpers are represented by a C# class that inherits the <span class="code">TagHelper</span> abstract class or implements the <span class="code">ITagHelper</span> interface.</p>
+<p>The <span class="code">TagHelper.Process</span> method or its async equivalent <span class="code">TagHelper.ProcessAsync</span> is typically overitten to contain the rendering logic.</p>
+<p>The content that will substitute the tag helper is written into the <span class="code">output</span> argument.</p>
+<script src="https://gist.github.com/MissaouiChedy/e763f5882b52ff5295a921684de6eff5.js"></script>
+
+<p>The previous <span class="code">SimpleTagHelper</span> will be substituted by <span class="code">&lt;p&gt;Very simple!&lt;/p&gt;</span> and can be used as follows: </p>
+<script src="https://gist.github.com/MissaouiChedy/a28c1defad8266c669a111783da4602c.js"></script>
+
+<h2>Controlling the naming of the tag helper</h2>
+<p>You will notice that often times the tag helper C# class name ends with "TagHelper", this is actually a convention and is not mandatory.</p>
+<p>The default html name of the tag helper is the class's name <a href="http://wiki.c2.com/?KebabCase">kebab cased</a> with the "TagHelper" postfix removed, for example: </p>
+<ul>
+    <li><span class="code">SimpleTagHelper</span> becomes <span class="code">simple</span></li>
+    <li><span class="code">SuperSimpleTagHelper</span> becomes <span class="code">super-simple</span></li>
+    <li><span class="code">LonglyNamed</span> (postfix optional) becomes <span class="code">longly-named</span></li>
+</ul>
+<p>The name of the tag helper can be controlled with the <span class="code">[HtmlTargetElement("some-name")]</span> attribute:</p>
+<script src="https://gist.github.com/MissaouiChedy/5c62033f377d2ecfabd21bfc3bf3f575.js"></script>
+<p>The html element represented by the previous class is <span class="code">&lt;arbitrary-name&gt;&lt;/arbitrary-name&gt;</span>.</p>
+<p>It is possible to provide a <a href="http://wiki.c2.com/?PascalCase">pascal cased</a> custom name such as <span class="code">[HtmlTargetElement("SomeName")]</span>, <strong>but please stick with the convention</strong>.</p>
+
+<h2>Tag helper as empty html element</h2>
+<p>It is possible to specify that a tag helper is an empty html element by using the <span class="code">TagStructure</span> property in the <span class="code">[HtmlTargetElement]</span> attribute, make sure to specify an explicit name otherwise the tag helper will target any custom tag helper.</p>
+<p>Unfortunately, it seems that it is not possible to render regular html elements (with end and start tag) from an empty tag helper.</p>
+
+<script src="https://gist.github.com/MissaouiChedy/1b0219f22a59f10c6ba4a1a03fab278f.js"></script>
+
+
+<h2>Tag helper activated by attribute</h2>
+<p>Tag helper can target standard html elements that have a user(developer) defined attribute, for example:</p>
+<script src="https://gist.github.com/MissaouiChedy/9f09e330c0867647bb0ef4f34b848026.js"></script>
+<p>It is possible to create a tag helper that act on any element having the <span class="code">hello-prefix</span> attribute, by using the <span class="code">Attributes</span> property in the <span class="code">[HtmlTargetElement]</span> attribute the following tag helper prepends the "Hello " string to the content of targeted elements.</p>
+
+<script src="https://gist.github.com/MissaouiChedy/6cf4ae584da449f320f56c27df91b14c.js"></script>
+
+<h2>Tag helper activated on standard html element</h2>
+<p>Again, by using the <span class="code">[HtmlTargetElement]</span> attribute it is possible to target directly standard html elements by simply providing the name of the html element to the <span class="code">[HtmlTargetElement]</span> attribute.</p>
+<script src="https://gist.github.com/MissaouiChedy/435825146c3d26831289c83f113176f0.js"></script>
+<p>The previous tag helper erases the content of any <span class="code">&lt;p&gt;</span> element present in cshtml views that includes it.</p>
+    <h3>Pay attention to possible conflicts</h3>
+    <p>When defining multiple tag helpers that targets the same standard html elements, you have to pay attention to possible conflicts since that the last tag helpers applied <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/authoring#inspecting-and-retrieving-child-content##avoiding-tag-helper-conflicts">can erase the content rendred by the previous tag helper</a>.</p>
+    <p>The solution in these cases is to check inside the <span class="code">Process</span> method if the html elements content has been modified and, if so, to get the modified content from <span class="code">output.Content</span> instead of <span class="code">output.GetChildContentAsync()</span> as in the following example.</p>
+    <script src="https://gist.github.com/MissaouiChedy/95daaec44348ad799207361f0018887b.js"></script>
+    <p>Furthermore, it is possible to control the order in which the tag helpers are executed by defining the <span class="code">Order</span> readonly (get) property in the custom tag helper class. The smallest order as the priority.</p>
+    
+<h2>Passing arguments to the tag helper</h2>
+<p>It is naturally possible to define custom attributes on a tag helper and use these attributes to pass data, consider this example:</p>
+<script src="https://gist.github.com/MissaouiChedy/7e40faa08f1bc1787347fe70460e216f.js"></script>
+<p>Notice how the <span class="code">&lt;with-arguments&gt;</span> tag helpers can accept variables, string literals and even C# expressions.</p>
+<p>Argument placeholder are simply defined as properties in the tag helper class.</p>
+<script src="https://gist.github.com/MissaouiChedy/8a74d5731e1783919d72392579b5eb67.js"></script>
+<p>Similar to the tag helper's html element name, the Pascal cased property names are by default kebab cased on the cshtml side.</p>
+<p>The <span class="code">[HtmlAttributeName]</span> attribute can be used to specify a custom name.</p>
+<h2>Creating the tag helper's output content</h2>
+<p>Inside the <span class="code">Process</span> method you typically populate the output argument with actual output content. Here are some actions performed in this regard.</p>
+<ul>
+    <li>Define the output tag name</li>
+    <li>Manipulate attributes on the output tag</li>
+    <li>Get the initial html content</li>
+    <li>Use <a href="https://msdn.microsoft.com/en-us/library/dn961160.aspx">interpolated strings</a> to render the content</li>
+</ul>
+<script src="https://gist.github.com/MissaouiChedy/36ab351afb9f60548ba3992c22adacce.js"></script>
