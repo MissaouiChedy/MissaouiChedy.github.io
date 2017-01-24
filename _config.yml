@@ -25,7 +25,6 @@ repository: MissaouiChedy/MissaouiChedy.github.io
 markdown: kramdown
 gems:
   - jekyll-sitemap
-  - jekyll-feed
   
 exclude:
   - Gemfile

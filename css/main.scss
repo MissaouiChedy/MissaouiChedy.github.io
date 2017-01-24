@@ -17,7 +17,7 @@ $code-background-color: #ededed;
 	padding-top: 0.4em;
 	padding-bottom: 0.2em; 
 	font-family: $title-fonts;
-	line-height: 1.05;
+	line-height: 1.15;
 }
 h1 {
 	@extend %title;
@@ -42,6 +42,7 @@ time {
 
 a {
 	text-decoration: none;
+	font-size: $default-font-size;
 }
 
 header.site-header {
@@ -102,11 +103,11 @@ article.post
 		%regular-text {
 			font-size: $default-font-size;
 			font-family: $default-font-family;
-			font-size: 1.02em;
 		}
 
 		a {
 			@extend %regular-text;
+
 			text-decoration: underline;
 			color: $my-orange;
 		}
