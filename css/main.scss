@@ -129,24 +129,23 @@ article.post
 			width: 0;
 		}
 	}
+	%regular-link {
+		text-decoration: underline;
+		color: $my-orange;
+	}
 	div.content {
 		%regular-text {
 			font-size: $default-font-size;
 			font-family: $default-font-family;
 		}
-
-		a {
-			@extend %regular-text;
-
-			text-decoration: underline;
-			color: $my-orange;
-		}
 		
-
 		ul {
 			li {
 				@extend %regular-text;
 				padding-bottom: 0.8em;
+				a {
+					@extend %regular-link;
+				}
 			}
 			list-style-type: square;
 			text-align:left;
@@ -161,6 +160,9 @@ article.post
 			line-height: 1.37;
 			padding-top: 0.5em;
 			padding-bottom: 0.5em;
+			a {
+				@extend %regular-link;
+			}
 		}
 		
 		%code-text {
@@ -185,6 +187,8 @@ article.post
 			a {
 				text-decoration: none;
 				background-color: transparent;
+				color: $my-orange;
+				font-size: 1em;
 			}
 		}
 	}
