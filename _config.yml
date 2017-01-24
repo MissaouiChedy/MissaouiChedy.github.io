@@ -23,9 +23,13 @@ twitter_username: TechDominator
 repository: MissaouiChedy/MissaouiChedy.github.io
 # Build settings
 markdown: kramdown
+
+kramdown:
+  parse_block_html: true
+
 gems:
   - jekyll-sitemap
-  
+  - jekyll-feed
 exclude:
   - Gemfile
   - Gemfile.lock
