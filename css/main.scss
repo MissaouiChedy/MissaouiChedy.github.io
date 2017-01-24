@@ -108,7 +108,7 @@ article.post
 		position: fixed;
 		width: 20vw;
 		right: 0;
-		top: 13vw;
+		top: 12vw;
 		
 		ul {
 			list-style: none;
@@ -183,8 +183,6 @@ article.post
 			}
 			
 			a {
-				//@extend %code-text;
-				//font-size: 1em;
 				text-decoration: none;
 				background-color: transparent;
 			}

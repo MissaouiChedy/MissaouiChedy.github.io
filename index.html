@@ -2,12 +2,5 @@
 layout: default
 ---
 <div class="main">
-	{% assign page = site.posts.first %}
-	<article class="post">
-		{% include article-header.html %}
-		<div class="content">
-			{{ page.content }}
-		</div>
-		{% include article-footer.html %}
-	</article>
+	{% include article.html post_arg=site.posts.first %}
 </div>
