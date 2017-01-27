@@ -1,0 +1,51 @@
+---
+layout: post
+title: "Using the old HtmlHelper inside tag helpers"
+date: 2017-01-27 10:00:00 +0100
+categories: article
+comments: true
+---
+<p>In a recent asp.net core project, I needed to create a somewhat complex list editor widget and I decided to encapsulate it in a tag helper.</p>
+
+<p>Since it would be painful to build the widget's content using interpolated strings under the tag helper's <span class="code">Process</span> method, I started searching for a way to render a cshtml template similar to what <span class="code">@Html.Partial</span> providers but usable inside the <span class="code">Process</span> method.</p>
+
+<p>After doing some googling in vain, I posted an <a href="https://github.com/aspnet/Mvc/issues/5504">issue on the asp.net core Mvc project</a> to suggest adding a mechanism for rendering cshtml templates from tag helpers. <a href="https://github.com/frankabbruzzese">frankabbruzzese</a> pointed out then in the discussion that it was possible to get a working <span class="code">IHtmlHelper</span> inside a custom tag helper and to use its <span class="code">IHtmlHelper.Partial</span> method.</p>
+
+<p>In this post we are going to see how to:</p>
+<ul>
+<li>get and properly initialize an <span class="code">Htmlhelper</span> in a custom tag helper</li>
+<li>pass data to the cshtml template</li>
+</ul>
+<p>As usual the full project code is <a href="https://github.com/MissaouiChedy/UsingCshtmlTemplatesInTagHelpers">available on Github</a>. But first off let's discuss why you should not do this.</p>
+<h2>Razor view components</h2>
+<p>When I was building the list editor widget I was not aware of the new <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components">Razor View Component</a> mechanism , which basically allows to render a partial template, to pass it data and to do some processing before the actual rendering.</p> 
+<p><strong>It seems that using View Components is a cleaner approach</strong> as we are going to see in an upcoming post.</p>
+<p>But still one might need to use an <span class="code">HtmlHelper</span> inside a tag helper maybe for some reason I am not anticipating. That's why I want to share what I learned.</p>
+
+<h2>Getting an IHtmlHelper through Dependency Injection and properly initializing it</h2>
+<p>By using the <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection">dependency injection mechanism</a> in asp.net core it is possible to get an <span class="code">IHtmlHelper</span> instance, the only catch is that the provided instance is not ready for use; it needs to be contextualized i.e. to be set with the <a href="https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.rendering.viewcontext#Microsoft_AspNetCore_Mvc_Rendering_ViewContext"><span class="code">ViewContext</span></a> object of the view in which the tag helper is rendered.</p>
+<p> This is achieved by the <span class="code">(htmlHelper as IViewContextAware).Contextualize(ViewContext);</span> statement which needs the current <span class="code">ViewContext</span> instance.</p>
+<script src="https://gist.github.com/MissaouiChedy/e5991c20ced340656347553e11d5d4e9.js"></script>
+<p>In the previous example the TagHelper constructor will be used by the dependency injection context to provide an <span class="code">IHtmlHelper</span> instance and the <span class="code">ViewContext</span> property slapped with the <span class="code">[ViewContext]</span> attribute will be populated by the current ViewContext. Notice how the html helper is contextualized at the start of the <span class="code">ProcessAsync</span> method.
+<p>
+	The <span class="code">HtmlHelper</span> is then used to render a cshtml view (<span class="code">~/Views/Shared/Template.cshtml</span> in the example), by calling the <span class="code">HtmlHelper.Partial</span> method.
+</p>
+<h2>Passing data to the view</h2>
+<p>Passing data to the razor view is similar to passing data to the <a href="vc.controller#Microsoft_AspNetCore_Mvc_Controller_View_System_String_System_Object_"><span class="code">Controller.View</span></a> method, you have basically 3 ways:</p>
+<ul>
+	<li>passing a model object to a strongly typed view</li>
+	<li>populating the <span class="code">ViewData</span> dictionary</li>
+	<li>populating the <span class="code">ViewBag</span> expando object</li>
+</ul>
+
+<p>
+	Under the tag helper <span class="code">ProcessAsync</span> method it is possible to use the <span class="code">ViewData</span> and <span class="code">ViewBag</span> properties contained in the <span class="code">HtmlHelper</span> instance.
+</p>
+<script src="https://gist.github.com/MissaouiChedy/f3ad7e27db8b79fe59fa38e90393e718.js"></script>
+<p>Notice how the model as been passed explicitly and how the <span class="code">ViewData</span> and its expando object facade the <span class="code">ViewBag</span> are passed implicitly. The data is then accessed in the rendered razor partial template as in the following example:</p>
+<script src="https://gist.github.com/MissaouiChedy/e5d8b21f4a755e368118180072ea180b.js"></script>
+<h3>Creating a new ViewData dictionary instance</h3>
+<p>One last thing: While creating the list editor widget, I had to actually create a new instance of the <span class="code">ViewData</span> dictionary instead of using the one in the <span class="code">HtmlHelper</span> instance. I will skip the details of the issue I encountered in the interest of brievety.</p>
+<p>In asp.net core the most convenient constructor that allows to create an instance "from scratch" in the <a href="https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary"><span class="code">ViewDataDictionary</span></a> class has the following signature: <span class="code">ViewDataDictionary(IModelMetadataProvider metadataProvider, ModelStateDictionary modelState)</span>.</p>
+<p>The required <span class="code">IModelMetadataProvider</span> instance can be requested through dependency injection and the <span class="code">ModelStateDictionary</span> can be instantiated by using its parameterless constrcutor.</p>
+<script src="https://gist.github.com/MissaouiChedy/77407619e42f787f8ff057c74560d712.js"></script>
