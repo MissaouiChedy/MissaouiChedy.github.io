@@ -170,9 +170,8 @@ article.post
 			background-color: $code-background-color;
 			font-size: 0.8em;
 		}
-		
-		span.code 
-		{
+
+		code {
 			display: inline;
 			@extend %code-text;
 		}

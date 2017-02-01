@@ -14,40 +14,40 @@ comments: true
  </ul>
 <h2>Keypoints</h2>
 <ul>
-	<li>Tag Helpers substitute markup in cshtml files with standard html markup: <br/><span class="code">{{ "<hello-world></hello-world>" | escape }}</span> turns to <span class="code">{{ "<p>Hello World!</p>" | escape }}</span></li> 
-	<li>Built-in tag helpers are available under the <span class="code">Microsoft.AspNetCore.Mvc.TagHelpers</span> assembly</li>
+	<li>Tag Helpers substitute markup in cshtml files with standard html markup: <br/><code>{{ "<hello-world></hello-world>" | escape }}</code> turns to <code>{{ "<p>Hello World!</p>" | escape }}</code></li> 
+	<li>Built-in tag helpers are available under the <code>Microsoft.AspNetCore.Mvc.TagHelpers</code> assembly</li>
 	<li>Substitution can be activated by custom html tag name, custom html attribute and standard html elements name:
-	<span class="code">{{ '<label asp-for="Email"></label>' | escape }}</span></li>
+	<code>{{ '<label asp-for="Email"></label>' | escape }}</code></li>
 </ul>
 
 <h2>Usage</h2>
 
 <ul>
-	<li>Tag helpers need to be included in cshtml files by using the <span class="code">@addTagHelper</span> directive:
+	<li>Tag helpers need to be included in cshtml files by using the <code>@addTagHelper</code> directive:
 		<script src="https://gist.github.com/MissaouiChedy/17e60c8e594067302e892531dcafa3ab.js"></script>
 	</li>
 
-	<li>The default asp.net core project template includes <span class="code">@addTagHelper</span> in <span class="code">View/Shared/_ViewImports.cshtml</span>:
+	<li>The default asp.net core project template includes <code>@addTagHelper</code> in <code>View/Shared/_ViewImports.cshtml</code>:
 		<script src="https://gist.github.com/MissaouiChedy/172b3d99633d9c13798b43f6c9969b41.js"></script>	
 	</li>
 	<li>There is a variety of useful built-in tag helpers (<a href="http://www.davepaquette.com/archive/2015/06/03/mvc-6-cache-tag-helper.aspx">cache</a>, <a href="http://www.davepaquette.com/archive/2015/07/01/mvc-6-image-tag-helper.aspx">img</a>, ...)</li>
 	<li>Once included tag helpers can be used in cshtml files and <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/intro#intellisense-support-for-tag-helpers">IntelliSense support</a> is available in visual studio</li>
 	<li>Some tag helpers provide custom attributes:<br/>
-		<span class="code">{{ '<hello-world name="Ali"></hello-world>' | escape }}</span>
+		<code>{{ '<hello-world name="Ali"></hello-world>' | escape }}</code>
 	</li>
 	<li>Some tag helpers can accept a C# expression:<br/>
-		<span class="code">&lt;hello-world name="new SomeModel() { Id=2149 }"&gt;&lt;/hello-world&gt;</span>
+		<code>&lt;hello-world name="new SomeModel() { Id=2149 }"&gt;&lt;/hello-world&gt;</code>
 	</li>
 	<li>It is possible to use standard html attributes:<br/>
-		<span class="code">{{ '<hello-world id="the-hello-world" class="a-hello-world"></hello-world>' | escape }}</span> turns to
-		<span class="code">{{ '<p id="the-hello-world" class="a-hello-world">Hello World!</p>' | escape }}</span>
+		<code>{{ '<hello-world id="the-hello-world" class="a-hello-world"></hello-world>' | escape }}</code> turns to
+		<code>{{ '<p id="the-hello-world" class="a-hello-world">Hello World!</p>' | escape }}</code>
 	</li>
 	
-	<li>It is possible to remove (uninclude) tag helpers from a specific view by using the <span class="code">@removeTagHelper</span> directive:<br/>
-		<span class="code">{{ '@removeTagHelper img, TechDominator.TagHelpersAssembly' | escape }}</span>
+	<li>It is possible to remove (uninclude) tag helpers from a specific view by using the <code>@removeTagHelper</code> directive:<br/>
+		<code>{{ '@removeTagHelper img, TechDominator.TagHelpersAssembly' | escape }}</code>
 	</li>
-	<li>It is possible to disable tag helper activation for specific element by using the <span class="code">!</span> operator:<br/>
-		<span class="code">{{ '<!hello-world></!hello-world>' | escape }}</span> turns to <span class="code">{{ "<hello-world></hello-world>" | escape }}</span>
+	<li>It is possible to disable tag helper activation for specific element by using the <code>!</code> operator:<br/>
+		<code>{{ '<!hello-world></!hello-world>' | escape }}</code> turns to <code>{{ "<hello-world></hello-world>" | escape }}</code>
 	</li>
 	<li>Some tag helpers can accept content and even nested elements which can be tag helpers as well:
 		<script src="https://gist.github.com/MissaouiChedy/afce2ccbf216052e1ec1a06ac1d50883.js"></script>
