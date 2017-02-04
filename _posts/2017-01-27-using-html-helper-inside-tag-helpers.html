@@ -19,7 +19,7 @@ comments: true
 <p>As usual the full project code is <a href="https://github.com/MissaouiChedy/UsingCshtmlTemplatesInTagHelpers">available on Github</a>. But first off let's discuss why you should not do this.</p>
 <h2>Razor view components</h2>
 <p>When I was building the list editor widget I was not aware of the new <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components">Razor View Component</a> mechanism , which basically allows to render a partial template, to pass it data and to do some processing before the actual rendering.</p> 
-<p><strong>It seems that using View Components is a cleaner approach</strong> as we are going to see in an upcoming post.</p>
+<p><strong>It seems that using View Components is a cleaner approach</strong> as we are going to see in an <a href="{{ site.url }}/article/render-partials-with-asp.net-core-view-components.html">upcoming post</a>.</p>
 <p>But still one might need to use an <code>HtmlHelper</code> inside a tag helper maybe for some reason I am not anticipating. That's why I want to share what I learned.</p>
 
 <h2>Getting an IHtmlHelper through Dependency Injection and properly initializing it</h2>

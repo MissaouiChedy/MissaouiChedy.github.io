@@ -2,12 +2,13 @@
 # This is the Front Matter block
 ---
 
-@import url('https://fonts.googleapis.com/css?family=Oswald|PT+Serif|Inconsolata');
-$default-font-size: 16px;
+@import url('https://fonts.googleapis.com/css?family=Oswald|PT+Serif|Inconsolata|Roboto+Condensed');
+$default-font-size: 17px;
 $default-font-family: "PT Serif", "Georgia", "Serif";
-$title-fonts: "Oswald", "Helvetica", "Sans Serif";
+$title-fonts: "Roboto Condensed", "Oswald", "Helvetica", "Sans Serif";
+$header-font: "Oswald", "Helvetica", "Sans Serif";
 $code-font: "consolas", "Inconsolata", "monospace", "Sans Serif";
-$my-orange: #c97800;
+$my-orange: #FAA200;
 $code-background-color: #ededed;
 @mixin on-mobile() {
 	@media screen and (min-width: 320px) and (max-width: 480px) {
@@ -58,18 +59,24 @@ header.site-header {
 	.site-title {
 		padding: 1em;
 		padding-bottom: 0.1em;
+		text-transform: uppercase;
+		font-family: $header-font;
 	}
 	ul {
 		padding: 0.4em;
 		padding-top: 0.1em;
 		padding-bottom: 0.01em;
 		text-align: right;
-		font-family: $title-fonts;
 		li {
+
 			display: inline-block;
 			padding-left: 0.5em;
+			h4 {
+				font-family: $header-font;
+			}
 			a:hover {
 				color: $my-orange;
+				
 			}
 		}
 	}
@@ -78,7 +85,7 @@ header.site-header {
 div.main-content
 {
 	margin: 0 auto;
-	max-width: 45em;
+	max-width: 46em;
 }
 
 article.post 
@@ -98,7 +105,7 @@ article.post
 				display: inline-block;
 				background-color: black;
 				color: white;
-				font-family: $title-fonts;
+				font-family: $header-font;
 				padding: 0.6em;
 			}
 		}
@@ -116,7 +123,7 @@ article.post
 				padding-bottom: 0.7em;
 				padding-bottom: 0.7em;
 				a {
-					font-family: "Oswald";
+					font-family: $title-fonts;
 					font-size: 1.1em;
 					color: black;
 					&:hover {
@@ -205,6 +212,7 @@ article.post
 			h3 {
 				padding: 0;
 				margin: 0;
+				font-family: $header-font;
 			}
 			a {
 				margin: 0;
