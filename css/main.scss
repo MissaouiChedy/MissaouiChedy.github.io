@@ -181,7 +181,14 @@ article.post
 			background-color: $code-background-color;
 			font-size: 0.8em;
 		}
-
+		div.highlighter-rouge {
+			background-color: $code-background-color;
+			padding: 0.2em;
+			code {
+				@extend %code-text;
+				font-size: 1em;
+			}
+		}
 		code {
 			display: inline;
 			@extend %code-text;
