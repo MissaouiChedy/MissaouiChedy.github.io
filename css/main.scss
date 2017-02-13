@@ -53,6 +53,7 @@ a {
 header.site-header {
 	color: white;
 	background-color: black;
+	border-bottom: 12px solid $my-orange;
 	a {
 		color: white;
 	}
@@ -146,7 +147,7 @@ article.post
 			font-family: $default-font-family;
 		}
 		
-		ul {
+		ul,ol {
 			li {
 				@extend %regular-text;
 				padding-bottom: 0.8em;
@@ -160,6 +161,9 @@ article.post
 			padding-top: 0.5em;
 			padding-bottom: 1em;
 			line-height: 1.2;	
+		}
+		ol {
+			list-style-type: decimal; 
 		}
 		p {
 			@extend %regular-text;
@@ -233,7 +237,7 @@ div.archives
 		text-align: left;
 	}
 	margin-top: 2em;
-	margin-bottom: 8em;
+	margin-bottom: 2em;
 	a {
 		color: black;
 		&:hover {
@@ -257,6 +261,9 @@ div.about {
 	div.stackoverflow-flair {
 		float: right;
 		padding-top: 6em;
+	}
+	ul#contact-info {
+		list-style: none;
 	}
 }
 
