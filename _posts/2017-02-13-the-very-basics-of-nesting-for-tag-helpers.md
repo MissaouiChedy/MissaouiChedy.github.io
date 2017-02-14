@@ -19,12 +19,9 @@ I encourage you to check out [Dave Paquette's post](http://www.davepaquette.com/
 
 ## How nested tag helpers work?
 
-We are going to create two tag helpers: `ParentTagHelper` and `ChildTagHelper`. Obviously `ChildTagHelper` is going to be nested inside `ParentTagHelper`. The following is the typical usage example:
-```
-<parent>
-    <child></child>
-</parent>
-```
+We are going to create two tag helpers: `ParentTagHelper` and `ChildTagHelper`. Obviously `ChildTagHelper` is going to be nested inside `ParentTagHelper`. The following is the typical usage example: 
+
+`<parent> <child></child> </parent>`
 
 Now let's see how the two tag helpers are defined:
 <script src="https://gist.github.com/MissaouiChedy/2856cbe4becca23e19586a8c2ee04066.js"></script>
