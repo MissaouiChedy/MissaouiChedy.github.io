@@ -20,12 +20,15 @@ $code-background-color: #ededed;
 
 %title {
 	padding-top: 0.4em;
-	padding-bottom: 0.2em; 
+	padding-bottom: 0em;
+	margin-bottom: -0.1em; 
 	font-family: $title-fonts;
 	line-height: 1.15;
 }
 h1 {
 	@extend %title;
+	padding-bottom: 0.2em;
+	margin-bottom: 0em;
 	font-size: 3.998em;
 }
 h2 {
@@ -194,6 +197,9 @@ article.post
 			@extend %code-text;
 		}
 		
+		img {
+			max-width: 100%;
+		}
 		div.gist {
 			padding-top: 0.5em;
 			padding-bottom: 0.1em;
@@ -255,7 +261,7 @@ div.archives
 
 div.about {
 	margin-top: 2em;
-	img.id-img {
+	img#id-img {
 		max-width: 35%;
 		float: right;
 		display: inline-block;
