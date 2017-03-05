@@ -14,9 +14,9 @@ In this post I wanted to share what I discovered so far, we are going to see a v
 The full code for the example is [available on Github](https://github.com/MissaouiChedy/RenderingTagHelperInsideAnother).
 
 ## The Example
-
+<div class="img-container">
 ![example]({{ site.url }}/imgs/InsideRendering.PNG)
-
+</div>
 In the previous screenshot the inner html `p` element having a red border is rendered from the `InnerTagHelper`, the outer html div having a black border is rendered from the `WrapperTagHelper`.
 
 The `WrapperTagHelper` renders the `InnerTagHelper` programmatically inside its `Process` method. The following snippet shows how the `WrapperTagHelper` is used:
