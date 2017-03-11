@@ -46,7 +46,7 @@ I am foreseeing a lot of challenges in the making of such a tag helper:
 
 ## What's next?
 
-In an upcoming post, I will report my first attempt at building the `<reactive-form>` tag helper. Stay tuned <i class="fa fa-smile-o" aria-hidden="true"></i>.
+In an [upcoming post](http://blog.techdominator.com/article/first-dynamic-form-tag-helper-attempt.html), I will report my first attempt at building the `<reactive-form>` tag helper. Stay tuned <i class="fa fa-smile-o" aria-hidden="true"></i>.
 
  
 
