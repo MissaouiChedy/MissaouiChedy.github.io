@@ -52,7 +52,11 @@ a {
 	text-decoration: none;
 	font-size: $default-font-size;
 }
-
+hr {
+	border-width: 1px;
+	border-color: black;
+	border-style: solid;
+}
 header.site-header {
 	color: white;
 	background-color: black;
@@ -165,6 +169,10 @@ article.post
 			padding-bottom: 1em;
 			line-height: 1.2;	
 		}
+                strong {
+                    font-family: $title-fonts;
+                    font-size: 1.2em;
+                }
 		ol {
 			list-style-type: decimal; 
 		}
