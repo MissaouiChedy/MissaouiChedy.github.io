@@ -6,6 +6,10 @@ categories: article
 comments: true
 ---
 
+**UPDATE:** *The content of the following post as been revisited with improvements in a [more recent post](http://blog.techdominator.com/article/revisiting-programmatic-tag-helper-rendering.html) check it out.*
+
+***
+
 Lately, I was prototyping around the idea of creating asp.net core tag helper that will basically behave like the [angular 2's dynamic form](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html). The idea is to have a tag helper that generates automatically a form from a C# model class in order to avoid coding the form `cshtml` by hand which can be sometimes tedious and repetitive.
 
 During my fiddling I came across the need to render a tag helper inside the `Process` method of another tag helper.
