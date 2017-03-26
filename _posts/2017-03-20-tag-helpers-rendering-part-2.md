@@ -105,7 +105,7 @@ Looking inside the `Write` method shows that the `TagHelperOutput.WriteTo` is us
 
 The complexity introduced by the collaboration between the `TagHelperScopeManager`, `TagHelperExecutionContext` and `TagHelperRunner` is necessary to handle *multiple tag helpers activation on the same html element* as well as to manage *nested tag helpers processing*.
 
-Nested tag helpers processing is still not clear and is going to be the subject of the upcoming post. 
+Nested tag helpers processing is still not clear and is going to be the subject of an upcoming post some day. 
 
 
  
