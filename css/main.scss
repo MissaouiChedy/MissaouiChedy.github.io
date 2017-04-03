@@ -162,12 +162,15 @@ article.post
 				a {
 					@extend %regular-link;
 				}
+				ul {
+					padding-bottom: 0em;
+				}
 			}
 			list-style-type: square;
 			text-align:left;
 			padding-left: 2em;
 			padding-top: 0.5em;
-			padding-bottom: 1em;
+			padding-bottom: 0.1em;
 			line-height: 1.2;	
 		}
                 strong {
