@@ -2,7 +2,7 @@
 # This is the Front Matter block
 ---
 
-@import url('https://fonts.googleapis.com/css?family=Oswald|PT+Serif|Inconsolata|Roboto+Condensed');
+@import url('https://fonts.googleapis.com/css?family=Oswald|PT+Serif:400,400i,700|Inconsolata|Roboto+Condensed:400,700');
 $default-font-size: 16.2px;
 $default-font-family: "PT Serif", "Georgia", "Serif";
 $title-fonts: "Roboto Condensed", "Oswald", "Helvetica", "Sans Serif";
@@ -24,6 +24,8 @@ $code-background-color: #ededed;
 	margin-bottom: -0.1em; 
 	font-family: $title-fonts;
 	line-height: 1.15;
+	font-weight: 700;
+	text-transform: lowercase;
 }
 h1 {
 	@extend %title;
@@ -45,7 +47,7 @@ h4 {
 }
 
 time {
-	font-family: "Georgia";
+	font-family: $title-fonts;
 }
 
 a {
@@ -173,10 +175,12 @@ article.post
 			padding-bottom: 0.1em;
 			line-height: 1.2;	
 		}
-                strong {
-                    font-family: $title-fonts;
-                    font-size: 1.2em;
-                }
+        em {
+			font-style: italic;
+        }
+        strong {
+			font-weight: 700;
+        }
 		ol {
 			list-style-type: decimal; 
 		}
@@ -212,7 +216,7 @@ article.post
 			p {
 				text-align: center;
 				img {
-					margin: 0.2em;
+					padding: 0;
 					max-width: 100%;
 					border-width: 1px;
 					border-style: solid; 
@@ -263,12 +267,18 @@ article.post
 div.archives 
 {
 	text-align: center;
-	td {
-		vertical-align: middle;
-		padding : 0.1em;
-		padding-left: 1em;
-		text-align: left;
+	tr.spacer {
+		display:block;
+		width: 100%;
+		padding: 0.8em;
+		border-width: 0;
 	}
+		td {
+			vertical-align: middle;
+			padding : 0.1em;
+			padding-left: 1em;
+			text-align: left;
+		}
 	margin-top: 2em;
 	margin-bottom: 2em;
 	a {
@@ -276,6 +286,10 @@ div.archives
 		&:hover {
 			color: $my-orange;
 		}
+	}
+	h3 {
+		font-size: 2.1em;
+		padding: 0;
 	}
 }
 
