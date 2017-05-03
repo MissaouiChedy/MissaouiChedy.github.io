@@ -2,12 +2,13 @@
 # This is the Front Matter block
 ---
 
-@import url('https://fonts.googleapis.com/css?family=Oswald|PT+Serif:400,400i,700|Inconsolata|Roboto+Condensed:400,700');
-$default-font-size: 16.2px;
-$default-font-family: "PT Serif", "Georgia", "Serif";
-$title-fonts: "Roboto Condensed", "Oswald", "Helvetica", "Sans Serif";
+@import url('https://fonts.googleapis.com/css?family=Archivo+Narrow|Alegreya:400,400i,700,700i|Oswald|Inconsolata');
+$default-font-size: 18px;
+$default-font-family: "Alegreya", "Georgia", "Serif";
+$title-fonts: "Oswald", "Helvetica", "Sans Serif";
 $header-font: "Oswald", "Helvetica", "Sans Serif";
 $code-font: "consolas", "Inconsolata", "monospace", "Sans Serif";
+$time-fonts: "Archivo Narrow", "Oswald", "Helvetica", "Sans Serif";
 $my-orange: #FAA200;
 $code-background-color: #ededed;
 @mixin on-mobile() {
@@ -24,7 +25,7 @@ $code-background-color: #ededed;
 	margin-bottom: -0.1em; 
 	font-family: $title-fonts;
 	line-height: 1.15;
-	font-weight: 700;
+	font-weight: normal;
 	text-transform: lowercase;
 }
 h1 {
@@ -47,7 +48,8 @@ h4 {
 }
 
 time {
-	font-family: $title-fonts;
+	font-family: $time-fonts;
+	font-weight: normal;
 }
 
 a {
@@ -266,30 +268,23 @@ article.post
 
 div.archives 
 {
-	text-align: center;
-	tr.spacer {
-		display:block;
-		width: 100%;
-		padding: 0.8em;
-		border-width: 0;
-	}
-		td {
-			vertical-align: middle;
-			padding : 0.1em;
-			padding-left: 1em;
-			text-align: left;
-		}
+	text-align: left;
+	
 	margin-top: 2em;
 	margin-bottom: 2em;
-	a {
-		color: black;
-		&:hover {
-			color: $my-orange;
+	div.archive-entry {
+		margin-bottom: 2em;
+		a {
+			@extend %title;
+			color: black;
+			font-size: 2.5em;
+
+			padding: 0;
+			&:hover {
+				color: $my-orange;
+			}
 		}
-	}
-	h3 {
-		font-size: 2.1em;
-		padding: 0;
+		
 	}
 }
 
