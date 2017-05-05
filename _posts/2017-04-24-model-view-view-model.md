@@ -52,7 +52,7 @@ I consider DDD to be a software design strategy in which the developer aims to b
 
 This solid understanding is then leveraged to build a software representation that implements the core features of the application and that is independent of *real world concerns*.
 
-This software representation is the *domain layer* and the understanding is the *domain model*. *Real wold concerns* include problems such as data access, user experience or monitoring.
+This software representation is the *domain layer* and the understanding is the *domain model*. *Real world concerns* include problems such as data access, user experience or monitoring.
 
 The *domain layer* is focused on implementing core logic that captures the essence of the problem domain. For example, in a hypothetical fast food management application the *domain layer* would contain classes such as a `Menu`, `FoodItem` and `DrinkItem`. If we have some discount rules, we can factor the discount calculation in the `Menu` class.
 
