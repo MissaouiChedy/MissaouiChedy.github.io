@@ -3,7 +3,7 @@ function generateId(domElement) {
 	return content.replace(/ /g, '-');
 }
 $(document).ready(function () {
-	if ($('div#outline')) {
+	if ($('div#outline') && !($('span.no-outline'))) {
 		if ($('article.post div.content h2').length > 4) {
 			$('article.post div.content h2').each(function (index, elem) {
 				var title = $(elem).html();
