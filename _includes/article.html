@@ -7,6 +7,7 @@
 	</div>
 	<header class="article-header">
 		<a href="{{ include.post_arg.url }}"><h1 itemprop="name headline">{{ include.post_arg.title }}</h1></a>
+		<p style="display:none" itemprop="author">Chedy Missaoui</p>
 		<time datetime="{{ include.post_arg.date | date_to_xmlschema }}" itemprop="datePublished">{{ include.post_arg.date | date_to_long_string}}</time>
 		<div class="navigation">
 			{% if include.post_arg != site.posts.last %}
