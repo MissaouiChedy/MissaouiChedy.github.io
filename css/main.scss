@@ -2,7 +2,7 @@
 # This is the Front Matter block
 ---
 
-@import url('https://fonts.googleapis.com/css?family=Archivo+Narrow|Merriweather:300,300i,700,700i|Oswald:400,600|Inconsolata');
+@import url('https://fonts.googleapis.com/css?family=Archivo+Narrow|Merriweather:300,300i,400,700,700i|Oswald:400,600|Inconsolata');
 $default-font-size: 17px;
 $default-font-family: "Merriweather", "Georgia", "Serif";
 $title-fonts: "Oswald", "Helvetica", "Sans Serif";
@@ -154,11 +154,13 @@ article.post
 	%regular-link {
 		text-decoration: underline;
 		color: $my-orange;
+		font-weight: 400;
 	}
 	div.content {
 		%regular-text {
 			font-size: $default-font-size;
 			font-family: $default-font-family;
+			font-weight: 300;
 		}
 		
 		ul,ol {
