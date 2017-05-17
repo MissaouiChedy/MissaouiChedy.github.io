@@ -204,19 +204,20 @@ article.post
 		%code-text {
 			font-family: $code-font;
 			background-color: $code-background-color;
-			font-size: 0.8em;
+			
 		}
 		div.highlighter-rouge {
 			background-color: $code-background-color;
 			padding: 0.2em;
 			code {
 				@extend %code-text;
-				font-size: 1em;
+				font-size: 1.2em;
 			}
 		}
 		code {
 			display: inline;
 			@extend %code-text;
+			font-size: 0.8em;
 		}
 		div.img-container {
 			p {
