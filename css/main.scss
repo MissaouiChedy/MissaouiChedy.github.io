@@ -274,7 +274,10 @@ article.post
 div.archives 
 {
 	text-align: left;
-	
+	@include on-mobile() {
+		padding-left: 1em;
+		padding-right: 1em;
+	}
 	margin-top: 2em;
 	margin-bottom: 2em;
 	div.archive-entry {
