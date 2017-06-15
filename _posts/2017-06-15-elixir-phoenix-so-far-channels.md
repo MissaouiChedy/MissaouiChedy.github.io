@@ -6,25 +6,25 @@ categories: article
 comments: true
 ---
 
-The Phoenix framework has a built-in facility to manage two way communication between clients and the server called [*channel*].
+The Phoenix framework has a built-in facility to manage two way communication between web clients and the server called [*channel*](http://www.phoenixframework.org/docs/channels).
 
 Clients of Phoenix *channels* can be regular erlang processes or, more interestingly, external processes. In fact, there are a bunch of clients written in different languages that allows to communicate via Phoenix channels from web and mobile applications.
 
-I've had the chance to use the [dn-phoenix] C# client that I am considering using in the Xamarin application that I am currently working on, more on this library further.
+I've had the chance to use the [dn-phoenix](https://github.com/jfis/dn-phoenix) C# client that I am considering using in the Xamarin application that I am currently working on, more on this library further.
 
-*Channels* abstract the underlying two way transport mechanism while offering a programming model based on the [*pub/sub*] pattern.
+*Channels* abstract the underlying two way transport mechanism while offering a programming model based on the [*pub/sub*](http://www.enterpriseintegrationpatterns.com/patterns/messaging/PublishSubscribeChannel.html) messaging pattern.
 
-In this post, I am going to lay out the important parts of this great feature but first a couple of words about two way client server communication. 
+In this post, I am going to lay out the important parts of this great feature but first a couple of words about two way client server communication.
 
 ## two way communication
 
-Historically on the web, communication between clients and servers was always happening on a request/response basis: the client sends a request and the server returns a response. There was no way for the server to push data to the client without the client asking first.
+Historically on the web, communication between clients and servers was always happening on a request/response basis; the client sends a request and the server returns a response. There was no way for the server to push data to the client without the client asking first.
 
-In the last decade (or two), requirements for interactive web application that are able to refresh displayed content in soft real-time showed up such as online multiplayer video games and social networks.
+In the last decade (or two), requirements for interactive web application that are able to refresh displayed content in [soft real-time](https://stackoverflow.com/questions/17308956/differences-between-hard-real-time-soft-real-time-and-firm-real-time) showed up such as online multiplayer video games and social networks.
 
-Nowadays there are [some techniques for handling real-time updates] in web applications, the most interesting one is based on the [web-socket] protocol.
+Nowadays there are [some techniques for handling real-time updates](https://banksco.de/p/state-of-realtime-web-2016.html) in web applications, the most interesting one is based on the [web-socket](https://tools.ietf.org/html/rfc6455) protocol.
 
-Phoenix channels, as pointed out earlier, abstracts away the tranport technique used for two way communication, it default to using [web-sockets and can fallback to a technique called long-polling] when the former is not supported by the target web client.
+Phoenix channels, as pointed out earlier, abstracts away the transport technique used for two way communication, it default to using [web-sockets and can fallback to a technique called long-polling](http://www.phoenixframework.org/docs/channels#section-the-moving-parts) when the former is not supported by the target web client.
 
 ## essential phoenix channels concepts
 
@@ -37,45 +37,44 @@ The previous diagram shows the components involved when using channels and how t
 
 ### channel client
 
-Channel clients are usually external processes that uses a channel's client library in order to *join* a specific a *topic* in order to send and receive messages to/from the server.
+*Channel clients* are usually external processes that uses a channel's client library in order to *join* a specific *topic* in order to send and receive messages to/from the server.
 
-They typically establish a web-socket connection to the server identified by a url similar to `ws://localhost:4000/socket` and then join a specific *topic*.
+They typically establish a web-socket connection to the server identified by a url similar to `ws://localhost:4000/socket` and then specify a *topic* to join.
 
-Channel client apis offer a way to send messages and to register callbacks that are executed when a message is received from the backend server.
+The channel client api offers a way to send messages and to register callbacks that are executed when a specific message is received from the backend server.
 
-The following listing shows an example usage with the C# [dn-phoenix] client:
+The following listing shows an example usage with the C# [dn-phoenix](https://github.com/jfis/dn-phoenix) client:
 
 <script src="https://gist.github.com/MissaouiChedy/c6b22d95b36b180bcd01513e08147416.js"></script>
 
-The dn-phoenix client library seems pretty solid, it can handle the previously described capabilities as well as connection reestablishing behavior.
+The dn-phoenix client library seems pretty solid, it can handle the previously described capabilities as well as connection reestablishing when a transient disconnect happens.
 
 The only catch is that it is implemented with the Full .NET Framework and does not seem to work on Xamarin yet.
 
 ### topics
 
-Topics in a pub/sub context represents a common interest to which individual processes can send/receive messages to/from.
+Topics in a *pub/sub* context represents a common interest to which individual processes can send/receive messages to/from.
 
-In a typical pub/sub scenario, we can have multiple processes subscribed to a topic. Each time a process sends a message to the topic, the message is forwarded to the subscribed processes.
+In a typical *pub/sub* scenario, we can have multiple processes subscribed to a topic. Each time a process sends a message to the topic, the message is forwarded to all the subscribed processes.
 
 When using Phoenix channels, clients usually subscribe to a specific topic by calling the `Join` operation.
 
-Topics are mapped to specific a channel module in the socket configuration.
+Topics are mapped to specific a channel module in the *socket configuration*.
 
 ### messages
-Messages in the channel context, are defined by a name (also called an event) which usually a string and they carry a payload which usually a
-JSON object.
+Messages in the channel context, are defined by a name (also called an event) which is usually a string and they carry a payload which is usually a JSON object.
 
-The payload is usually a dictionary, or list type that is serialized when sent and that de-serialzed when received. The channels api makes this process very seamless both on the server and client side.
+The payload is belongs most of the time to a dictionary or list type that is serialized when sent and that is de-serialized when received. The channels api makes this process very seamless both on the server and on the client side.
 
 ### channel module
-Channels are actually modules that uses the Phoenix.Channel definition, they provide three basic interface functions, as you can see in the following snippet:
+Channels are actually modules that uses the `Phoenix.Channel` definition, they provide three basic interface functions, as you can see in the following snippet:
 <script src="https://gist.github.com/MissaouiChedy/d60323de5a71537bcde537c6a188aa83.js"></script>
 
-- `join` allows to handle a client trying to join a topic, usually some form of authorization is performed in this function.
+- `join` allows to handle a client trying to join a *topic*, usually some form of authorization is performed in this function.
 - `handle_in` allows to specify what happens when a message arrives from the client, typically this function would broadcast the message to the other channels instances that joined the same *topic*.
 - `handle_out` used with the `intercept` macro is used to capture messages that are going to the client's direction, this function usually decides whether or not to forward the message to the external client.
 
-Channels are actually GenServers you can see in the components diagram that a channel instance is created for each client joining a topic, the `socket` argument is the actual `state` maintained by the GenServer and we can use it to store arbitrary data.
+Channels are actually OTP GenServers you can see in the previous diagram that a channel instance is created for each client joining a topic, the `socket` argument is the actual `state` maintained by the GenServer and we can use it to store arbitrary data.
 
 ### socket configuration
 
@@ -83,7 +82,8 @@ We mentioned that a client joins a channel by establishing a web-socket connecti
 
 <script src="https://gist.github.com/MissaouiChedy/e83fca101fac63d0a28d09994206e625.js"></script>
 
-Here the `socket` subpath is mapped to the `MyApp.MyAppSocket` module.
+Here the `socket` sub-path is mapped to the `MyApp.MyAppSocket` module.
+
 The socket module is usually straightforward it just contains to key pieces:
 
 <script src="https://gist.github.com/MissaouiChedy/f1ecb11879e84a704fb44780c211a402.js"></script>
@@ -94,11 +94,13 @@ The socket module is usually straightforward it just contains to key pieces:
 
 ### Pubsub system
 
-The `Phoenix.PubSub` module tracks down subscriptions to topics and takes care of forwarding messages from and to channel instances that can be distributed over different BEAM instances.
+The [`Phoenix.PubSub`](https://hexdocs.pm/phoenix/1.1.0/Phoenix.PubSub.html) module tracks down subscriptions to topics and takes care of forwarding messages between channel instances, these instances can be distributed over different BEAM instances and the PubSub system is able to handle that.
 
 ## Closing thoughts
 
-After playing around with basic channels on single node, I am looking forward to see what kind of challenges arises when working with multiple nodes. I heard about the [Phoenix presence] module that provides solutions for inter-node consistency problems, also looking forward to play with that when need will come to scale to multiple nodes.
+After playing around with basic channels on a erlang single node, I am looking forward to see what kind of challenges arises when working with multiple nodes. 
+
+I heard about the [Phoenix presence](https://hexdocs.pm/phoenix/Phoenix.Presence.html) module that provides solutions for inter-node consistency problems; also looking forward to play with that when the need will come, in my project, to scale to multiple nodes.
 
 
 
