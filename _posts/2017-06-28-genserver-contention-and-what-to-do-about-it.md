@@ -70,7 +70,7 @@ The *primes calculation* is concurrently requested by `n` *client processes* on 
 
 The [Poolboy](https://github.com/devinus/poolboy) erlang library has been used to create the GenServers pool and it worked seamlessly in elixir.
 
-In the interest of brevity, we won't dive into the details (which are available in the project's [README.md](https://github.com/MissaouiChedy/Pooling/blob/master/README.md)) in this article. 
+In the interest of brevity, we won't dive into the inner-workings in this article. If you are interested in the details checkout the project's [README.md](https://github.com/MissaouiChedy/Pooling/blob/master/README.md) and the well factored and commented (I hope :-)) source code.
 
 Nevertheless, here is a sample output of the program executed on my machine ([Intel Core i7 4750HQ](https://ark.intel.com/en/products/76087/Intel-Core-i7-4750HQ-Processor-6M-Cache-up-to-3_20-GHz)@800Mhz) with `range_size == 10000`:
 <script src="https://gist.github.com/MissaouiChedy/ad4915add30c595ea03e66ceb4a4dcba.js"></script>
