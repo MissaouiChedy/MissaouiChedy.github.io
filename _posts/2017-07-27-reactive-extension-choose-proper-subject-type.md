@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Reactive extension: chhose the proper subject type"
+title: "Reactive extension<br/> choose the proper subject type"
 date: 2017-07-27
 categories: article
 comments: true
