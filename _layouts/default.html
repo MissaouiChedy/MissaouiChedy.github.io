@@ -4,7 +4,7 @@
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="{{ site.description }}" />
-	<title>{% if page.title %}{{ page.title | escape }} - {{ site.title }}{% else %}{{ site.title | escape }} - Blog{% endif %}</title>
+	<title>{% if page.title %}{{ page.title | strip_html | escape }} - {{ site.title }}{% else %}{{ site.title | escape }} - Blog{% endif %}</title>
 	<link href="{{ site.url }}/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="{{ site.url }}/css/main.css" rel="stylesheet">
 	<link rel="icon shortcut" type="image/png" href="{{ site.url }}/favicon.png">
