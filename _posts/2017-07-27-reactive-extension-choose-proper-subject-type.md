@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Reactive extension subject types"
+title: "Reactive extension: chhose the proper subject type"
 date: 2017-07-27
 categories: article
 comments: true
@@ -8,8 +8,7 @@ comments: true
 
 This week I faced in my current Xamarin project an odd timing issue related with observable collections and the [.NET reactive extension](https://github.com/Reactive-Extensions/Rx.NET#a-brief-intro). 
 
-In this post, I wanted to document the debugging process and what I learned along the way about types of *observables* and *subjects*.
-
+In this post, I wanted to document the debugging process and what I learned along the way about types of *observables* and *subjects* which essentially revolves around using the proper `Subject` implementation.
 ## the issue
 
 I have a Xamarin mobile application that needs to join a [channel](http://www.phoenixframework.org/docs/channels) in a Phoenix based backend service.
