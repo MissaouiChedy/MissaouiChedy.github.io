@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Reactive extension subject types"
-date: 2017-07-26
+date: 2017-07-27
 categories: article
 comments: true
 ---
