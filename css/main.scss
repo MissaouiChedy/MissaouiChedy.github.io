@@ -26,7 +26,7 @@ $code-background-color: #ededed;
 	font-family: $title-fonts;
 	line-height: 1.05;
 	font-weight: 600;
-	text-transform: lowercase;
+	text-transform: capitalize;
 }
 h1 {
 	@extend %title;
