@@ -72,8 +72,8 @@ header.site-header {
 	.site-title {
 		padding: 1em;
 		padding-top: 0.8em;
-		padding-bottom: 0.1em;
-		text-transform: uppercase;
+		padding-bottom: 0.15em;
+		text-transform: capitalize;
 		font-family: $header-font;
 	}
 	ul {
@@ -87,6 +87,7 @@ header.site-header {
 			padding-left: 0.5em;
 			h4 {
 				font-family: $header-font;
+				text-transform: lowercase;
 			}
 			a:hover {
 				color: $my-orange;
@@ -114,6 +115,7 @@ article.post
 		
 		div.navigation
 		{
+			padding-top: 0.8em;
 			text-align: right;
 			a {
 				display: inline-block;
@@ -311,6 +313,7 @@ div.about {
 	div.stackoverflow-flair {
 		float: right;
 		padding-top: 6em;
+		//padding: 0.2em;
 	}
 	ul#contact-info {
 		list-style: none;
