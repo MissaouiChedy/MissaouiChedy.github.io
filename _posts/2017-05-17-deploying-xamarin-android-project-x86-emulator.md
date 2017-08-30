@@ -85,7 +85,7 @@ These steps are described in detail in the [Build ABI Specific APKs](https://dev
 
 ## Closing thoughts
 
-*PowerShell* is, in my opinion, the best scripting platform available today. It has been helpful many times more than once to perform and automate repeatable tasks.
+*PowerShell* is, in my opinion, the best scripting platform available today. It has been helpful way more than once to perform and automate repeatable tasks.
 
 
 
