@@ -31,7 +31,7 @@ In this post, I am going to summarize the main tasks that I usually perform with
 `docker run -name <CONTAINER_NAME> -d -p <HOST_PORT>:<CONTAINER_PORT> <IMAGE_NAME> <COMMAND>`
 
 - It can be convenient to set a `CONTAINER_NAME` to refer to it easily.
-- `-p` allows to map a host tcp/udp port to the containers port.
+- `-p` allows to map a host tcp/udp port to a containers port.
 - `COMMAND` usually starts a server for example: `mongod`
 
 
@@ -55,9 +55,12 @@ In this post, I am going to summarize the main tasks that I usually perform with
 - executes `COMMAND` inside the specified container, this can be useful if attaching to the container will bring a console with the output of the main service running in the container
 
 ## detaching the console from a running container without stopping it
-- `Ctrl+P+Q` when in a console attached to a container via `docker attach`.
+`Ctrl+P+Q` 
+- use this combination in a console attached to a container via `docker attach`.
 
-## removing and renaming
+## removing and renamin
+`docker rm <CONTAINER_NAME | CONTAINER_HASH_ID>`
+- **removes** the specified container
 
-- `docker rm <CONTAINER_NAME | CONTAINER_HASH_ID>` to **remove** a container
-- `docker rename <CONTAINER_NAME | CONTAINER_HASH_ID> <NEW_NAME>` to **rename** a container
+`docker rename <CONTAINER_NAME | CONTAINER_HASH_ID> <NEW_NAME>` 
+- **renames** the specified container
