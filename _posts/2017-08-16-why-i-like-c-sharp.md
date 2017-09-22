@@ -10,7 +10,7 @@ So far, I considered [C#](https://docs.microsoft.com/en-us/dotnet/csharp/getting
 
 Coding in C# feels very productive and it is my current favorite programming language. In this post, I would like to articulate the reasons of this choice.
 
-## Many things can be done using C#
+## Many things can be done using C\#
 
 Many types of applications can be developed by using C#:
  - Cross platform Web applications and APIS with [ASP.NET CORE](https://docs.microsoft.com/en-us/aspnet/core/)
