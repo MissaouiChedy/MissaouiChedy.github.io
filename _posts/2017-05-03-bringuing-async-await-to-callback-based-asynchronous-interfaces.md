@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "bringing async/await to callback based asynchronous interfaces"
+title: "bringuing async/await to callback based asynchronous interfaces"
 date: 2017-05-03
 categories: article
 comments: true
