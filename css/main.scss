@@ -17,7 +17,7 @@ $code-background-color: #ededed;
 	}
 }
 @import 'reset.scss';
-
+@import 'highlight.scss';
 
 %title {
 	padding-top: 0.4em;
@@ -207,6 +207,13 @@ article.post
 			font-family: $code-font;
 			background-color: $code-background-color;
 			
+		}
+
+		figure.highlight {
+			background-color: $code-background-color;
+		}
+		pre.highlight {
+			background-color: $code-background-color;
 		}
 		div.highlighter-rouge {
 			background-color: $code-background-color;
