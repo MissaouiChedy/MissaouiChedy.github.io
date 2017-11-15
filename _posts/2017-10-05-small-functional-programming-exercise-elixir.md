@@ -6,6 +6,10 @@ categories: article
 comments: true
 ---
 
+**UPDATE,** 15 Nov 2017 &mdash; *Michael Kohl[@citizen428](https://twitter.com/citizen428) suggested in the comments some improvements for the proposed solution that I wanted to highlight*
+
+<hr/>
+
 Yesterday, I found a [question on Stack Overflow](https://stackoverflow.com/questions/46553433/how-do-i-think-of-this-sequence-generator-in-elixir) that essentially asked if an Elixir implementation was properly written in the functional style of programming.
 
 The implementation suggested by [the original poster](https://stackoverflow.com/users/1870446/konnigun) contained too much `if` statements which is somewhat a smell in the functional style. In fact , loops and `if` statements should be avoided in favor of *pattern matching* and *recursion*.
@@ -88,6 +92,18 @@ Here we iterate over a sequence containing the desired count of elements and `m`
 
 Although not strictly functional, I think that this solution is more pragmatic. By leveraging the flexibility of Elixir that allows to use some imperative constructs this solution is more compact and may cause less cognitive load.
 
+## A revisited solution
+
+[@citizen428](https://twitter.com/citizen428) was kind enough to suggest [some improvements](http://elixirplayground.com/?gist=c51e06930a7942873557e66e8a3e1221) to my initial solution which makes the code more compact and idiomatic, consider the following:
+
+<script src="https://gist.github.com/MissaouiChedy/e6610432e8e9eac4ed44db1451863759.js"></script>
+
+The `get_stream_of_duplicated_evens` function is now much shorter;from a stream of even numbers(`Stream.iterate(2, &(&1+2))`), duplicate each element 4 times which produces a list of lists looking like `[[2, 2, 2, 2], [4, 4, 4, 4]]` and the `flat_map` the previous list.
+
+The `get_result_list` function as been split out to more smaller functions by leveraging recursion and pattern matching which makes it more readable.
+
 ## Closing thoughts
 
-Every time you find yourself using `if` statements in Elixir there may be something wrong, but different situations may require different approaches and `if` statements are there for a reason... 
+Every time you find yourself using `if` statements in Elixir there may be something wrong, but different situations may require different approaches and `if` statements are there for a reason...
+
+Also keep in mind that multiple smaller functions that is always preferable to big function, recursion is also there for reason too...
