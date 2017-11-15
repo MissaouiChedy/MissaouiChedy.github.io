@@ -5,6 +5,9 @@ date: 2017-05-10
 categories: article
 comments: true
 ---
+**UPDATE,** 15 Nov2017 &mdash; *Thanks to [Magick's](https://disqus.com/by/disqus_QtZAMoouIE) comment we have been able to make the specification more consistent, please checkout the updated "6.Provide a way to get a domain model instance populated with the data from the view model" point*
+
+<hr/>
 
 In a [previous post]({{ site.url }}/article/model-view-view-model.html), we talked about the MVVM pattern which aims to build a wrapper around a domain model class adding view specific behavior.
 
@@ -82,7 +85,9 @@ The view model class should provide a readable property or a method that returns
 
 <script src="https://gist.github.com/MissaouiChedy/dbc03af3c4fb31dd8ab9f4d90f4aa092.js"></script>
 
-If you take a look at the usage at the end of the listing, you can see that mutations on the view model should be available in the domain model instance retrieved from the view model.
+If you take a look at the usage near the end of the listing, you can see that mutations on the view model should be available in the domain model instance retrieved from the view model.
+
+The `DomainModel` read-only property can (perhaps should) return **a copy** of the `DomainModel` object encapsulated in the view model and not a reference to it in order to prevent outside mutations of the encapsulated `DomainModel` object. Checkout the usage at the end of the listing.
 
 <h2 id="spec7">providing access to view model incarnations of nested complex types and collections</h2>
 
