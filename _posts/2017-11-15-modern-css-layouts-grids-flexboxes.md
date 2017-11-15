@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Modern CSS layouts with Grids and Flexboxes"
-date: 2017-11-08
+date: 2017-11-15
 categories: article
 comments: true
 ---
