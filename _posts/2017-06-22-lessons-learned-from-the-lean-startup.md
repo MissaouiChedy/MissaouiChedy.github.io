@@ -31,7 +31,7 @@ Three kinds of growth strategies are described in the book:
 - <span style="color: red;">*viral growth*</span> in which you rely on the fact that customers are going to bring customers as a side effect of using the product/service
 - *sticky growth* in which you rely on the fact that the customers are going to use the service in some regular fashion, paying for the service each time (via subscription for example). 
 
-These growth strategies are sustainable in the sense that they do not require continuous large capital investments or [publicity stunts](http://www.thedrum.com/opinion/2016/06/16/25-greatest-publicity-stunts-our-time).
+These growth strategies are sustainable in the sense that they do not require continuous large capital investments or [publicity stunts](https://www.buzzramp.com/blog/buzzramp-pr-and-marketing-tips/how-to--create-your-own-publicity-stunt).
 
 It is important to know as soon as possible which strategy or combination of strategies is the most effective at driving growth.
 
