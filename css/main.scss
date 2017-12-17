@@ -340,5 +340,8 @@ footer.site-footer
 		text-decoration: underline;
 	}
 }
-
+span.danger {
+	color: red;
+	font-weight: bold;
+}
 @import 'mobile.scss';
