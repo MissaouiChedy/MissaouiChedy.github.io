@@ -28,7 +28,7 @@ We would like the `Greeter` component to be rendered as in the following screens
 
 So, we define it as follows:
 
-{% highlight Javascript %}
+```js
 import React from 'react';
 class Greeter extends React.Component {
     
@@ -55,7 +55,7 @@ class Greeter extends React.Component {
                </div>);
     }
 }
-{% endhighlight %}
+```
 
 The `Greeter` component is a class that extends the `React.Component` super class provided by React, by defining the `render` method we can specify the structure (html) of the component. 
 
@@ -95,14 +95,15 @@ The container is included in a page that we access with the following url: <br>`
 
 The `Container` component takes a user Id and fetches the user's name from a restful http resource:
 
-{% highlight Javascript %}
+```js
 class Container extends React.Component {
     constructor(props) {
         super(props);
     }
     static async getInitialProps(request) {
         let userId = request.query.userId;
-        let result = await httpClient.get('https://application-domain/users/${userId}');
+        let result = await httpClient
+            .get('https://application-domain/users/${userId}');
         let user = result.getResponseAsJson();
         
         return {userName: user.name};
@@ -113,7 +114,7 @@ class Container extends React.Component {
                </div>;
     }
 }
-{% endhighlight %}
+```
 
 The `getInitialProps` static method is called on the server side in order to fetch the user's data and to make it available for the server's rendering process, when the page containing the `Container` components is requested with the `userId` argument the component will be fully rendered and served by the server.
 

@@ -88,7 +88,7 @@ Finally, we need to compile the previous C++ file to a shared library which is g
 
 We compile the C++ code by using the following command on a linux machine:
 
-```
+```sh
 g++ -O3 -fpic -shared -o nativly.so nativly.cpp
 ```
 
@@ -108,7 +108,7 @@ On the Elixir side, we have to define the façade functions that are going to ac
 
 Consider the following:
 
-```ex
+```exs
 defmodule Nativly do
   @on_load :load_nifs
   
@@ -133,7 +133,7 @@ When no mapping is found on the C++ side, calling `add` will `raise` an exceptio
 Manually compiling the C++ code on each change is tedious but fortunately we can hook the native code compilation to mix which runs it as part of the Elixir compilation.
 
 Consider this snippet from `mix.exs`:
-```ex
+```exs
 defmodule Mix.Tasks.Compile.Nativly do
   def run(_args) do
     {result, _errcode} = System.cmd("g++", 
@@ -172,7 +172,7 @@ Let's now take a look at a slightly more interesting example, the [dot product](
 
 **Assuming that both vectors have the same size for the sake of simplicity**, `dot` can be implemented in Elixir as follows:
 
-```ex
+```exs
 def dot(a, b) do
     Enum.zip(a, b)
     |> Enum.map(fn {ea, eb} -> ea * eb end)

@@ -28,8 +28,13 @@ highlighter: rouge
 
 kramdown:
   parse_block_html: true
+  syntax_highlighter: rouge
 #  input: GFM
-#  syntax_highlighter: rouge
+  span:
+    line_numbers: false
+  block:
+    line_numbers: true
+    start_line: 1
 
 gems:
   - jekyll-sitemap
