@@ -59,7 +59,7 @@ Let's now take a look at how to use the library in Elixir.
 
 ### Adding the mix dependency
 First and foremost, you have to add the erlport denpendecy in the `mix.exs` file as in the following snippet:
-```ex
+```exs
 defp deps do
   [
     {:erlport, git: "https://github.com/hdima/erlport.git"},
@@ -70,7 +70,7 @@ Then run `mix deps.get`. You may need to have [Rebar](https://github.com/erlang/
 
 ### Starting and stopping a process
 In order to use python code you have to first start a python process, this is done via the `:python.start` function:
-```ex
+```exs
 {:ok, pid} = :python.start([
       {:python, 'python3'},
       {:python_path, './'},
@@ -88,7 +88,7 @@ Of course, don't forget to stop the python OS process otherwise it will keep run
 
 It is possible to call functions defined in a python file once we launched a python process, the python file needs to be reachable of course:
 
-```ex
+```exs
 {:ok, pid} = :python.start([
       {:python, 'python3'},
       {:python_path, './'},
@@ -118,7 +118,7 @@ In the second call, we called the `version.__str__` function contained in the st
 ### Sending messages to and from the python process
 
 It is also possible to send messages from and to the python process, this is obviously very useful for asynchronous communication:
-```ex
+```exs
 {:ok, pid} = :python.start([
  {:python, 'python3'},
  {:python_path, './'},
