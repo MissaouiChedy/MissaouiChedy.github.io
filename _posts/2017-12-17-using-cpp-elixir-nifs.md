@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Using C++ from elixir with nifs"
-date: 2017-12-15
+date: 2017-12-17
 categories: article
 comments: true
 ---
