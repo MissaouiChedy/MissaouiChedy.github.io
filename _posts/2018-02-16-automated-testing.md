@@ -106,13 +106,13 @@ In his excellent article [Mocks Aren't Stubs](https://martinfowler.com/articles/
 
 I am personally a classical TDD, because in my opinion mocking every single dependency burns time unnecessarily. In addition, testing against actual CPU/Mem bound dependencies allows to expose more defects and issues sooner.
 
-For CPU/Mem bound code, and especially on domain logic code, I always like to practice TDD for the reasons mentioned previously and because I also get a fix from seeing the red and green of tests failing and passing as a build some part of the software. It just makes me feel that I am making progress and I like it.
+For CPU/Mem bound code, and especially on domain logic code, I always like to practice TDD for the reasons mentioned previously and because I also get a fix from seeing the red and green of tests failing and passing as a build some part of the software. It just makes me feel that I'm making progress and I like it.
 
 ## Closing thoughts
 
 Things are not always so easily testable, in fact all code is not CPU/Memory bound and when working on a web application for example we expect to have a lot of code interacting with databases, message queues, APIs and HTTP requests/responses. We will discuss the testability of this kind of code in an upcoming post.
 
-*Example based testing* is a good start as we mentioned earlier, but **property based testing** is a superior approach to automated testing specifically for CPU/Mem bound code. We are going to discuss this subject in the upcoming post.
+*Example based testing* is a good start as we mentioned earlier, but **property based testing** is a superior approach to automated testing specifically for CPU/Mem bound code. We are going to discuss this subject in an upcoming post.
 
 
 
