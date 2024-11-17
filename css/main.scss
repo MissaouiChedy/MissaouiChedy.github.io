@@ -22,7 +22,7 @@ $code-background-color: #D9D9D9;
 %title {
 	padding-top: 0.4em;
 	padding-bottom: 0em;
-	margin-bottom: -0.1em; 
+	margin-bottom: 0.1em; 
 	font-family: $title-fonts;
 	line-height: 1.05;
 	font-weight: 600;
@@ -311,7 +311,7 @@ div.archives
 div.about {
 	margin-top: 2em;
 	img#id-img {
-		max-width: 28%;
+		max-width: 30%;
 		float: right;
 		display: inline-block;
 		padding: 1em;
