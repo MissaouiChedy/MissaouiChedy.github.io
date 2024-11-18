@@ -83,7 +83,7 @@ Note that:
 Consider the following channel module:
 <script src="https://gist.github.com/MissaouiChedy/67f7f5e095cf2462a9de11bc9e0e6632.js"></script>
 
-The `join` function verifies whether a state as been backed up in the `:holder` table, if it is the case the channel is initialized with the backed up state otherwise, it is initialized with the default state(`[]`). This allows us to recover previous state.
+The `join` function verifies whether a state has been backed up in the `:holder` table, if it is the case the channel is initialized with the backed up state otherwise, it is initialized with the default state(`[]`). This allows us to recover previous state.
 
 The `:holder` table is created under `ChanState.start` i.e. when the OTP application starts.
 

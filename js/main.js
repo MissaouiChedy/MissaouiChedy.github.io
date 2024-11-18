@@ -14,5 +14,9 @@ $(document).ready(function () {
 			});
 		}
 	}
+	
+	if ($('#disqus_thread').children().length == 0) {
+		$('#disqus_thread').append('<p class="comment-error-message">Your browser settings(Tracking Protection) are maybe blocking the comment section !</p>')
+	}
 });
 

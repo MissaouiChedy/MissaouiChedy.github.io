@@ -44,7 +44,7 @@ The parent tag helper relies on the previously described child behavior to get t
 Finally the `ParentTagHelper` class is slapped with the `[RestrictChildren]` attribute that allows to specify the children tags that can be nested inside the parent tag helper.
 
 ### Why defining a custom context?
-In the previous example the `ParentChildContext` class as been created so that its instances act as data transfer objects.
+In the previous example the `ParentChildContext` class has been created so that its instances act as data transfer objects.
 
 This is necessary as we cannot rely on `context.Items` to pass data from child to parent. This inability is due to the fact that the `TagHelperContext` instance (`context` argument) passed to the child tag helper is actually a copy of the `context` available in the parent tag helper.
 

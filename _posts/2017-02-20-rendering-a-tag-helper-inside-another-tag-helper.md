@@ -6,7 +6,7 @@ categories: article
 comments: true
 ---
 
-**UPDATE:** *The content of the following post as been revisited with improvements in a [more recent post](http://blog.techdominator.com/article/revisiting-programmatic-tag-helper-rendering.html) check it out.*
+**UPDATE:** *The content of the following post has been revisited with improvements in a [more recent post](http://blog.techdominator.com/article/revisiting-programmatic-tag-helper-rendering.html) check it out.*
 
 ***
 

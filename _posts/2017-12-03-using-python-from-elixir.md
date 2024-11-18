@@ -12,7 +12,7 @@ It is widely known that [Erlang is bad at number crunching](https://stackoverflo
 
 Applications that uses machine learning for example are characterized mostly as CPU bound problems that require a lot of calculations. In such problems it is essential to use all the features available in our modern CPUs such as the parallelism provided by the multiple cores of the CPU as well as by the [SIMD instructions.](https://en.wikipedia.org/wiki/SIMD)
 
-Python as been huge in the machine learning space thanks to the [scikit learn ecosystem](http://scikit-learn.org/stable/) that builds on top of the [numpy](http://www.numpy.org/) library that contains a lot of mathematical functions implemented in C and leveraging the SIMD instructions such as the [`dot`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.dot.html) product function.
+Python has been huge in the machine learning space thanks to the [scikit learn ecosystem](http://scikit-learn.org/stable/) that builds on top of the [numpy](http://www.numpy.org/) library that contains a lot of mathematical functions implemented in C and leveraging the SIMD instructions such as the [`dot`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.dot.html) product function.
 
 In this post, we are going to see how to use Python code from Elixir by using the [`erlport`](http://erlport.org/) Erlang library.
 

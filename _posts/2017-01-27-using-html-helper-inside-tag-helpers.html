@@ -42,7 +42,7 @@ comments: true
 	Under the tag helper <code>ProcessAsync</code> method it is possible to use the <code>ViewData</code> and <code>ViewBag</code> properties contained in the <code>HtmlHelper</code> instance.
 </p>
 <script src="https://gist.github.com/MissaouiChedy/f3ad7e27db8b79fe59fa38e90393e718.js"></script>
-<p>Notice how the model as been passed explicitly and how the <code>ViewData</code> and its expando object facade the <code>ViewBag</code> are passed implicitly. The data is then accessed in the rendered razor partial template as in the following example:</p>
+<p>Notice how the model has been passed explicitly and how the <code>ViewData</code> and its expando object facade the <code>ViewBag</code> are passed implicitly. The data is then accessed in the rendered razor partial template as in the following example:</p>
 <script src="https://gist.github.com/MissaouiChedy/e5d8b21f4a755e368118180072ea180b.js"></script>
 <h3>Creating a new ViewData dictionary instance</h3>
 <p>One last thing: While creating the list editor widget, I had to actually create a new instance of the <code>ViewData</code> dictionary instead of using the one in the <code>HtmlHelper</code> instance. I will skip the details of the issue I encountered in the interest of brievety.</p>

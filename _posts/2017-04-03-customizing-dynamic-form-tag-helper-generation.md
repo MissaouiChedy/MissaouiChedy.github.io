@@ -105,7 +105,7 @@ As you might know the form generation process depends on the following services:
 
 Passing the instances of these services to each method involved in the form group rendering process became painful so I refactored it to a regular class with the previous dependencies defined as private fields.
 
-Then, a new argument `tweakingConfig` argument as been added to the  `FormGroupBuilder.GetFormGroup` method. This argument is expected to contain the `TweakingConfiguration` object built by the various `tweak` tag helpers used.
+Then, a new argument `tweakingConfig` argument has been added to the  `FormGroupBuilder.GetFormGroup` method. This argument is expected to contain the `TweakingConfiguration` object built by the various `tweak` tag helpers used.
 
 The `tweakingConfig` object is then passed to the private methods responsible for rendering the elements of the form group in order to allow them to take the tweaking configuration into account.
 

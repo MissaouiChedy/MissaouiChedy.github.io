@@ -100,7 +100,7 @@ Although not strictly functional, I think that this solution is more pragmatic. 
 
 The `get_stream_of_duplicated_evens` function is now much shorter;from a stream of even numbers(`Stream.iterate(2, &(&1+2))`), duplicate each element 4 times which produces a list of lists looking like `[[2, 2, 2, 2], [4, 4, 4, 4]]` and the `flat_map` the previous list.
 
-The `get_result_list` function as been split out to more smaller functions by leveraging recursion and pattern matching which makes it more readable.
+The `get_result_list` function has been split out to more smaller functions by leveraging recursion and pattern matching which makes it more readable.
 
 ## Closing thoughts
 

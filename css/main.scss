@@ -327,6 +327,7 @@ div.about {
 	}
 	ul#contact-info {
 		list-style: none;
+		margin-left: -1.8em;
 	}
 }
 
@@ -347,4 +348,13 @@ span.danger {
 	color: red;
 	font-weight: bold;
 }
+
+.comment-error-message {
+	color: red;
+	font-weight: bold;
+	text-align: center;
+	font-size: 1.2em;
+	font-family: $default-font-family;
+}
+
 @import 'mobile.scss';
