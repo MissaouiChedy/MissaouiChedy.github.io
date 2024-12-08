@@ -1,27 +1,27 @@
 ---
 layout: post
-title: "Azure Event Hub Sending Messages"
+title: "Sending Messages With Azure Event Hubs"
 date: 2024-12-08
 categories: article
 comments: true
 ---
 
-[Azure Event Hub](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-about) is a messaging system available as a service in the Microsoft Azure Cloud.
+[Azure Event Hubs](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-about) is a messaging system available as a service in the Microsoft Azure Cloud.
 
-Similar to [Kafka,](https://kafka.apache.org/) event hub is designed to manage a huge throughput of messaging data and is even compatible with Kafka. 
+Similar to [Kafka,](https://kafka.apache.org/) event hubs is designed to manage a huge throughput of messaging data and is even compatible with Kafka. 
 
 In this post, let's explore a very simple concept, sending messages. 
 
 Full working code example for this post is [available on Github.](https://github.com/MissaouiChedy/BlogSamples/tree/main/AzureEventHubSendingMessages)
 
-## Event Hub Namespaces and Event Hubs
+## Event Hubs Namespaces and Event Hubs
 
 ### Namespaces
-To use event hub, we start by creating an event hub namespace.
+To use event hubs, we start by creating an event hubs namespace.
 
-You can think of event Hub namespaces as containers for event hubs, event hubs are simply topics to which you can send messages.
+You can think of event hubs namespaces as containers for event hubs, event hubs are simply topics to which you can send messages.
 
-We can create an event hub namespace in our subscription by using the following [az cli snippet:](https://learn.microsoft.com/en-us/cli/azure/eventhubs/namespace?view=azure-cli-latest#az-eventhubs-namespace-create)
+We can create an event hubs namespace in our subscription by using the following [az cli snippet:](https://learn.microsoft.com/en-us/cli/azure/eventhubs/namespace?view=azure-cli-latest#az-eventhubs-namespace-create)
 ```sh
 az eventhubs namespace create `
   --name 'eventhub-namespace-name' ` # should be globally unique 
