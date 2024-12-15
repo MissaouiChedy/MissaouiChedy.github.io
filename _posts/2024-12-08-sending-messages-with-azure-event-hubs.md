@@ -163,7 +163,7 @@ finally
 readonly record struct Message(Guid Id, DateTime TimeStamp, string Content) { }
 ```
 
-At the very bottom of the program, we define the `Message` record which is our message format
+At the very bottom of the program, we define the `Message` record which is our message format.
 
 At the beginning, we create an `EventHubProducerClient` by using `new DefaultAzureCredential()`, this enables us to authenticate to EventHub without having to use 
 a connection string and to connect via az cli authentication locally and [Managed Identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview) Authentication in Azure Environments. 

@@ -357,4 +357,14 @@ span.danger {
 	font-family: $default-font-family;
 }
 
+blockquote {
+	font-style: italic;
+	color: #222;
+	border-left: 2px solid #ccc;
+	padding: 0.5em;
+	margin: 1em 0;
+	background: #f9f9f9;
+}
+  
+
 @import 'mobile.scss';
