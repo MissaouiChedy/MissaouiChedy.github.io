@@ -58,7 +58,7 @@ In this post, I am going to summarize the main tasks that I usually perform with
 `Ctrl+P+Q` 
 - use this combination in a console attached to a container via `docker attach`.
 
-## removing and renamin
+## removing and renaming
 `docker rm <CONTAINER_NAME | CONTAINER_HASH_ID>`
 - **removes** the specified container
 
