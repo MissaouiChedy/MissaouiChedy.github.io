@@ -15,8 +15,7 @@
 # in the templates via {{ site.myvariable }}.
 title: Tech Dominator
 description: > # this means to ignore newlines until "baseurl:"
-  Imposing technical domination on ASP.NET Core, React, Elixir and many others Web related technologies.
-  Also where Chedy Missaoui comes to blog.
+  Imposing technical domination on Azure and other Microsoft technologies.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://blog.techdominator.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: TechDominator
