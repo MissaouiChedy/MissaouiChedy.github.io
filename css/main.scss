@@ -257,6 +257,30 @@ article.post
 				font-size: 1em;
 			}
 		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 1em 0;
+			font-size: $default-font-size;
+			font-family: $default-font-family;
+			th, td {
+				padding: 0.75em;
+				text-align: left;
+				border: 1px solid #ddd;
+			}
+			th {
+				background-color:black;
+				color: white;
+				font-weight: 600;
+			}
+			tr:nth-child(even) {
+				background-color: #f9f9f9;
+			}
+			tr:hover {
+				background-color: #f1f1f1;
+			}
+		}
 	}
 	
 	footer {
