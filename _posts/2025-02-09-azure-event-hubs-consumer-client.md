@@ -6,6 +6,10 @@ categories: article
 comments: true
 ---
 
+<div class="img-container">
+  <img src="{{ site.url }}/imgs/AzureEventhubConsumerClientCover.webp" alt="Azure Eventhub Consumer Client Cover" />
+</div>
+
 In a [previous post,](https://blog.techdominator.com/article/consuming-messages-with-azure-event-hubs.html) we explored the typical way of consuming events from Azure Event Hubs by using the [`EventProcessorClient`](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/eventhub/Azure.Messaging.EventHubs.Processor/samples/Sample04_ProcessingEvents.md) class.
 
 We will explore in this post the [`EventHubConsumerClient`,](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/eventhub/Azure.Messaging.EventHubs/samples/Sample05_ReadingEvents.md) another alternative for consuming events intended for basic dev/test and data exploration scenarios.
