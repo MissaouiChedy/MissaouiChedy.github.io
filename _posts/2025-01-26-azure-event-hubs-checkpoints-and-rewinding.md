@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Azure Event Hubs Checkpoints & Rewinding"
+title: "Azure Event Hubs Checkpoints &amp; Rewinding"
 date: 2025-01-26
 categories: article
 comments: true

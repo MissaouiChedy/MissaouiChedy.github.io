@@ -177,6 +177,6 @@ The `EventHubConsumerClient` can be useful for dev/test and data exploration sce
 
 Checkpointing in Redis can be fast, but it **brings some data durability challenges for the checkpoint store:**
   - What happens if data is evicted from the cache?
-  - What happens when TTL is expired ?
+  - What happens when TTL is expired?
 
 Leading me to think that checkpointing periodically in blob storage with an idempotent event processor is the best approach.
