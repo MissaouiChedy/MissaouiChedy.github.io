@@ -20,6 +20,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://blog.techdominator.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: TechDominator
 repository: MissaouiChedy/MissaouiChedy.github.io
+author: "Chedy Missaoui"
 
 # Build settings
 markdown: kramdown

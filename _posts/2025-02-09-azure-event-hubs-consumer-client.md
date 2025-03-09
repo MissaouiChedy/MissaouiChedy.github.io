@@ -6,6 +6,10 @@ categories: article
 comments: true
 ---
 
+<p class="summary">
+We will explore in this post the EventHubConsumerClient, another alternative for consuming events intended for basic dev/test and data exploration scenarios.
+</p>
+
 <div class="img-container">
   <img src="{{ site.url }}/imgs/AzureEventhubConsumerClientCover.webp" alt="Azure Eventhub Consumer Client Cover" />
 </div>

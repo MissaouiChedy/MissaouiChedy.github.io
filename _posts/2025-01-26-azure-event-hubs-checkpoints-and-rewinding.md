@@ -1,10 +1,14 @@
 ---
 layout: post
-title: "Azure Event Hubs Checkpoints &amp; Rewinding"
+title: "Azure Event Hubs Checkpoints & Rewinding"
 date: 2025-01-26
 categories: article
 comments: true
 ---
+
+<p class="summary">
+Azure event hubs is designed to enable event re-processing via its event retention and checkpointing principles.
+</p>
 
 <div class="img-container">
   <img src="{{ site.url }}/imgs/AzureEventhubCheckpointRewindCover.webp" alt="Azure Event hubs Checkpoint Rewind Cover" />
