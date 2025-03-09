@@ -13,7 +13,7 @@ In [event driven systems,](https://martinfowler.com/articles/201701-event-driven
 
 In this post, we will start small by exploring very basic event consuming with Azure Event hubs with a C#/.NET console App.
 
-Full working example [is available on Github as usual.](https://github.com/MissaouiChedy/BlogSamples/tree/main/AzureEventhubsConsumingMessages)
+<i class="fa-brands fa-github"></i> Full working example [is available on Github as usual.](https://github.com/MissaouiChedy/BlogSamples/tree/main/AzureEventhubsConsumingMessages)
 
 ## Message Consuming Concepts
 

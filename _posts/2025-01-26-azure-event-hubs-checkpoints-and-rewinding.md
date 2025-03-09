@@ -18,7 +18,7 @@ Azure event hubs is designed to enable event re-processing via its [event retent
 
 In this post, we will discuss the checkpoint concept and methods to rewind the event stream.
 
-Full working example [is available on Github as usual, referred to in this post as 'our sample'](https://github.com/MissaouiChedy/BlogSamples/tree/main/AzureEventhubsCheckpointsRewinding)
+<i class="fa-brands fa-github"></i> Full working example [is available on Github as usual, referred to in this post as 'our sample'](https://github.com/MissaouiChedy/BlogSamples/tree/main/AzureEventhubsCheckpointsRewinding)
 
 ## Event Hubs Checkpoints
 When consuming events from event hub, we provide a storage blob that is used as a checkpoint store.
