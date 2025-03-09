@@ -6,6 +6,10 @@ categories: article
 comments: true
 ---
 
+<div class="img-container">
+  <img src="{{ site.url }}/imgs/AzureEventhubCheckpointRewindCover.webp" alt="Azure Event hubs Checkpoint Rewind Cover" />
+</div>
+
 Azure event hubs is designed to enable event re-processing via its [event retention](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-features#event-retention) and [checkpointing](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-features#checkpointing) principles.
 
 In this post, we will discuss the checkpoint concept and methods to rewind the event stream.
