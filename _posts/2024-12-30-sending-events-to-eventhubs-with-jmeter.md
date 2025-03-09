@@ -12,7 +12,7 @@ When building such systems and when exploring event hubs features, it is interes
 
 JMeter is a flexible and mature load testing tool that can help us do load testing especially with the availability of [pnopjp/jmeter-plugins](https://github.com/pnopjp/jmeter-plugins) containing an Azure Event Hub Sampler.
 
-<i class="fa-brands fa-github"></i> Full working example [is available on Github as usual.](https://github.com/MissaouiChedy/BlogSamples/tree/main/AzureEventHubsJMeterSendingEvents)
+Full working example [is available on Github as usual.](https://github.com/MissaouiChedy/BlogSamples/tree/main/AzureEventHubsJMeterSendingEvents)
 
 ## JMeter Benefits
 

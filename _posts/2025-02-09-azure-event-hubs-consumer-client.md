@@ -18,7 +18,7 @@ In a [previous post,](https://blog.techdominator.com/article/consuming-messages-
 
 We will explore in this post the [`EventHubConsumerClient`,](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/eventhub/Azure.Messaging.EventHubs/samples/Sample05_ReadingEvents.md) another alternative for consuming events intended for basic dev/test and data exploration scenarios.
 
-<i class="fa-brands fa-github"></i> Full working example [is available on Github as usual](https://github.com/MissaouiChedy/BlogSamples/tree/main/AzureEventhubsConsumerClient)
+Full working example [is available on Github as usual](https://github.com/MissaouiChedy/BlogSamples/tree/main/AzureEventhubsConsumerClient)
 
 ## Alternative Event Consumption for Dev/Test Scenario
 The [`EventHubConsumerClient`](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/eventhub/Azure.Messaging.EventHubs/samples/Sample05_ReadingEvents.md) is straightforward:
