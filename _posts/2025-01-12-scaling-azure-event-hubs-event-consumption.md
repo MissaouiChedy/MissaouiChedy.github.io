@@ -11,7 +11,7 @@ With Azure EventHubs it is important to **understand the mechanisms available to
 In this post, we will discuss some concepts relevant to scaling event consumption across multiple workers and explore capabilities 
 available in Azure Event Hubs for the scaling.
 
-Full working example [is available on Github as usual.](https://github.com/MissaouiChedy/BlogSamples/tree/main/AzureEventHubsConsumerScaling)
+<i class="fa fa-github" aria-hidden="true"></i> **Full working sample** [is available on Github as usual.](https://github.com/MissaouiChedy/BlogSamples/tree/main/AzureEventHubsConsumerScaling)
 
 ## Horizontal Scaling
 [Horizontal scaling,](https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/scaling-out-vs-scaling-up) also known as scaling out, is an important concept in [cloud computing.](https://nvlpubs.nist.gov/nistpubs/legacy/sp/nistspecialpublication800-145.pdf) 

@@ -24,7 +24,7 @@ customize checkpoint and ownership data storage, while leveraging resiliency and
 
 Additionally, we will discuss how to implement custom event processing logic, handle errors and use the various hooks available.
 
-Full working example [is available on Github as usual](https://github.com/MissaouiChedy/BlogSamples/tree/main/AzureEventHubsEventProcessor)
+<i class="fa fa-github" aria-hidden="true"></i> **Full working sample** [is available on Github as usual](https://github.com/MissaouiChedy/BlogSamples/tree/main/AzureEventHubsEventProcessor)
 
 ## Event Processor
 
