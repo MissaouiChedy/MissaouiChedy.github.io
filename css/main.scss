@@ -392,5 +392,60 @@ blockquote {
 	background: #f9f9f9;
 }
   
+.sponsor-banner {
+    text-align: center;
+    position: fixed;
+    width: 20vw;
+    right: 0;
+    top: 10vw; // Positioned below the outline div
+    padding: 1em;
+    background-color: white;
+    //border-left: 1px solid #eee;
+    
+    p {
+        font-family: $header-font;
+        font-size: 0.9em;
+        margin-bottom: 1em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        
+        @include on-mobile() {
+            font-size: 0.8em;
+            margin-bottom: 0.8em;
+        }
+    }
+    
+    a {
+        text-decoration: none;
+        display: inline-block;
+        transition: opacity 0.2s ease;
+        
+        &:hover {
+            opacity: 0.9;
+        }
+    }    .img-container {
+        margin: 0 auto;
+        max-width: 200px;
+        
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: none;
+        }
+    }
+    
+    @include on-mobile() {
+        position: static;
+        width: 100%;
+        max-width: 46em;
+        margin: 0.25em auto;
+        padding: 0.5em;
+        
+        .img-container {
+            max-width: 150px;
+        }
+    }
+}
 
 @import 'mobile.scss';
