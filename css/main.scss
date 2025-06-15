@@ -197,7 +197,7 @@ article.post
 		p {
 			@extend %regular-text;
 			text-align: justify;
-			line-height: 1.37;
+			line-height: 1.6;
 			padding-top: 0.5em;
 			padding-bottom: 0.5em;
 			a {
@@ -399,8 +399,7 @@ blockquote {
     right: 0;
     top: 10vw; // Positioned below the outline div
     padding: 1em;
-    background-color: white;
-    //border-left: 1px solid #eee;
+    background: rgba(0,0,0,0);
     
     p {
         font-family: $header-font;
