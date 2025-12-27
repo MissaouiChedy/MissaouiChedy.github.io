@@ -15,9 +15,9 @@ Benchmark of Blob Storage vs Redis Cache Latency using Application insights
 
 When using Azure Event Hub in an application, checkpointing is key to ensure reliability and consistency. 
 
-**Checkpoints allow consumer applications to track which events they've already processed** — preventing duplicate processing and data loss, as we saw in a [previous post.](https://blog.techdominator.com/article/azure-event-hubs-checkpoints-and-rewinding.html)
+**Checkpoints allow consumer applications to track which events they've already processed**, preventing duplicate processing and data loss, as we saw in a [previous post.](https://blog.techdominator.com/article/azure-event-hubs-checkpoints-and-rewinding.html)
 
-By default, Azure Event Hubs SDKs [use Azure Blob Storage for storing these checkpoints.](https://blog.techdominator.com/article/consuming-messages-with-azure-event-hubs.html) It's durable and easy to set up, but as with many storage solutions, latency can become a bottleneck — especially in high-throughput or low-latency scenarios.
+By default, Azure Event Hubs SDKs [use Azure Blob Storage for storing these checkpoints.](https://blog.techdominator.com/article/consuming-messages-with-azure-event-hubs.html) It's durable and easy to set up, but as with many storage solutions, latency can become a bottleneck especially in high-throughput or low-latency scenarios.
 
 In ['Azure Event Hubs Consumer Client'](https://blog.techdominator.com/article/azure-event-hubs-consumer-client.html), we also saw that with specialized event consumption clients, it was possible to **use alternative checkpoint stores such as Redis;** an in-memory data store known for its lightning-fast performance but also characterized by some volatility.
 
@@ -149,7 +149,7 @@ In contrast, Redis Cache offers ultra-low latencies, often clocking in **under 5
 
 While the difference remains significant for heavy workloads, in my opinion, **it's not that big of a difference for most workloads.**
 
-Moreover, when you factor in Blob Storage’s durability — with its built-in persistence and replication — it becomes a solid choice for storing checkpoints and ownership data. And since checkpointing is typically done every few events rather than on each one, **the slightly higher latency is rarely a bottleneck** in well-designed workloads. 
+Moreover, when you factor in Blob Storage’s durability with its built-in persistence and replication it becomes a solid choice for storing checkpoints and ownership data. And since checkpointing is typically done every few events rather than on each one, **the slightly higher latency is rarely a bottleneck** in well-designed workloads. 
 
 ## Closing Thoughts
 
