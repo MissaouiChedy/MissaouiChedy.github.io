@@ -37,7 +37,7 @@ kramdown:
     line_numbers: true
     start_line: 1
 
-gems:
+plugins:
   - jekyll-sitemap
   - jekyll-feed
   - rouge
