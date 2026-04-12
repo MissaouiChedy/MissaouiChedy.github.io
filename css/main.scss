@@ -2,6 +2,10 @@
 # This is the Front Matter block
 ---
 
+@use 'reset';
+@use 'highlight';
+@use 'mobile';
+
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,800,800i|Archivo+Narrow|Oswald:400,600|Inconsolata');
 $default-font-size: 16.5px;
 $default-font-family: "Open Sans", "Georgia", "Serif";
@@ -16,8 +20,7 @@ $code-background-color: #f9f9f9;
 		@content;
 	}
 }
-@import 'reset.scss';
-@import 'highlight.scss';
+
 
 %title {
 	padding-top: 0.4em;
@@ -447,4 +450,3 @@ blockquote {
     }
 }
 
-@import 'mobile.scss';
