@@ -2,11 +2,8 @@
 # This is the Front Matter block
 ---
 
-@use 'reset';
-@use 'highlight';
-@use 'mobile';
-
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,800,800i|Archivo+Narrow|Oswald:400,600|Inconsolata');
+
 $default-font-size: 16.5px;
 $default-font-family: "Open Sans", "Georgia", "Serif";
 $title-fonts: "Oswald", "Helvetica", "Sans Serif";
@@ -15,12 +12,15 @@ $code-font: "consolas", "Inconsolata", "monospace", "Sans Serif";
 $time-fonts: "Archivo Narrow", "Oswald", "Helvetica", "Sans Serif";
 $my-orange: #FAA200;
 $code-background-color: #f9f9f9;
+
 @mixin on-mobile() {
 	@media screen and (min-width: 320px) and (max-width: 480px) {
 		@content;
 	}
 }
 
+@import 'reset';
+@import 'highlight';
 
 %title {
 	padding-top: 0.4em;
@@ -450,3 +450,4 @@ blockquote {
     }
 }
 
+@import 'mobile';
