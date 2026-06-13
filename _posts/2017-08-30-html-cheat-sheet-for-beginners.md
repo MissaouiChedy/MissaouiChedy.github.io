@@ -6,7 +6,7 @@ categories: article
 comments: true
 ---
 
-**Note** *This guest post is authored by my good friend [Domantas Gudeliauskas](https://www.hostinger.com/tutorials/author/domantas/){:target="_blank"} from [Hostinger.com](_https://www.hostinger.com){:target="_blank"}, check it out to learn more about the usefulness of cheat sheets :-)*
+**Note** *This guest post is authored by my good friend [Domantas Gudeliauskas](https://www.hostinger.com/tutorials/author/domantas/){:target="_blank" rel="sponsored"} from [Hostinger.com](_https://www.hostinger.com){:target="_blank" rel="sponsored"}, check it out to learn more about the usefulness of cheat sheets :-)*
 
 ---
 
@@ -14,10 +14,10 @@ You would have a hard time finding a programmer who would confess that they use 
 
 Cheat sheets provide an efficient way for programmers to quickly look-up the capabilities of a programming language. They are just as useful for novice programmers as they are to veteran ones, as one could swiftly grasp the basics of a programming language and how it’s written. All of this is true, but only if the cheat sheet in question is well-constructed. A bad cheat sheet, on the other hand, is much more likely to waste the time for experienced programmers.
 
-Today, we bring you one of the most important tools you’ll ever come across as a web developer: the ultimate HTML cheat sheet by [Hostinger](https://www.hostinger.com/tutorials/html-cheat-sheet){:target="_blank"}. 
+Today, we bring you one of the most important tools you’ll ever come across as a web developer: the ultimate HTML cheat sheet by [Hostinger](https://www.hostinger.com/tutorials/html-cheat-sheet){:target="_blank" rel="sponsored"}. 
 
 <div class="img-container">
-<a target="_blank" href="https://cdn.rawgit.com/hostinger/banners/2d7a9209/tutorials/pdf/The-Complete-HTML-Cheat-Sheet.pdf">
+<a target="_blank" rel="sponsored" href="https://cdn.rawgit.com/hostinger/banners/2d7a9209/tutorials/pdf/The-Complete-HTML-Cheat-Sheet.pdf">
 <img src="{{ site.url }}/imgs/HostingerHtmlCheatSheet.png" alt="Html Cheat Sheet"  />
 </a>
 </div>
