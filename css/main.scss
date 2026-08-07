@@ -388,11 +388,35 @@ span.danger {
 
 blockquote {
 	font-style: italic;
-	color: #222;
-	border-left: 2px solid #ccc;
-	padding: 0.5em;
-	margin: 1em 0;
-	background: #f9f9f9;
+	color: #2a2a2a;
+	border-left: 5px solid $my-orange;
+	padding: 1.4em 1.6em 1.4em 2em;
+	margin: 2em 0;
+	background: linear-gradient(135deg, rgba(#FAA200, 0.06) 0%, #fafafa 60%);
+	border-radius: 0 6px 6px 0;
+
+	p {
+		padding: 0;
+		margin: 0;
+		font-size: $default-font-size;
+		font-family: $default-font-family;
+		line-height: 1.7;
+	}
+
+	cite {
+		display: block;
+		margin-top: 0.8em;
+		font-style: normal;
+		font-size: 0.85em;
+		font-family: $time-fonts;
+		color: $my-orange;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+
+		&::before {
+			content: '\2014\00A0';
+		}
+	}
 }
   
 .sponsor-banner {
