@@ -30,6 +30,7 @@ $code-background-color: #f9f9f9;
 	line-height: 1.05;
 	font-weight: 600;
 	text-transform: capitalize;
+	letter-spacing: 0.02em;
 }
 h1 {
 	@extend %title;
@@ -53,12 +54,15 @@ h4 {
 time {
 	font-family: $time-fonts;
 	font-weight: normal;
-	font-size: 1.2em;
+	font-size: 1em;
+	color: #888;
+	letter-spacing: 0.04em;
 }
 
 a {
 	text-decoration: none;
 	font-size: $default-font-size;
+	transition: color 0.2s ease, opacity 0.2s ease;
 }
 hr {
 	border-width: 1px;
@@ -68,7 +72,8 @@ hr {
 header.site-header {
 	color: white;
 	background-color: black;
-	border-bottom: 12px solid $my-orange;
+	border-bottom: 4px solid $my-orange;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 	a {
 		color: white;
 	}
@@ -111,11 +116,14 @@ article.post
 	header
 	{
 		text-align: center;
-		margin-bottom: 0.5em;
+		margin-bottom: 1.5em;
 		a {
 			color: black;
 		}
-		
+		time {
+			display: block;
+			margin-top: 0.4em;
+		}
 		div.navigation
 		{
 			padding-top: 0.8em;
@@ -125,7 +133,14 @@ article.post
 				background-color: black;
 				color: white;
 				font-family: $header-font;
-				padding: 0.6em;
+				padding: 0.5em 0.9em;
+				border-radius: 3px;
+				letter-spacing: 0.06em;
+				font-size: 0.8em;
+				transition: background-color 0.2s ease;
+				&:hover {
+					background-color: $my-orange;
+				}
 			}
 		}
 	}
@@ -242,9 +257,9 @@ article.post
 				img {
 					padding: 0;
 					max-width: 100%;
-					border-width: 1px;
-					border-style: solid; 
-					border-color: grey;
+					border: none;
+					border-radius: 4px;
+					box-shadow: 0 2px 14px rgba(0, 0, 0, 0.12);
 				}
 			}
 		}
@@ -296,12 +311,18 @@ article.post
 		text-align: right;
 		div.share {
 			display: inline-block;
-			padding: 0.5em;
-			border: solid white 6px;
+			padding: 0.5em 0.8em;
+			border: 1px solid rgba(255, 255, 255, 0.45);
+			border-radius: 4px;
+			transition: border-color 0.2s ease;
+			&:hover {
+				border-color: $my-orange;
+			}
 			h3 {
 				padding: 0;
 				margin: 0;
 				font-family: $header-font;
+				letter-spacing: 0.08em;
 			}
 			a {
 				margin: 0;
@@ -338,21 +359,31 @@ div.archives
 }
 
 div.about {
-	margin-top: 2em;
+	margin-top: 1.2em;
 	img#id-img {
-		max-width: 40%;
+		max-width: 38%;
 		float: right;
 		display: inline-block;
-		padding: 1em;
-		padding-top: 0.1em;
+		padding: 0.5em;
+		padding-top: 0;
 	}
-	i{
+	i {
 		font-size: 1.2em;
+	}
+	h2 {
+		font-size: 1.5em;
+		padding-top: 0.2em;
+		padding-bottom: 0.1em;
+	}
+	div.recognition,
+	div.contact-info,
+	div.speaking,
+	div.ai-transparency-note {
+		margin-top: 1.6em;
 	}
 	div.stackoverflow-flair {
 		float: right;
-		padding-top: 6em;
-		//padding: 0.2em;
+		padding-top: 1.2em;
 	}
 	ul#contact-info {
 		list-style: none;
