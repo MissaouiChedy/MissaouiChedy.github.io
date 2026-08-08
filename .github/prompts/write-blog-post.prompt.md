@@ -14,3 +14,14 @@ Some bullet points will contain references to web pages that you should use to p
 Use the code sample folder {{ code_sample_folder }} to provide code snippets and examples where applicable.
 
 When a diagram or screenshot is needed, insert the <<SCREENSHOT: description>> placeholder and provide a description of what the screenshot or diagram should contain.
+
+At the start of the post, make sure to include a summary paragraph and a placeholder for the post cover image:
+```
+<p class="summary">
+<Description of the blog post in 1-2 sentences.>
+</p>
+
+<div class="img-container">
+  <img src="{{ site.url }}/imgs/<<PostTitle>>.png" alt="<<Post Title>>>" />
+</div>
+```
