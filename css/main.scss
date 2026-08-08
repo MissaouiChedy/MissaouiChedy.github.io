@@ -177,6 +177,36 @@ article.post
 		font-weight: 400;
 	}
 	div.content {
+		h2, h3 {
+			&.has-heading-anchor {
+				position: relative;
+			}
+
+			.heading-anchor-link {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 1.1em;
+				height: 1.1em;
+				margin-left: 0.35em;
+				color: #999;
+				opacity: 0;
+				vertical-align: middle;
+				font-size: 0.6em;
+				transition: opacity 0.2s ease, color 0.2s ease;
+			}
+
+			&:hover .heading-anchor-link,
+			&:focus-within .heading-anchor-link {
+				opacity: 1;
+			}
+
+			.heading-anchor-link:hover {
+				color: $my-orange;
+			}
+		}
+	}
+	div.content {
 		%regular-text {
 			font-size: $default-font-size;
 			font-family: $default-font-family;
