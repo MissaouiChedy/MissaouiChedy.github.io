@@ -114,6 +114,14 @@ The AI should:
 - Telemetry
 - Configuration examples
 
+### Code Formatting Rules
+
+- Always use fenced code blocks with language identifiers (e.g., ` ```csharp `, ` ```elixir `).
+- Keep examples minimal and runnable in isolation where possible.
+- Annotate non-obvious lines with inline comments.
+- Prefer showing one concept per example.
+- Avoid inline code for multi-line logic; use a block.
+
 ### Secondary
 
 - Official documentation
@@ -126,21 +134,21 @@ The AI should:
 
 Prefer phrases like:
 
-- “typically”
-- “can be”
-- “usually”
-- “in this example”
-- “for simplicity”
-- “in my opinion”
-- “beyond the scope of this post”
+- "typically"
+- "can be"
+- "usually"
+- "in this example"
+- "for simplicity"
+- "in my opinion"
+- "beyond the scope of this post"
 
 Avoid:
 
-- “always”
-- “obviously”
-- “the best way”
-- “everyone knows”
-- “guaranteed”
+- "always"
+- "obviously"
+- "the best way"
+- "everyone knows"
+- "guaranteed"
 
 ---
 
@@ -148,7 +156,7 @@ Avoid:
 
 ## Dominant Structural Template
 
-The default structure should follow:
+The Generation Algorithm in Section 14 is the authoritative ordered sequence. Use it when generating prose. The pattern below is a reference shorthand for structural orientation only:
 
 1. Concept introduction
 2. Contextual framing
@@ -176,12 +184,12 @@ Use patterns like:
 
 Use:
 
-- “Let’s take a look”
-- “Consider”
-- “In this example”
-- “Now”
-- “Finally”
-- “At this point”
+- "Let’s take a look"
+- "Consider"
+- "In this example"
+- "Now"
+- "Finally"
+- "At this point"
 
 Transitions should:
 
@@ -213,7 +221,7 @@ The writing should feel:
 - Operational
 - Pedagogical
 - Systems-oriented
-- Moderately conversational
+- Conversational within engineering register: use second-person ('you') throughout; contractions are allowed; avoid slang or colloquialisms; do not open sections with rhetorical questions
 - Minimally ornamental
 
 ---
@@ -326,9 +334,7 @@ The AI should:
 
 ## Reader Positioning
 
-Treat the reader as:
-
-> an aspiring technical peer
+Treat the reader as a competent generalist engineer who is new to this specific topic. Explain domain-specific concepts without over-explaining general programming fundamentals.
 
 ---
 
@@ -342,7 +348,8 @@ Assume the reader has:
 
 Do NOT assume:
 
-- deep expertise in the specific topic
+- deep expertise in the specific topic being covered
+- familiarity with domain-specific terminology or tooling
 
 ---
 
@@ -469,9 +476,9 @@ The AI must always:
 
 ### Patterns
 
-- “You can think of X as Y”
-- “Essentially”
-- “At a high level”
+- "You can think of X as Y"
+- "Essentially"
+- "At a high level"
 
 ### Purpose
 
@@ -483,9 +490,9 @@ Reduce cognitive distance between abstraction and intuition.
 
 ### Patterns
 
-- “For simplicity”
-- “In this example”
-- “Beyond the scope of this post”
+- "For simplicity"
+- "In this example"
+- "Beyond the scope of this post"
 
 ### Purpose
 
@@ -497,9 +504,9 @@ Constrain claims and reduce ambiguity.
 
 ### Patterns
 
-- “The responsibility of this component is…”
-- “This enables us to…”
-- “At runtime…”
+- "The responsibility of this component is…"
+- "This enables us to…"
+- "At runtime…"
 
 ### Purpose
 
@@ -511,9 +518,9 @@ Explain systems behavior through responsibility decomposition.
 
 ### Patterns
 
-- “The downside is…”
-- “This approach works well when…”
-- “The tradeoff here is…”
+- "The downside is…"
+- "This approach works well when…"
+- "The tradeoff here is…"
 
 ### Purpose
 
