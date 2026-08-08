@@ -21,6 +21,15 @@
   			<meta itemprop="name" content="Chedy Missaoui" />
 		</div>
 		<time datetime="{{ include.post_arg.date | date_to_xmlschema }}" itemprop="datePublished">{{ include.post_arg.date | date_to_long_string}}</time>
+		{% if include.post_arg.tags and include.post_arg.tags != empty %}
+		<ul class="post-tags" aria-label="Post tags">
+			{% for tag in include.post_arg.tags %}
+			<li itemprop="keywords">
+				<a href="{{ site.baseurl }}/tag.html#{{ tag }}">{{ tag | replace: '-', ' ' }}</a>
+			</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
 		<div class="navigation">
 			{% if include.post_arg != site.posts.last %}
 			<a href="{{ include.post_arg.previous.url }}">previous</a>
