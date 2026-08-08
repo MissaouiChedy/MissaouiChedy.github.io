@@ -3,6 +3,7 @@ layout: post
 title: "Azure Event Hubs Event Processor, Yet Another Alternative"
 date: 2025-03-08
 categories: article
+tags: [azure-event-hubs, event-processing, checkpointing]
 comments: true
 ---
 

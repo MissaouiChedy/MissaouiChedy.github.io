@@ -3,6 +3,7 @@ layout: post
 title: "Azure Event Hubs Kafka Surface"
 date: 2026-05-16
 categories: article
+tags: [azure-event-hubs, kafka, event-streaming]
 comments: true
 ---
 

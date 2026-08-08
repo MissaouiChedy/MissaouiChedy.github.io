@@ -3,6 +3,7 @@ layout: post
 title: "Understanding async/await in C#"
 date: 2017-09-14
 categories: article
+tags: [csharp, async-await, concurrency]
 comments: true
 ---
 

@@ -3,6 +3,7 @@ layout: post
 title: "Reactive extension<br/> choose the proper subject type"
 date: 2017-07-27
 categories: article
+tags: [csharp, reactive-programming]
 comments: true
 ---
 

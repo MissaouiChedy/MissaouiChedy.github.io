@@ -3,6 +3,7 @@ layout: post
 title: "Load Testing Event Hubs Processing With Locust"
 date: 2026-08-07
 categories: article
+tags: [azure-event-hubs, locust, load-testing, performance-testing]
 comments: true
 ---
 

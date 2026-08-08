@@ -3,6 +3,7 @@ layout: post
 title: "the elixir/erlang platform"
 date: 2017-05-24
 categories: article
+tags: [elixir, erlang, functional-programming]
 comments: true
 ---
 

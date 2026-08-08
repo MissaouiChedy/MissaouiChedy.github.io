@@ -3,6 +3,7 @@ layout: post
 title: "CSS animations basic guide"
 date: 2017-11-01
 categories: article
+tags: [css, web-development, animations]
 comments: true
 ---
 

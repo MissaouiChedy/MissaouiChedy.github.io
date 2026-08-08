@@ -3,6 +3,7 @@ layout: post
 title: "Azure Event Hubs Consumer Client"
 date: 2025-02-09
 categories: article
+tags: [azure-event-hubs, event-processing, checkpointing]
 comments: true
 ---
 

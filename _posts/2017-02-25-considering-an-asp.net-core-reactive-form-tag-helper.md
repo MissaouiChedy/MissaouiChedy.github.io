@@ -3,6 +3,7 @@ layout: post
 title: "Considering an Asp.Net Core Reactive Form Tag Helper"
 date: 2017-02-25
 categories: article
+tags: [aspnet-core, tag-helpers, reactive-programming]
 comments: true
 ---
 

@@ -3,6 +3,7 @@ layout: post
 title: "Automated Testing"
 date: 2018-02-16
 categories: article
+tags: [automated-testing, software-engineering]
 comments: true
 ---
 

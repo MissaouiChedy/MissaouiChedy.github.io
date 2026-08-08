@@ -3,6 +3,7 @@ layout: post
 title: "React<br/> a library for building tags"
 date: 2017-10-25
 categories: article
+tags: [react, javascript, web-development]
 comments: true
 ---
 

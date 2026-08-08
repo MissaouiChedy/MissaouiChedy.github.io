@@ -3,6 +3,7 @@ layout: post
 title: "Rendering a tag helper inside another tag helper"
 date: 2017-02-20
 categories: article
+tags: [aspnet-core, tag-helpers]
 comments: true
 ---
 

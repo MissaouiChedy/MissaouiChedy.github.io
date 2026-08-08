@@ -3,6 +3,7 @@ layout: post
 title: "conserving genserver state between crashes with a companion process"
 date: 2017-08-09
 categories: article
+tags: [elixir, genserver, fault-tolerance]
 comments: true
 ---
 

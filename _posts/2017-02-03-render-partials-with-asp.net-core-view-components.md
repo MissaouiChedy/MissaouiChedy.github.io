@@ -3,6 +3,7 @@ layout: post
 title: "Render partials with ASP.net Core View Components"
 date: 2017-02-03
 categories: article
+tags: [aspnet-core, view-components]
 comments: true
 ---
 [In a previous post]({{ site.url }}/article/using-html-helper-inside-tag-helpers.html), I showed how it is possible to render a *cshtml template* inside a *Tag Helper* and I mentioned that there is a better mechanism available in asp.net core which is [Razor View Component](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components).

@@ -3,6 +3,7 @@ layout: post
 title: "phoenix channels C# client"
 date: 2017-07-19
 categories: article
+tags: [csharp, phoenix, real-time]
 comments: true
 ---
 

@@ -3,6 +3,7 @@ layout: post
 title: "Using C++ from elixir with nifs"
 date: 2017-12-17
 categories: article
+tags: [elixir, cpp, interoperability]
 comments: true
 ---
 

@@ -3,6 +3,7 @@ layout: post
 title: "conserving channel instance assigned state between crashes"
 date: 2017-07-06
 categories: article
+tags: [elixir, phoenix, genserver, fault-tolerance]
 comments: true
 ---
 

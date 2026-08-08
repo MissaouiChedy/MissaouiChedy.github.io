@@ -3,6 +3,7 @@ layout: post
 title: "Raw AMQP on Azure Event Hubs"
 date: 2025-03-20
 categories: article
+tags: [azure-event-hubs, amqp, event-streaming]
 comments: true
 ---
 

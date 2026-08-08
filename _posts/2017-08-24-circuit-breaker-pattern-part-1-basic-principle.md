@@ -3,6 +3,7 @@ layout: post
 title: "the circuit breaker pattern <br/> part 1 - basic principle"
 date: 2017-08-24
 categories: article
+tags: [circuit-breaker, fault-tolerance, design-patterns]
 comments: true
 ---
 

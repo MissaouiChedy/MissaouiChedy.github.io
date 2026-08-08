@@ -3,6 +3,7 @@ layout: post
 title: "Customizing Dynamic Form Tag Helper Generation"
 date: 2017-04-03
 categories: article
+tags: [aspnet-core, tag-helpers, dynamic-forms]
 comments: true
 ---
 

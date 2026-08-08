@@ -3,6 +3,7 @@ layout: post
 title: "Consuming Messages With Azure Event Hubs"
 date: 2024-12-15
 categories: article
+tags: [azure-event-hubs, event-processing, csharp]
 comments: true
 ---
 In [event driven systems,](https://martinfowler.com/articles/201701-event-driven.html) consuming events/messages is usually more tricky then sending messages involving among others concerns such as:

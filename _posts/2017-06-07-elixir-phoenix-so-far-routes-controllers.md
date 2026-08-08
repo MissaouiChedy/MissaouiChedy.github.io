@@ -3,6 +3,7 @@ layout: post
 title: "elixir and phoenix so far, routing and controllers"
 date: 2017-06-07
 categories: article
+tags: [elixir, phoenix, web-development]
 comments: true
 ---
 

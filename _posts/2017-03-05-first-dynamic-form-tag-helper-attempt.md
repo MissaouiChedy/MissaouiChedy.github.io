@@ -3,6 +3,7 @@ layout: post
 title: "First Dynamic Form Tag Helper Attempt"
 date: 2017-03-05
 categories: article
+tags: [aspnet-core, tag-helpers, dynamic-forms]
 comments: true
 ---
 

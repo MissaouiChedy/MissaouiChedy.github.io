@@ -3,6 +3,7 @@ layout: post
 title: "HTML Cheat Sheet For Beginners"
 date: 2017-08-30
 categories: article
+tags: [html, web-development]
 comments: true
 ---
 

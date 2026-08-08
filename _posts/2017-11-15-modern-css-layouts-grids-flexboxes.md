@@ -3,6 +3,7 @@ layout: post
 title: "Modern CSS layouts with Grids and Flexboxes"
 date: 2017-11-15
 categories: article
+tags: [css, web-development, responsive-design]
 comments: true
 ---
 

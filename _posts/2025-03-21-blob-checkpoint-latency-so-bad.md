@@ -3,6 +3,7 @@ layout: post
 title: "Blob Checkpoint Latency, So Bad ?"
 date: 2025-04-20
 categories: article
+tags: [azure-event-hubs, checkpointing, performance-testing, azure-storage]
 comments: true
 ---
 <p class="summary">

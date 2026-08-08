@@ -3,6 +3,7 @@ layout: post
 title: "reactive extension in C#"
 date: 2017-07-12
 categories: article
+tags: [csharp, reactive-programming]
 comments: true
 ---
 

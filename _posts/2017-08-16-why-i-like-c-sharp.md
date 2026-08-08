@@ -3,6 +3,7 @@ layout: post
 title: "Why I Like C#"
 date: 2017-08-16
 categories: article
+tags: [csharp, software-engineering]
 comments: true
 ---
 

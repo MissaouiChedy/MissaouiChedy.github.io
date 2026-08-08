@@ -3,6 +3,7 @@ layout: post
 title: "Basic Docker Cheat Sheet"
 date: 2017-06-03
 categories: article
+tags: [docker, containers]
 comments: true
 ---
 

@@ -3,6 +3,7 @@ layout: post
 title: "Deploying Xamarin Android Project to x86 emulator"
 date: 2017-05-17
 categories: article
+tags: [xamarin, mobile-development]
 comments: true
 ---
 

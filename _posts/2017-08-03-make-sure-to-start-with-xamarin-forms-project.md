@@ -3,6 +3,7 @@ layout: post
 title: "make sure to start with a Xamarin forms project"
 date: 2017-08-03
 categories: article
+tags: [xamarin, mobile-development]
 comments: true
 ---
 

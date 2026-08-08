@@ -3,6 +3,7 @@ layout: post
 title: "elixir and phoenix so far, channels"
 date: 2017-06-15
 categories: article
+tags: [elixir, phoenix, real-time]
 comments: true
 ---
 

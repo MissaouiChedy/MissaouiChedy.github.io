@@ -3,6 +3,7 @@ layout: post
 title: "Azure Event Hubs Partition Receiver"
 date: 2025-03-15
 categories: article
+tags: [azure-event-hubs, event-processing, partitions]
 comments: true
 ---
 

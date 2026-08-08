@@ -3,6 +3,7 @@ layout: post
 title: "Revisiting Programmatic Tag Helper Rendering"
 date: 2017-03-26
 categories: article
+tags: [aspnet-core, tag-helpers, rendering]
 comments: true
 ---
 

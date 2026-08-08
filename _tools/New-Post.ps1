@@ -83,6 +83,7 @@ layout: post
 title: "$PostTitle"
 date: $DateValue
 categories: article
+tags: []
 comments: true
 ---
 "@

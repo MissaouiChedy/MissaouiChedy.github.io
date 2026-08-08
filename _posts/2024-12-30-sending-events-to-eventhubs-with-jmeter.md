@@ -3,6 +3,7 @@ layout: post
 title: "Sending Events to Event Hubs With JMeter"
 date: 2024-12-30
 categories: article
+tags: [azure-event-hubs, jmeter, load-testing]
 comments: true
 ---
 

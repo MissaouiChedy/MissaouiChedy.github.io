@@ -3,6 +3,7 @@ layout: post
 title: "The Circuit Breaker Pattern Part 2 - C# implementation"
 date: 2017-09-07
 categories: article
+tags: [csharp, circuit-breaker, fault-tolerance]
 comments: true
 ---
 

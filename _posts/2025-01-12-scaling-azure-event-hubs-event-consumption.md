@@ -3,6 +3,7 @@ layout: post
 title: "Scaling Azure Event Hubs Event Consumption"
 date: 2025-01-12
 categories: article
+tags: [azure-event-hubs, event-processing, scalability]
 comments: true
 ---
 

@@ -3,6 +3,7 @@ layout: post
 title: "lessons learned from the lean startup"
 date: 2017-06-22
 categories: article
+tags: [lean-startup, product-development]
 comments: true
 ---
 

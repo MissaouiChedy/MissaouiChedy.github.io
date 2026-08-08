@@ -3,6 +3,7 @@ layout: post
 title: "Using python from elixir"
 date: 2017-12-03
 categories: article
+tags: [elixir, python, interoperability]
 comments: true
 ---
 

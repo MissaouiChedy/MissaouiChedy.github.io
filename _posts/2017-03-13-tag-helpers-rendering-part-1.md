@@ -3,6 +3,7 @@ layout: post
 title: "Tag Helpers Rendering<br>Part 1"
 date: 2017-03-13
 categories: article
+tags: [aspnet-core, tag-helpers, rendering]
 comments: true
 ---
 

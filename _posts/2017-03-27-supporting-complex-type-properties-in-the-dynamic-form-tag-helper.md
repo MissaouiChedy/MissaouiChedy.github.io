@@ -3,6 +3,7 @@ layout: post
 title: "Supporting Complex Type Properties in The Dynamic Form Tag Helper"
 date: 2017-03-27
 categories: article
+tags: [aspnet-core, tag-helpers, dynamic-forms]
 comments: true
 ---
 

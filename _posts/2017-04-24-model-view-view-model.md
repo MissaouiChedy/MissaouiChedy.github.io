@@ -3,6 +3,7 @@ layout: post
 title: "Model View View Model"
 date: 2017-04-24
 categories: article
+tags: [mvvm, software-architecture]
 comments: true
 ---
 

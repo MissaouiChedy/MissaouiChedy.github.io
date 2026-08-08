@@ -3,6 +3,7 @@ layout: post
 title: "Azure Event Hubs Checkpoints & Rewinding"
 date: 2025-01-26
 categories: article
+tags: [azure-event-hubs, checkpointing, event-processing]
 comments: true
 ---
 

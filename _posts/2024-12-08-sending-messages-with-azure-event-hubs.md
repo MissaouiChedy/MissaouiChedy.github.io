@@ -3,6 +3,7 @@ layout: post
 title: "Sending Messages With Azure Event Hubs"
 date: 2024-12-08
 categories: article
+tags: [azure-event-hubs, event-streaming, csharp]
 comments: true
 ---
 

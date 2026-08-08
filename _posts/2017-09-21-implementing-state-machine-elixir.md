@@ -3,6 +3,7 @@ layout: post
 title: "Implementing a state machine in elixir"
 date: 2017-09-21
 categories: article
+tags: [elixir, state-machine, functional-programming]
 comments: true
 ---
 

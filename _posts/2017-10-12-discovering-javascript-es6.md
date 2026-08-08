@@ -3,6 +3,7 @@ layout: post
 title: "Discovering JavaScript ES6"
 date: 2017-10-12
 categories: article
+tags: [javascript, es6, web-development]
 comments: true
 ---
 

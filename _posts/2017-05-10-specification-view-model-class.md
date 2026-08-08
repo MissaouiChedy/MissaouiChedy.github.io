@@ -3,6 +3,7 @@ layout: post
 title: "specification for an input/output view model class"
 date: 2017-05-10
 categories: article
+tags: [csharp, mvvm, software-architecture]
 comments: true
 ---
 **UPDATE,** 15 Nov2017 &mdash; *Thanks to [Magick's](https://disqus.com/by/disqus_QtZAMoouIE) comment we have been able to make the specification more consistent, please checkout the updated "6.Provide a way to get a domain model instance populated with the data from the view model" point*

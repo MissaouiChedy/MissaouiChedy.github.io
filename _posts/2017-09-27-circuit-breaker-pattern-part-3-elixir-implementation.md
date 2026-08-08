@@ -3,6 +3,7 @@ layout: post
 title: "The Circuit Breaker Pattern Part 3 - Elixir implementation"
 date: 2017-09-27
 categories: article
+tags: [elixir, circuit-breaker, fault-tolerance]
 comments: true
 ---
 

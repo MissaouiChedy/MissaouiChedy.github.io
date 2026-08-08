@@ -3,6 +3,7 @@ layout: post
 title: "genserver contention and what to do about it"
 date: 2017-06-28
 categories: article
+tags: [elixir, genserver, concurrency]
 comments: true
 ---
 

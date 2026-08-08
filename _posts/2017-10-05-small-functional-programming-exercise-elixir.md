@@ -3,6 +3,7 @@ layout: post
 title: "Small functional programming exercise in Elixir"
 date: 2017-10-05
 categories: article
+tags: [elixir, functional-programming]
 comments: true
 ---
 
