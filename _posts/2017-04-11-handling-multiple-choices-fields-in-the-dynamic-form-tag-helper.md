@@ -28,7 +28,7 @@ Under the hypothetical `SomeModel`:
 
 The previous `select` example will display a drop down menu that contains the elements specified in `ItemChoiceList` and that allows the user to select only one value as in the following screenshot:
 <div class="img-container">
-![Example drop down menu]({{ site.url }}/imgs/ExampleDropDown.png)
+![Example drop down menu]({{ site.url }}/imgs/ExampleDropDown.webp)
 </div>
 
 

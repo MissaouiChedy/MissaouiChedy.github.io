@@ -101,7 +101,7 @@ The *Test Plan* defines 10 *Thread Groups*, each *Thread Group* contains an *Azu
 ``` 
 
 <div class="img-container">
-![JMeter Test Plan Sample]({{ site.url }}/imgs/JMeterSample.png)
+![JMeter Test Plan Sample]({{ site.url }}/imgs/JMeterSample.webp)
 </div>
 
 In the message:
@@ -120,7 +120,7 @@ The Test plan defines some *User Defined Variables* used by the underlying *Samp
   - TopicName
 
 <div class="img-container">
-![JMeter Test Plan Variables]({{ site.url }}/imgs/JMeterVariables.png)
+![JMeter Test Plan Variables]({{ site.url }}/imgs/JMeterVariables.webp)
 </div>
 
 These parameters can be easily changed for all *Samplers* in a single location.
@@ -133,12 +133,12 @@ In this example, we defined two *Listeners*, [View Results Tree](https://jmeter.
 The View Results Tree is useful for showing each request sent and its response status:
 
 <div class="img-container">
-![JMeter View Results Tree]({{ site.url }}/imgs/JMeterViewResultsTree.png)
+![JMeter View Results Tree]({{ site.url }}/imgs/JMeterViewResultsTree.webp)
 </div>
 
 The Summary Report is useful for viewing statistics regarding request and responses:
 <div class="img-container">
-![JMeter Summary Report]({{ site.url }}/imgs/JMeterSummaryReport.png)
+![JMeter Summary Report]({{ site.url }}/imgs/JMeterSummaryReport.webp)
 </div>
 
 ### Running the Sample
@@ -146,7 +146,7 @@ If we run the sample JMeter Test Plan with a messages count of 5, 10 threads gro
 
 And this is what we can observe in the incoming messages metric of the Event Hub:
 <div class="img-container">
-![Messages Received From JMeter]({{ site.url }}/imgs/JMeterEventhubMessagesReceived.png)
+![Messages Received From JMeter]({{ site.url }}/imgs/JMeterEventhubMessagesReceived.webp)
 </div>
 
 ## Closing Thoughts

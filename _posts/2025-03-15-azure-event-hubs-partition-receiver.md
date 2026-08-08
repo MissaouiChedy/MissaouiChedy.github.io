@@ -95,7 +95,7 @@ When calling `ParitionReceiver.ReceiveBatchAsync`, we provide a *batch size* and
 
 For example, if called with a batch size of 10 and pulling time span of 2 seconds, then it will return maximum of 10 events not yet consumed and available for consumption during the 2 seconds.
 <div class="img-container">
-![Partition receiver Pulling Example](/imgs/PartitionReceiverPullingExample.png)
+![Partition receiver Pulling Example](/imgs/PartitionReceiverPullingExample.webp)
 </div>
 
 In the previous illustrated example, initially we have ev4, ev5, and ev6 available for pulling. 

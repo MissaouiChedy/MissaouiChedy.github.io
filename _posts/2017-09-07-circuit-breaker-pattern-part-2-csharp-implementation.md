@@ -15,7 +15,7 @@ In this post, we are going to take a look at an example .NET Core implementation
 In this example, we have a .NET Core console application that uses a MongoDB database instance, a very simple structure:
 
 <div class="img-container">
-![Example structure]({{ site.url }}/imgs/CBCSExampleStrucuture.PNG)
+![Example structure]({{ site.url }}/imgs/CBCSExampleStrucuture.webp)
 </div>
 
 The console app asks the MongoDB instance to perform two operations:
@@ -110,7 +110,7 @@ Now let's take a closer look at it.
 In the [basic principles post]({{ site.url }}/article/circuit-breaker-pattern-part-1-basic-principle.html), we mentioned that the circuit breaker is a state machine that has 3 states with defined transitions:
 
 <div class="img-container">
-![Circuit Breaker States]({{ site.url }}/imgs/CircuitBreakerStates.PNG)
+![Circuit Breaker States]({{ site.url }}/imgs/CircuitBreakerStates.webp)
 </div>
 
 Essentially, state machine objects execute different behaviors depending on their state, this can be implemented by using nested `if` or `switch` statements, by using a [decision table](https://en.wikipedia.org/wiki/Decision_table) or by using *the state design pattern*.

@@ -146,7 +146,7 @@ Finally, we call the following methods:
 
 The output of the program should be as following:
 <div class="img-container">
-![AMQP raw send output](/imgs/AmqpRawSendOutput.png)
+![AMQP raw send output](/imgs/AmqpRawSendOutput.webp)
 </div>
 
 Looking at the sending method:

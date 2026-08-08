@@ -27,7 +27,7 @@ The previous cshtml view, which is strongly typed by the `PersonViewModel` class
 
 The responsibility of the `DynamicFormTagHelper` will be to leverage the metadata available in the `PersonViewModel` class in order to generate the following form:
 <div class="img-container">
-![Dynamic Generated Form]({{ site.url }}/imgs/DynamicGeneratedForm.PNG)
+![Dynamic Generated Form]({{ site.url }}/imgs/DynamicGeneratedForm.webp)
 </div>
 Of course the form will have to handle basic client side form validation (the Id and Name fields are required) and actual posting of the form(in our case to the `/Home/Index` action specified in the `asp-action` attribute).
 

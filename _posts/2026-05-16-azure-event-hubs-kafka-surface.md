@@ -11,7 +11,7 @@ Demonstration of how to use the Event Hubs Kafka protocol surface for sending/re
 </p>
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/AzureEventHubsKafkaSurface.png" alt="Azure Event Hubs Kafka Surface" />
+  <img src="{{ site.url }}/imgs/AzureEventHubsKafkaSurface.webp" alt="Azure Event Hubs Kafka Surface" />
 </div>
 
 Azure Event Hubs exposes a [Kafka protocol surface](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-for-kafka-ecosystem-overview) that allows Kafka clients to connect to an Event Hubs namespace without any changes to the broker infrastructure. This feature is available starting from the **Standard tier** and supports Kafka version 1.0 and later.

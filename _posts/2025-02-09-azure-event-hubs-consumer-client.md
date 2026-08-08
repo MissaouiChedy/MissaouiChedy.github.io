@@ -165,14 +165,14 @@ Latest sequence number is read at the beginning of the processing and is recorde
 Running this sample from my laptop on an [Azure Cache for Redis](https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/cache-overview) instance produces results that I did not expect 😬:
 
 <div class="img-container">
-![Event Stream Checkpoint With Redis]({{ site.url }}/imgs/EventStreamCheckpointWithRedis.png)
+![Event Stream Checkpoint With Redis]({{ site.url }}/imgs/EventStreamCheckpointWithRedis.webp)
 </div>
 
 The network latency is such that the checkpoint duration is [similar to the blob storage checkpoint.](https://blog.techdominator.com/article/azure-event-hubs-checkpoints-&-rewinding.html#checkpoint-cost--best-practices)
 
 However, checkpointing on a local redis instance is way faster in the order of single digit milliseconds:
 <div class="img-container">
-![Event Stream Checkpoint With Redis Local]({{ site.url }}/imgs/EventStreamCheckpointWithRedisLocal.png)
+![Event Stream Checkpoint With Redis Local]({{ site.url }}/imgs/EventStreamCheckpointWithRedisLocal.webp)
 </div>
 
 ## Closing Thoughts

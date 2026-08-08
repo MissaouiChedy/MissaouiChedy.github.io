@@ -10,7 +10,7 @@ Benchmark of Blob Storage vs Redis Cache Latency using Application insights
 </p>
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/BlobCheckpointLatencySoBad.png" alt="Blob Checkpoint Latency So Bad" />
+  <img src="{{ site.url }}/imgs/BlobCheckpointLatencySoBad.webp" alt="Blob Checkpoint Latency So Bad" />
 </div>
 
 When using Azure Event Hub in an application, checkpointing is key to ensure reliability and consistency. 
@@ -32,7 +32,7 @@ In this post, we'll compare latency performance between Blob Storage and Redis C
 This post's sample uses an **Azure Function** to make 1 write operation on each of a **Redis Cache** key and a **Storage Blob's** metadata. Write operations are instrumented with **Application Insights** configured on the Azure function:
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/AzureFunctionDesign.png" alt="Azure Function Design" />
+  <img src="{{ site.url }}/imgs/AzureFunctionDesign.webp" alt="Azure Function Design" />
 </div>
 
 In this situation, we used an Azure function to measure latency when the application workload **runs on the same Azure region** as the checkpoint store.
@@ -138,7 +138,7 @@ The [`Invoke-MainFunction.ps1`](https://github.com/MissaouiChedy/BlogSamples/blo
 After invoking the script with the default `$CallCount=100`, we can then visualize the application map displaying average latency for each dependency:
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/LatencyApplicationMap.png" alt="Latency Application Map" />
+  <img src="{{ site.url }}/imgs/LatencyApplicationMap.webp" alt="Latency Application Map" />
 </div>
 
 ## Blob Storage not so bad

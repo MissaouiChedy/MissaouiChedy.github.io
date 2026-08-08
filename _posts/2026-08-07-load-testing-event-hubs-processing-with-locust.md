@@ -11,7 +11,7 @@ Discussion of how to use Azure Load to load test Event Hubs triggered Azure Func
 </p>
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/LoadTestingEventHubsProcessingLocust.png" alt="Load Testing Event Hubs Processing With Locust" />
+  <img src="{{ site.url }}/imgs/LoadTestingEventHubsProcessingLocust.webp" alt="Load Testing Event Hubs Processing With Locust" />
 </div>
 
 Load testing a request/response API is straightforward: send the request, wait for the response, and the response time already tells you most of what you need to know about the system's performances.
@@ -253,14 +253,14 @@ Cost wise, Azure Load Testing [bills based on virtual user hours consumed during
 Azure load test provides a solid user experience to manage tests and track test runs:
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/LoadTestingEventHubsTestView.png" alt="Load Testing Event Hubs Test View" />
+  <img src="{{ site.url }}/imgs/LoadTestingEventHubsTestView.webp" alt="Load Testing Event Hubs Test View" />
 </div>
 
 
 It provides also a solid test run report including all available metrics: client-side, server-side and engine health metrics:
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/LoadTestingEventHubsTestReport.gif" alt="Load Testing Event Hubs Test Report" />
+  <img src="{{ site.url }}/imgs/LoadTestingEventHubsTestReport.optimized.gif" alt="Load Testing Event Hubs Test Report" />
 </div>
 
 **I'd invite you to check out the full sample** for the exact scripts and steps: from provisioning the Azure resources with Terraform, to deploying the function, to deploying and running the load test, everything is scripted end to end.

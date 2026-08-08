@@ -108,7 +108,7 @@ In our prototype the initialization of the auto-complete field is done under the
 
 The `PersonViewModel.Name` and `DogViewModel.Name` properties have been slapped with `[AutoComplete]` attribute which yields the following behavior:
 <div class="img-container">
-![Auto complete demo]({{ site.url }}/imgs/AutoCompleteDemo.gif)
+![Auto complete demo]({{ site.url }}/imgs/AutoCompleteDemo.optimized.gif)
 </div>
 
 ## Closing Thoughts

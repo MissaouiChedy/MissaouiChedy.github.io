@@ -56,7 +56,7 @@ One easy way to get the generated code when using ASP.NET Core 1.1 is to actuall
 
 For example, inserting the `@{ int a = "word"; }` somewhere in the `Views/Home/index.cshtml` view causes the following error page to display:
 <div class="img-container">
-![The error page displays C# code]({{ site.url }}/imgs/c_sharp_code.PNG)
+![The error page displays C# code]({{ site.url }}/imgs/c_sharp_code.webp)
 </div>
 
 You can see here that the relevant C# code is dumped and can thus be copy pasted in a text editor for inspection.

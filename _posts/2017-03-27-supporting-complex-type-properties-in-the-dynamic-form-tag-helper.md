@@ -26,7 +26,7 @@ The dynamic form tag helper needs to take in consideration such properties in or
 Our dynamic tag helper needs to generate the following form, when given an object of the previous `PersonViewModel` class:
 
 <div class="img-container">
-![Complex Property Form]({{ site.url }}/imgs/ComplexProperty.PNG)
+![Complex Property Form]({{ site.url }}/imgs/ComplexProperty.webp)
 </div>
 
 Before we continue, I would like to point out that my current definition of complex types is sloppy, what about generic, iterable, enum and struct types? Are they also consider complex? This is not very clear yet.
@@ -79,7 +79,7 @@ That is why I introduced the following method to handle fully qualified property
 
 In the [DynamicFormTagHelper](https://github.com/MissaouiChedy/DynamicFormTagHelper) Github repository, you will find the full code that contains an example with 2 levels of complex property nesting that generates the following form:
 <div class="img-container">
-![Multiple nested Property Form]({{ site.url }}/imgs/MultipleNestedProperties.gif)
+![Multiple nested Property Form]({{ site.url }}/imgs/MultipleNestedProperties.optimized.gif)
 </div>
 
 Try submitting the form with valid and invalid values, you will see that model binding and validation both work.

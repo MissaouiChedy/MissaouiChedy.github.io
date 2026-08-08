@@ -20,7 +20,7 @@ In this post we are going to discuss *worker contention* which is a performance 
 Let's consider a single *GenServer instance* that performs a single *expensive operation(compute)* and multiple *client processes* soliciting the GenServer by sending a single message each and expecting a reply:
 
 <div class="img-container">
-![single genserver contention]({{ site.url }}/imgs/single_genserver_contention.PNG)
+![single genserver contention]({{ site.url }}/imgs/single_genserver_contention.webp)
 </div>
 Messages that are sent by the processes are queued in the GenServer's mailbox and are processed one by one.
 
@@ -37,7 +37,7 @@ This is not ideal because a large number of very active clients will cause the c
 An improvement to the previous solution is use a *pool* that will limit and keep track of GenServer instances.
 
 <div class="img-container">
-![single genserver contention]({{ site.url }}/imgs/genserver_pool.PNG)
+![single genserver contention]({{ site.url }}/imgs/genserver_pool.webp)
 </div>
 
 The *pool* can be an actual GenServer that is responsible of creating and keeping track of GenServer instances, it is configured with a *maximum number of instances* to manage and provides two main functions: 

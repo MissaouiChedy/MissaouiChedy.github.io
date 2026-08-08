@@ -28,7 +28,7 @@ We are going to add capability for tweaking the following form elements:
 
 Consider the following form:
 <div class="img-container">
-![Customized generated form]({{ site.url }}/imgs/CustomizedForm.png)
+![Customized generated form]({{ site.url }}/imgs/CustomizedForm.webp)
 </div>
 
 Arbitrary css classes have been applied to the BirthDate `label` as well as to the "Person's full name" `input` element. This is what makes the BirthDate `label` <span style="color:purple">purple</span> and the "Person's full name"'s text <span style="color:yellowgreen">yellowish green</span>(not the real color's name ;-)).

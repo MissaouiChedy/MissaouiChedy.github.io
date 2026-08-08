@@ -25,7 +25,7 @@ On the python side the `erlport` python package allows the python script to send
 Consider the following diagram:
 
 <div class="img-container">
-![Elixir to python communication]({{ site.url }}/imgs/ErlToPy.PNG)
+![Elixir to python communication]({{ site.url }}/imgs/ErlToPy.webp)
 </div>
 
 Here we have an Elixir application with multiple erlang processes, remember that these are very lightweight and not actual OS processes. This sample application creates a process that launches and manages a python vm that acts as worker for heavy CPU bound operations.

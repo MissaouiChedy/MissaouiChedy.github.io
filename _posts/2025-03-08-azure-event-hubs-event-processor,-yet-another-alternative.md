@@ -271,7 +271,7 @@ In `ListOwnershipAsync`, we simply return what we stored in the cache via `Claim
 In Redis, an ownership record for a specific partition will look like this:
 
 <div class="img-container">
-  ![Event OwnerShip In Redis]({{ site.url }}/imgs/EventOwnerShipInRedis.png)
+  ![Event OwnerShip In Redis]({{ site.url }}/imgs/EventOwnerShipInRedis.webp)
 </div>
 
 ## Managing Partition Checkpoints Storage
@@ -344,7 +344,7 @@ Implementation is straightforward, we leverage `_checkpointOwnershipStore` to st
 In redis, a checkpoint record for a specific partition will look like this:
 
 <div class="img-container">
-  ![Event checkpoint In Redis]({{ site.url }}/imgs/EventCheckpointInRedis.png)
+  ![Event checkpoint In Redis]({{ site.url }}/imgs/EventCheckpointInRedis.webp)
 </div>
 
 ## Additional Customization
