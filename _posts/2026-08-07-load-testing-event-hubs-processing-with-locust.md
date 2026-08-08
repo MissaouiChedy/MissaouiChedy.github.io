@@ -144,12 +144,16 @@ public class MetricsTracker(TelemetryClient telemetryClient)
 
    private readonly Metric _batchSizeMetric = telemetryClient
        .GetMetric(BatchSizeMetricName);
+
    private readonly Metric _queueLagMetric = telemetryClient
        .GetMetric(QueueLagMetricName);
+
    private readonly Metric _eventLeadTimeMetric = telemetryClient
        .GetMetric(EventLeadTimeMetricName, AreaCodeDimensionName);
+
    private readonly Metric _eventCycleTimeMetric = telemetryClient
        .GetMetric(EventCycleTimeMetricName, AreaCodeDimensionName);
+       
    private readonly Metric _batchDurationMetric = telemetryClient
        .GetMetric(BatchDurationMetricName);
   
