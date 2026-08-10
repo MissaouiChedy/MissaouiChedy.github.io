@@ -9,21 +9,26 @@ Select images in one of three ways: pass file paths, use -New to select tracked
 images changed in the unstaged Git diff, or use -All to recursively select all
 supported images below -Folder.
 
-By default, animated GIFs remain GIFs and are written as *.optimized.gif.
-PNG and JPEG images are converted to WebP, while WebP images are written as
-*.optimized.webp. Use -ReplaceOriginals to optimize files in place without
-changing their formats.
+By default, each GIF is converted to a web-optimized MP4 video (H.264,
+yuv420p pixel format, faststart) written as *.mp4. PNG and JPEG images are
+converted to WebP, while WebP images are written as *.optimized.webp. Use
+-ReplaceOriginals to optimize non-GIF files in place without changing their
+formats.
 
-GIF optimization compares ImageMagick, gifsicle, and a combined pass. Other
-formats use ImageMagick. A candidate is accepted only when it is smaller and
-retains the source frame count, dimensions, and total animation duration.
+GIF conversion uses ffmpeg. The converted MP4 is accepted only when it is
+smaller than the source and retains the source dimensions and total
+animation duration. Other formats use ImageMagick. A candidate is accepted
+only when it is smaller and retains the source frame count, dimensions, and
+total animation duration.
 
 PREREQUISITES
 - PowerShell 7 or later.
 - ImageMagick 7 available as "magick" on PATH.
   Install on Windows with:
   winget install --id ImageMagick.ImageMagick --exact
-- gifsicle available on PATH when optimizing GIF files.
+- ffmpeg and ffprobe available on PATH when converting GIF files.
+  Install on Windows with:
+  winget install --id Gyan.FFmpeg --exact
 - Git available on PATH when using -New.
 
 .PARAMETER FilePath
@@ -50,18 +55,23 @@ ImageMagick quality used for WebP output. Defaults to 75.
 .PARAMETER JpegQuality
 ImageMagick quality used for in-place JPEG optimization. Defaults to 80.
 
-.PARAMETER GifsicleLossy
-Lossy compression level passed to gifsicle. Zero keeps GIF optimization
-lossless. Values from 20 to 80 are typical when lossy output is acceptable.
-Defaults to 0.
+.PARAMETER GifVideoCrf
+Constant Rate Factor passed to ffmpeg's H.264 encoder for GIF to MP4
+conversion. Lower values produce higher quality and larger files; values
+from 23 to 30 are typical for web delivery. Defaults to 26.
 
 .PARAMETER ReplaceOriginals
 Optimizes each image in place and preserves its current format. Without this
-switch, optimized copies are produced.
+switch, optimized copies are produced. This option has no effect when
+converting GIF files because GIFs are always converted to MP4 videos; the
+source GIF is left untouched and a warning is printed.
 
 .PARAMETER UpdateReferences
 Updates references below -ReferencePath when an optimized copy has a new name
-or extension. This option cannot be combined with -ReplaceOriginals.
+or extension. This option cannot be combined with -ReplaceOriginals and has
+no effect on GIF files: references to *.gif files are never rewritten to
+*.mp4 because <img> elements cannot play video. Update those references and
+switch the markup to <video autoplay loop muted playsinline> manually.
 
 .PARAMETER RemoveOriginals
 Removes source images after successful copy creation and reference updates.
@@ -92,10 +102,10 @@ Recursively optimizes all supported images below the imgs folder.
 Optimizes every supported image in place with custom static-image quality.
 
 .EXAMPLE
-./_tools/Optimize-Images.ps1 imgs/demo.gif -GifsicleLossy 60 -ReplaceOriginals
+./_tools/Optimize-Images.ps1 imgs/demo.gif -GifVideoCrf 30 -UpdateReferences -RemoveOriginals
 
-Compares lossy gifsicle candidates and replaces the GIF only when a smaller,
-metadata-safe candidate is found.
+Converts demo.gif to a web-optimized demo.mp4, updates references below the
+default reference paths, then removes the original GIF.
 
 .EXAMPLE
 ./_tools/Optimize-Images.ps1 imgs/photo.png -UpdateReferences -RemoveOriginals
@@ -105,6 +115,10 @@ Creates photo.webp, updates references below _posts, then removes photo.png.
 .NOTES
 Supported extensions are .gif, .png, .jpg, .jpeg, and .webp. Use -WhatIf to
 preview file selection and output actions before changing files.
+
+GIF conversion updates file references to *.mp4 names only; switch the
+markup to <video autoplay loop muted playsinline> manually because browsers
+cannot play MP4 files through <img> elements.
 #>
 [CmdletBinding(DefaultParameterSetName = 'Paths', SupportsShouldProcess)]
 param(
@@ -129,8 +143,8 @@ param(
     [ValidateRange(1, 100)]
     [int]$JpegQuality = 75,
 
-    [ValidateRange(0, 200)]
-    [int]$GifsicleLossy = 0,
+    [ValidateRange(0, 51)]
+    [int]$GifVideoCrf = 26,
 
     [switch]$ReplaceOriginals,
     [switch]$UpdateReferences,
@@ -217,6 +231,52 @@ begin {
             $CandidateInfo.DurationTicks -eq $SourceInfo.DurationTicks
     }
 
+    function Get-VideoInfo {
+        param(
+            [Parameter(Mandatory)][string]$VideoPath,
+            [Parameter(Mandatory)]$FfprobeCommand
+        )
+
+        $rawDimensions = & $FfprobeCommand.Source -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0 $VideoPath
+        if ($LASTEXITCODE -ne 0 -or $rawDimensions -notmatch '^(\d+)x(\d+)$') {
+            throw "Could not inspect video metadata for $VideoPath."
+        }
+        $width = [int]$Matches[1]
+        $height = [int]$Matches[2]
+
+        $rawDuration = & $FfprobeCommand.Source -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 $VideoPath
+        $durationSeconds = 0.0
+        $durationParsed = [double]::TryParse(
+            $rawDuration,
+            [System.Globalization.NumberStyles]::Float,
+            [System.Globalization.CultureInfo]::InvariantCulture,
+            [ref]$durationSeconds
+        )
+        if ($LASTEXITCODE -ne 0 -or -not $durationParsed) {
+            throw "Could not inspect video duration for $VideoPath."
+        }
+
+        return [pscustomobject]@{
+            Width           = $width
+            Height          = $height
+            DurationSeconds = $durationSeconds
+        }
+    }
+
+    function Test-VideoInfoMatches {
+        param(
+            [Parameter(Mandatory)]$SourceInfo,
+            [Parameter(Mandatory)]$VideoInfo
+        )
+
+        $sourceDurationSeconds = $SourceInfo.DurationTicks / 100.0
+        $durationTolerance = [math]::Max(0.5, $sourceDurationSeconds * 0.05)
+
+        return [math]::Abs($VideoInfo.Width - $SourceInfo.Width) -le 1 -and
+            [math]::Abs($VideoInfo.Height - $SourceInfo.Height) -le 1 -and
+            [math]::Abs($VideoInfo.DurationSeconds - $sourceDurationSeconds) -le $durationTolerance
+    }
+
     function Remove-Candidates {
         param([object[]]$Candidates)
 
@@ -301,11 +361,20 @@ end {
         throw 'ImageMagick 7 is required. Install it with: winget install --id ImageMagick.ImageMagick --exact'
     }
 
-    $gifsicle = $null
+    $ffmpeg = $null
+    $ffprobe = $null
     if ($images | Where-Object { $_.Extension -ieq '.gif' }) {
-        $gifsicle = Get-Command gifsicle -ErrorAction SilentlyContinue
-        if (-not $gifsicle) {
-            throw 'gifsicle is required for GIF optimization and must be available on PATH.'
+        if ($ReplaceOriginals) {
+            Write-Warning '-ReplaceOriginals has no effect on GIF files: GIFs are always converted to MP4 videos and the source GIF is left untouched.'
+        }
+        if ($UpdateReferences) {
+            Write-Warning '-UpdateReferences has no effect on GIF files: references to *.gif files are not rewritten to *.mp4 because <img> elements cannot play video. Update the markup manually.'
+        }
+
+        $ffmpeg = Get-Command ffmpeg -ErrorAction SilentlyContinue
+        $ffprobe = Get-Command ffprobe -ErrorAction SilentlyContinue
+        if (-not $ffmpeg -or -not $ffprobe) {
+            throw 'ffmpeg and ffprobe are required for GIF conversion and must be available on PATH. Install with: winget install --id Gyan.FFmpeg --exact'
         }
     }
 
@@ -322,19 +391,21 @@ end {
             $directory = $image.DirectoryName
             $baseName = [System.IO.Path]::GetFileNameWithoutExtension($sourcePath)
             $sourceExtension = $image.Extension.ToLowerInvariant()
-            $outputExtension = if ($ReplaceOriginals -or $sourceExtension -eq '.gif') {
+            $outputExtension = if ($ReplaceOriginals -and $sourceExtension -ne '.gif') {
                 $sourceExtension
+            } elseif ($sourceExtension -eq '.gif') {
+                '.mp4'
             } else {
                 '.webp'
             }
-            $targetPath = if ($ReplaceOriginals) {
+            $targetPath = if ($ReplaceOriginals -and $sourceExtension -ne '.gif') {
                 $sourcePath
-            } elseif ($sourceExtension -in @('.gif', '.webp')) {
+            } elseif ($sourceExtension -eq '.webp') {
                 Join-Path $directory "$baseName.optimized$outputExtension"
             } else {
                 Join-Path $directory "$baseName$outputExtension"
             }
-            $action = if ($ReplaceOriginals) {
+            $action = if ($ReplaceOriginals -and $sourceExtension -ne '.gif') {
                 'Optimize image in place'
             } else {
                 "Create $([System.IO.Path]::GetFileName($targetPath))"
@@ -352,40 +423,29 @@ end {
             try {
                 if ($sourceExtension -eq '.gif') {
                     if ($sourceInfo.FrameCount -lt 2) {
-                        Write-Warning "$relativePath contains one frame; optimizing it as a GIF."
+                        Write-Warning "$relativePath contains one frame; converting it to MP4 anyway."
                     }
 
-                    $candidates = @(
-                        [pscustomobject]@{ Optimizer = 'ImageMagick'; Path = "$temporaryStem.magick.gif" }
-                        [pscustomobject]@{ Optimizer = 'gifsicle'; Path = "$temporaryStem.gifsicle.gif" }
-                        [pscustomobject]@{ Optimizer = 'ImageMagick + gifsicle'; Path = "$temporaryStem.combined.gif" }
+                    $candidatePath = "$temporaryStem.mp4"
+                    $candidates = @([pscustomobject]@{ Optimizer = 'ffmpeg'; Path = $candidatePath })
+
+                    $ffmpegArguments = @(
+                        '-hide_banner',
+                        '-loglevel', 'error',
+                        '-y',
+                        '-i', $sourcePath,
+                        '-movflags', '+faststart',
+                        '-pix_fmt', 'yuv420p',
+                        '-vf', 'scale=trunc(iw/2)*2:trunc(ih/2)*2',
+                        '-c:v', 'libx264',
+                        '-preset', 'slow',
+                        '-crf', $GifVideoCrf,
+                        '-an',
+                        $candidatePath
                     )
-
-                    $magickArguments = @(
-                        $sourcePath,
-                        '-coalesce',
-                        '-layers', 'Optimize',
-                        '-strip',
-                        $candidates[0].Path
-                    )
-                    & $magick.Source @magickArguments
-                    if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $candidates[0].Path)) {
-                        throw "ImageMagick failed to optimize $relativePath."
-                    }
-
-                    $gifsicleArguments = @('--optimize=3', '--no-comments', '--no-names')
-                    if ($GifsicleLossy -gt 0) {
-                        $gifsicleArguments += "--lossy=$GifsicleLossy"
-                    }
-
-                    & $gifsicle.Source @gifsicleArguments --output $candidates[1].Path $sourcePath
-                    if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $candidates[1].Path)) {
-                        throw "gifsicle failed to optimize $relativePath."
-                    }
-
-                    & $gifsicle.Source @gifsicleArguments --output $candidates[2].Path $candidates[0].Path
-                    if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $candidates[2].Path)) {
-                        throw "The combined ImageMagick and gifsicle pass failed for $relativePath."
+                    & $ffmpeg.Source @ffmpegArguments
+                    if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $candidatePath)) {
+                        throw "ffmpeg failed to convert $relativePath to MP4."
                     }
                 } else {
                     $candidatePath = "$temporaryStem$outputExtension"
@@ -427,8 +487,14 @@ end {
 
                 $validCandidates = @(
                     foreach ($candidate in $candidates) {
-                        $candidateInfo = Get-ImageInfo -ImagePath $candidate.Path -MagickCommand $magick
-                        if (-not (Test-ImageInfoMatches -SourceInfo $sourceInfo -CandidateInfo $candidateInfo)) {
+                        if ([System.IO.Path]::GetExtension($candidate.Path) -ieq '.mp4') {
+                            $candidateInfo = Get-VideoInfo -VideoPath $candidate.Path -FfprobeCommand $ffprobe
+                            $metadataMatches = Test-VideoInfoMatches -SourceInfo $sourceInfo -VideoInfo $candidateInfo
+                        } else {
+                            $candidateInfo = Get-ImageInfo -ImagePath $candidate.Path -MagickCommand $magick
+                            $metadataMatches = Test-ImageInfoMatches -SourceInfo $sourceInfo -CandidateInfo $candidateInfo
+                        }
+                        if (-not $metadataMatches) {
                             Write-Warning "Rejected $($candidate.Optimizer) for $relativePath because image metadata changed."
                             continue
                         }
@@ -465,6 +531,10 @@ end {
             }
         }
     )
+
+    if ($UpdateReferences) {
+        $results = @($results | Where-Object { $_.SourcePath -eq $_.TargetPath -or $_.Format -ne 'GIF' })
+    }
 
     if ($UpdateReferences -and $results.Count -gt 0) {
         $referenceFiles = @(

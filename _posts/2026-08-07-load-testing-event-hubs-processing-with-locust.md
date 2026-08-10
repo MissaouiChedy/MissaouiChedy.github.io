@@ -261,7 +261,9 @@ Azure load test provides a solid user experience to manage tests and track test 
 It provides also a solid test run report including all available metrics: client-side, server-side and engine health metrics:
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/LoadTestingEventHubsTestReport.optimized.gif" alt="Load Testing Event Hubs Test Report" />
+  <video autoplay loop muted playsinline>
+    <source src="{{ site.url }}/imgs/LoadTestingEventHubsTestReport.optimized.mp4" type="video/mp4" />
+  </video>
 </div>
 
 **I'd invite you to check out the full sample** for the exact scripts and steps: from provisioning the Azure resources with Terraform, to deploying the function, to deploying and running the load test, everything is scripted end to end.

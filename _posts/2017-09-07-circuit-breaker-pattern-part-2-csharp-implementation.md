@@ -92,7 +92,7 @@ Written: { Id: 41, Name: 'Baby Roy 41'}
 The following class diagram depicts the internal structure of the console application:
 
 <div class="img-container">
-![example uml class diagram]({{ site.url }}/imgs/CBUMLClassDiagram.webp)
+![example uml class diagram]({{ site.url }}/imgs/CBUMLClassDiagram.optimized.webp)
 </div>
 The [`Program`](https://github.com/MissaouiChedy/CircuitBreakerSample/blob/master/src/Program.cs)class contains the `Main` method which is the entry point of the application, this is where we implemented the previously described behavior.
 

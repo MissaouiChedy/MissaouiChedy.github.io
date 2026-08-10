@@ -80,7 +80,9 @@ That is why I introduced the following method to handle fully qualified property
 
 In the [DynamicFormTagHelper](https://github.com/MissaouiChedy/DynamicFormTagHelper) Github repository, you will find the full code that contains an example with 2 levels of complex property nesting that generates the following form:
 <div class="img-container">
-![Multiple nested Property Form]({{ site.url }}/imgs/MultipleNestedProperties.optimized.gif)
+  <video autoplay loop muted playsinline>
+    <source src="{{ site.url }}/imgs/MultipleNestedProperties.optimized.mp4" type="video/mp4" />
+  </video>
 </div>
 
 Try submitting the form with valid and invalid values, you will see that model binding and validation both work.
