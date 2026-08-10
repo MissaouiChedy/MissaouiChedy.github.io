@@ -7,7 +7,7 @@ tags: [lean-startup, product-development]
 comments: true
 ---
 
-<img alt="the lean startup book" src="{{ site.url }}/imgs/lean-startup-cover.optimized.webp" style="margin: 1.2em;float: left;max-width: 12%;"/>
+<img alt="the lean startup book" src="{{ site.url }}/imgs/lean-startup-cover.optimized.webp" width="306" height="462" style="margin: 1.2em;float: left;max-width: 12%;"/>
 
 The [Lean Startup](http://theleanstartup.com/) book authored by [Eric Ries](https://www.google.tn/#q=eric+ries) has been sitting on my shelf for quite sometime now, so since I am currently contributing to the making of  a startup I figured I'll take a look into it.
 

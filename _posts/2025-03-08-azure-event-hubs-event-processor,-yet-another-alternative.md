@@ -13,7 +13,7 @@ In this post, we continue exploring alternative ways to process Azure Event Hubs
 
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/AzureEventhubEventProcessorCover.optimized.webp" alt="Azure Eventhubs Event Processor Cover" />
+  <img src="{{ site.url }}/imgs/AzureEventhubEventProcessorCover.optimized.webp" width="693" height="396" alt="Azure Eventhubs Event Processor Cover" />
 </div>
 
 In this post, we continue exploring alternative ways to process Azure Event Hubs events with the [.NET SDK.](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/eventhub)

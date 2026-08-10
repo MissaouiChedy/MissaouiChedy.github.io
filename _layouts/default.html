@@ -10,9 +10,9 @@
 	<link rel="preload" href="{{ site.url }}/font-awesome-4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" type="font/woff2" crossorigin>
 	{% capture critical_css %}{% include critical-styles.scss %}{% endcapture %}
 	<style>{{ critical_css | scssify }}</style>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,800,800i|Archivo+Narrow|Oswald:400,600|Inconsolata&display=swap" media="print" onload="this.media='all'">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,800,800i|Archivo+Narrow|Oswald:400,600|Inconsolata&display=optional" media="print" onload="this.media='all'">
 	<noscript>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,800,800i|Archivo+Narrow|Oswald:400,600|Inconsolata&display=swap">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,800,800i|Archivo+Narrow|Oswald:400,600|Inconsolata&display=optional">
 	</noscript>
 	<link rel="icon shortcut" type="image/png" href="{{ site.url }}/favicon.png">
 	{% if page.url != '/' %}

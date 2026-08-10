@@ -13,7 +13,7 @@ The Partition Receiver is a yet another event consuming alternative available in
 
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/AzureEventHubsPartitionReceiverCover.optimized.webp" alt="Azure Event Hubs Partition Receiver Cover" />
+  <img src="{{ site.url }}/imgs/AzureEventHubsPartitionReceiverCover.optimized.webp" width="693" height="396" alt="Azure Event Hubs Partition Receiver Cover" />
 </div>
 
 

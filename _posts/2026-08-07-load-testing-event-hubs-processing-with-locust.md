@@ -12,7 +12,7 @@ Discussion of how to use Azure Load to load test Event Hubs triggered Azure Func
 </p>
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/LoadTestingEventHubsProcessingLocust.optimized.webp" alt="Load Testing Event Hubs Processing With Locust" />
+  <img src="{{ site.url }}/imgs/LoadTestingEventHubsProcessingLocust.optimized.webp" width="693" height="462" alt="Load Testing Event Hubs Processing With Locust" />
 </div>
 
 Load testing a request/response API is straightforward: send the request, wait for the response, and the response time already tells you most of what you need to know about the system's performances.
@@ -254,7 +254,7 @@ Cost wise, Azure Load Testing [bills based on virtual user hours consumed during
 Azure load test provides a solid user experience to manage tests and track test runs:
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/LoadTestingEventHubsTestView.optimized.webp" alt="Load Testing Event Hubs Test View" />
+  <img src="{{ site.url }}/imgs/LoadTestingEventHubsTestView.optimized.webp" width="693" height="305" alt="Load Testing Event Hubs Test View" />
 </div>
 
 

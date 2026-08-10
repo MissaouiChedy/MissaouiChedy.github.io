@@ -19,7 +19,7 @@ Today, we bring you one of the most important tools you’ll ever come across as
 
 <div class="img-container">
 <a target="_blank" rel="sponsored" href="https://cdn.rawgit.com/hostinger/banners/2d7a9209/tutorials/pdf/The-Complete-HTML-Cheat-Sheet.pdf">
-<img src="{{ site.url }}/imgs/HostingerHtmlCheatSheet.optimized.webp" alt="Html Cheat Sheet"  />
+<img src="{{ site.url }}/imgs/HostingerHtmlCheatSheet.optimized.webp" width="693" height="443" alt="Html Cheat Sheet"  />
 </a>
 </div>
 
