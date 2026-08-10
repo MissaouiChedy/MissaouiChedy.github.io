@@ -13,7 +13,7 @@ Azure Event Hubs enables developer to use low-level protocols to send and receiv
 
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/RawAMQPOnAzureEventHubsCover.webp" alt="Raw AMQP on Azure Event Hubs Cover" />
+  <img src="{{ site.url }}/imgs/RawAMQPOnAzureEventHubsCover.optimized.webp" alt="Raw AMQP on Azure Event Hubs Cover" />
 </div>
 
 Azure Event Hubs enables developer to use low-level protocols to send and receive events, when needed.
@@ -147,7 +147,7 @@ Finally, we call the following methods:
 
 The output of the program should be as following:
 <div class="img-container">
-![AMQP raw send output](/imgs/AmqpRawSendOutput.webp)
+![AMQP raw send output](/imgs/AmqpRawSendOutput.optimized.webp)
 </div>
 
 Looking at the sending method:

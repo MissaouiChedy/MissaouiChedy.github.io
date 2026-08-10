@@ -13,7 +13,7 @@ When a user is inputting text in a text field, auto-complete allows the user to 
 
 This feature can be observed in most search boxes all over the internet, consider google's search box for example:
 <div class="img-container">
-![Example auto-complete]({{ site.url }}/imgs/ExampleAutoComplete.PNG)
+![Example auto-complete]({{ site.url }}/imgs/ExampleAutoComplete.optimized.webp)
 </div>
 
 Thanks to auto-complete, when searching for *"Italian pizza recipes"*, the user can avoid typing the whole query into the search box. Simply typing *"Italian pizza"* will bring some suggestions containing *"Italian pizza recipes"* that the user can select.

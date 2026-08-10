@@ -176,7 +176,7 @@ Note here that messages are first serialized to a JSON string and are then conve
 Finally we send the message batch, you can observe if messages were sent successfully directly in the Azure Portal on the event hub resource's blade:
 
 <div class="img-container">
-![Azure Event Hub Message Sent]({{ site.url }}/imgs/AzureEventHubMessageSent.webp)
+![Azure Event Hub Message Sent]({{ site.url }}/imgs/AzureEventHubMessageSent.optimized.webp)
 </div>
 
 ## Closing Thoughts

@@ -17,7 +17,7 @@ This will be the last post in our circuit breaker series and we will discuss an 
 In this example, we have a very simple OTP application that uses [Wikipedia's api:](https://www.mediawiki.org/wiki/API:Main_page)
 
 <div class="img-container">
-![High level structure elixir circuit breaker]({{ site.url }}/imgs/ElixirCircuitBreakerHighLevel.webp)
+![High level structure elixir circuit breaker]({{ site.url }}/imgs/ElixirCircuitBreakerHighLevel.optimized.webp)
 </div>
 
 For the sake of simplicity the application performs a single operation which getting extracts from articles having the titles *"Earth"* or *"Mar"* via the this url: `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exchars=100&explaintext&titles=Earth|Mar&continue&format=json` which, by the way, is not very [RESTful](http://www.restapitutorial.com/lessons/whatisrest.html).
@@ -66,7 +66,7 @@ Finally, when re-enabling the internet connection the circuit will transition ba
 Consider the following module structure diagram:
 
 <div class="img-container">
-![module structure circuit breaker]({{ site.url }}/imgs/ModuleStructureCircuitBreaker.webp)
+![module structure circuit breaker]({{ site.url }}/imgs/ModuleStructureCircuitBreaker.optimized.webp)
 </div>
 
 The top level `CircuitBreaker` module contains the main function which runs the example:
@@ -84,7 +84,7 @@ Here we used the [HTTPoison](https://github.com/edgurgel/httpoison) library to p
 We know that a *Circuit Breaker* is essentially a state machine that executes one operation differently depending on its state, here is the state machine diagram representing the states and transitions characterizing a *Circuit Breaker:*
 
 <div class="img-container">
-![Circuit Breaker States]({{ site.url }}/imgs/CircuitBreakerStates.webp)
+![Circuit Breaker States]({{ site.url }}/imgs/CircuitBreakerStates.optimized.webp)
 </div>
 
 The `CircuitBreaker.ApiGatewayCircuitBreaker` is implemented as [gen_statem]({{ site.url }}/article/implementing-state-machine-elixir.html) which is an OTP behavior that allow us to create state machines.

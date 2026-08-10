@@ -13,7 +13,7 @@ The Partition Receiver is a yet another event consuming alternative available in
 
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/AzureEventHubsPartitionReceiverCover.webp" alt="Azure Event Hubs Partition Receiver Cover" />
+  <img src="{{ site.url }}/imgs/AzureEventHubsPartitionReceiverCover.optimized.webp" alt="Azure Event Hubs Partition Receiver Cover" />
 </div>
 
 
@@ -96,7 +96,7 @@ When calling `ParitionReceiver.ReceiveBatchAsync`, we provide a *batch size* and
 
 For example, if called with a batch size of 10 and pulling time span of 2 seconds, then it will return maximum of 10 events not yet consumed and available for consumption during the 2 seconds.
 <div class="img-container">
-![Partition receiver Pulling Example](/imgs/PartitionReceiverPullingExample.webp)
+![Partition receiver Pulling Example](/imgs/PartitionReceiverPullingExample.optimized.webp)
 </div>
 
 In the previous illustrated example, initially we have ev4, ev5, and ev6 available for pulling. 

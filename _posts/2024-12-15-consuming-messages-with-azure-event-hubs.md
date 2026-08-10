@@ -27,7 +27,7 @@ Before diving in the example let's first discuss some message consuming concepts
 
 Consider the following messaging structure:
 <div class="img-container">
-![Azure Event Hubs Consumer Groups]({{ site.url }}/imgs/MessageCGEventHub.webp)
+![Azure Event Hubs Consumer Groups]({{ site.url }}/imgs/MessageCGEventHub.optimized.webp)
 </div>
 
 'Application A' sends events to the `Event hub topic` event hub, which is going to be consumed by 3 different applications.
@@ -52,7 +52,7 @@ az eventhubs eventhub consumer-group create `
 For each consumer group, a folder will be defined containing a file in which offset and sequence number is saved in the metadata of the file:
 
 <div class="img-container">
-![Azure Event Hubs CheckPoint Metadata]({{ site.url }}/imgs/CheckPointStoreMetadata.webp)
+![Azure Event Hubs CheckPoint Metadata]({{ site.url }}/imgs/CheckPointStoreMetadata.optimized.webp)
 </div>
 
 Recall that event hub does not remove processed events, events are cleaned up based on retention configuration and can be captured for further reprocessing.
@@ -229,7 +229,7 @@ Finally, once the program starts listening to events, it can be stopped by press
 To try out our example, we will send messages using [the Event Hubs Data Explorer.](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-data-explorer)
 
 <div class="img-container">
-![Azure Event Hubs Data Explorer]({{ site.url }}/imgs/EventHubDataExplorer.webp)
+![Azure Event Hubs Data Explorer]({{ site.url }}/imgs/EventHubDataExplorer.optimized.webp)
 </div>
 
 In the following sample run, we sent three messages:
@@ -238,13 +238,13 @@ In the following sample run, we sent three messages:
 3. Properly formed Message
 
 <div class="img-container">
-![Azure Event Hubs Message Received]({{ site.url }}/imgs/AzureEventHubsMessageReceived.webp)
+![Azure Event Hubs Message Received]({{ site.url }}/imgs/AzureEventHubsMessageReceived.optimized.webp)
 </div>
 
 We can also observe the outgoing messages directly in the portal:
 
 <div class="img-container">
-![Azure Event Hubs Message Received2]({{ site.url }}/imgs/AzureEventHubsMessageReceived2.webp)
+![Azure Event Hubs Message Received2]({{ site.url }}/imgs/AzureEventHubsMessageReceived2.optimized.webp)
 </div>
 
 ## Closing Thoughts

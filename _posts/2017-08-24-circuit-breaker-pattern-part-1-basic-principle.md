@@ -43,7 +43,7 @@ The circuit breaker pattern allows us to structure the integration point cleanly
 Let's consider the following structure:
 
 <div class="img-container">
-![Circuit Breaker Structure]({{ site.url }}/imgs/CircuitBreakerStructure.webp)
+![Circuit Breaker Structure]({{ site.url }}/imgs/CircuitBreakerStructure.optimized.webp)
 </div>
 
 Here we have a `Repository` and a `CircuitBreaker` class;
@@ -54,7 +54,7 @@ the `CircuitBreaker` class extends the `Repository` class and adds the *circuit 
 Consider the following state diagram:
 
 <div class="img-container">
-![Circuit Breaker States]({{ site.url }}/imgs/CircuitBreakerStates.webp)
+![Circuit Breaker States]({{ site.url }}/imgs/CircuitBreakerStates.optimized.webp)
 </div>
 
 Here we can see that the circuit breaker can be in 3 different states:

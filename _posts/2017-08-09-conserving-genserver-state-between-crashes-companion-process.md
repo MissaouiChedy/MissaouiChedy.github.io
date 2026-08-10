@@ -22,7 +22,7 @@ When a *GenServer* crashes it looses its state, so if the retained state is impo
 Assuming that we have the `Server` *GenServer* holding state `S`, we can create a second *GenServer* named `StateContainer` for example that is responsible for holding the state `S`, both *GenServers* will be supervised by the same *supervisor* named `ProcSupervisor`, consider the following diagram:
 
 <div class="img-container">
-![supervision structure diagram]({{ site.url }}/imgs/supervision_diagram.webp)
+![supervision structure diagram]({{ site.url }}/imgs/supervision_diagram.optimized.webp)
 </div>
 
 The [`StateContainer`](https://github.com/MissaouiChedy/conservation/blob/master/lib/conservation/state_container.ex) *GenServer* is very trivial it basically provides two operations:
@@ -39,7 +39,7 @@ In the excellent [Programming Elixir](https://pragprog.com/book/elixir/programmi
 This post's example uses named *GenServers* to simplify things and to keep them concise. The example from the book is more interesting and shows how to dynamically create multiple sub supervision trees instances similar to the following:
 
 <div class="img-container">
-![supervision structure diagram]({{ site.url }}/imgs/supervision_diagram_dynamic.webp)
+![supervision structure diagram]({{ site.url }}/imgs/supervision_diagram_dynamic.optimized.webp)
 </div>
 
 

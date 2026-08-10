@@ -25,7 +25,7 @@ In our example, we have a state machine representing a human being that provides
 The human can be in one of 3 different states at a given time, consider the following state diagram:
 
 <div class="img-container">
-![human state machine]({{ site.url }}/imgs/HumanStateMachine.webp)
+![human state machine]({{ site.url }}/imgs/HumanStateMachine.optimized.webp)
 </div>
 
 The greeting message returned by `say_hello` will depend on the human's state of mind, we can expect them to answer cheerfully when `Happy` and grumpily when `Angry.` 

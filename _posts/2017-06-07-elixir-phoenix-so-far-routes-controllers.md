@@ -20,7 +20,7 @@ The Phoenix framework is based on [Plug](https://github.com/elixir-lang/plug), I
 It essentially allows the developers to create a *pipeline* in which an http request can be shoved upstream passing through the *plugs* (processing steps) of the pipeline, then the processed http request can be passed downstream to a *controller action*.
 
 <div class="img-container">
-![plug pipeline]({{ site.url }}/imgs/plug_pipeline.webp)
+![plug pipeline]({{ site.url }}/imgs/plug_pipeline.optimized.webp)
 </div>
 
 *Pipelines* are composed of *plugs* which can be [simple functions or regular modules](http://www.phoenixframework.org/docs/understanding-plug#section-the-plug-specification). As we can see in the previous flow chart, the steps can be to:

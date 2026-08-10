@@ -23,7 +23,7 @@ After some debugging on both backend and frontend sides, I figured out that the 
 Consider the following diagram:
 
 <div class="img-container">
-![UML diagram showing the classes involved]({{ site.url }}/imgs/ActiveStoreDiagram.webp)
+![UML diagram showing the classes involved]({{ site.url }}/imgs/ActiveStoreDiagram.optimized.webp)
 </div>
 
 The diagram depicts the classes involved in the issue, here we have three classes involved:

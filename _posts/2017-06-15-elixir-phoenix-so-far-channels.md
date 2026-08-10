@@ -31,7 +31,7 @@ Phoenix channels, as pointed out earlier, abstracts away the transport technique
 
 Channels, as stated in the documentation, have some moving parts, consider the following chart: 
 <div class="img-container">
-![Phoenix Channel Clients]({{ site.url }}/imgs/phoenix_channel.webp)
+![Phoenix Channel Clients]({{ site.url }}/imgs/phoenix_channel.optimized.webp)
 </div>
 
 The previous diagram shows the components involved when using channels and how they interact. Let's start off by the client.

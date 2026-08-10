@@ -29,7 +29,7 @@ Under the hypothetical `SomeModel`:
 
 The previous `select` example will display a drop down menu that contains the elements specified in `ItemChoiceList` and that allows the user to select only one value as in the following screenshot:
 <div class="img-container">
-![Example drop down menu]({{ site.url }}/imgs/ExampleDropDown.webp)
+![Example drop down menu]({{ site.url }}/imgs/ExampleDropDown.optimized.webp)
 </div>
 
 
@@ -45,7 +45,7 @@ The selected choice's `Value` will be stored in the view model's `SelectedItem` 
 
 If we wish to allow the user to select multiple values, all we have to do is to change the type of `SelectedItem` to a `List<string>` or a `List<int>` and perhaps also the name to `SelectedItems` to make it less confusing. This will cause the rendering of the following multi-select list:
 <div class="img-container">
-![Multi select list example]({{ site.url }}/imgs/MultiSelectListExample.PNG)
+![Multi select list example]({{ site.url }}/imgs/MultiSelectListExample.optimized.webp)
 </div>
 
 So, to sum it up in order to use the `select` tag helper we need to provide a *list of items* and a *target property*.
@@ -93,7 +93,7 @@ The `PersonViewModel.Gender` belongs to the `Sex` enum type and is slapped by th
 
 The previous example generates the following drop down menu:
 <div class="img-container">
-![Drop down menu from enum]({{ site.url }}/imgs/DropDownFromEnum.png)
+![Drop down menu from enum]({{ site.url }}/imgs/DropDownFromEnum.optimized.webp)
 </div>
 
 The selected value will be of course in the `Gender` property when the form is submitted. Furthermore, **it is possible to use a multiple choice list as well as a radio button group with enums**.

@@ -45,10 +45,10 @@ Repository or working root used to resolve relative paths. Defaults to the
 parent directory of this script's directory.
 
 .PARAMETER WebPQuality
-ImageMagick quality used for WebP output. Defaults to 84.
+ImageMagick quality used for WebP output. Defaults to 75.
 
 .PARAMETER JpegQuality
-ImageMagick quality used for in-place JPEG optimization. Defaults to 85.
+ImageMagick quality used for in-place JPEG optimization. Defaults to 80.
 
 .PARAMETER GifsicleLossy
 Lossy compression level passed to gifsicle. Zero keeps GIF optimization
@@ -68,8 +68,8 @@ Removes source images after successful copy creation and reference updates.
 Requires -UpdateReferences and cannot be combined with -ReplaceOriginals.
 
 .PARAMETER ReferencePath
-One or more folders searched by -UpdateReferences. Relative paths resolve from
--RootPath. Defaults to "_posts".
+One or more folders or files searched by -UpdateReferences. Relative paths resolve from
+-RootPath. Defaults to "_posts", "about-chedy-missaoui.html", and "_includes/article.html".
 
 .EXAMPLE
 ./_tools/Optimize-Images.ps1 imgs/photo.jpg, imgs/demo.gif
@@ -124,10 +124,10 @@ param(
     [string]$RootPath = (Split-Path -Parent $PSScriptRoot),
 
     [ValidateRange(1, 100)]
-    [int]$WebPQuality = 84,
+    [int]$WebPQuality = 65,
 
     [ValidateRange(1, 100)]
-    [int]$JpegQuality = 85,
+    [int]$JpegQuality = 75,
 
     [ValidateRange(0, 200)]
     [int]$GifsicleLossy = 0,
@@ -136,7 +136,7 @@ param(
     [switch]$UpdateReferences,
     [switch]$RemoveOriginals,
 
-    [string[]]$ReferencePath = @('_posts')
+    [string[]]$ReferencePath = @('_posts', 'about-chedy-missaoui.html', '_includes/article.html')
 )
 
 begin {
@@ -400,16 +400,19 @@ end {
                             $arguments += @(
                                 '-strip',
                                 '-define', 'png:compression-level=9',
-                                '-define', 'png:compression-strategy=1'
+                                '-define', 'png:compression-strategy=1',
+                                '-define', 'png:compression-filter=5'
                             )
                         }
                         { $_ -in @('.jpg', '.jpeg') } {
-                            $arguments += @('-strip', '-interlace', 'Plane', '-quality', $JpegQuality)
+                            $arguments += @('-strip', '-interlace', 'Plane', '-sampling-factor', '4:2:0', '-quality', $JpegQuality)
                         }
                         '.webp' {
                             $arguments += @(
                                 '-strip',
                                 '-define', 'webp:method=6',
+                                '-define', 'webp:auto-filter=true',
+                                '-define', 'webp:pass=10',
                                 '-quality', $WebPQuality
                             )
                         }
@@ -471,7 +474,12 @@ end {
                     Write-Warning "Reference path does not exist: $path"
                     continue
                 }
-                Get-ChildItem -LiteralPath $resolvedReferencePath -File -Recurse
+                $referenceItem = Get-Item -LiteralPath $resolvedReferencePath
+                if ($referenceItem -is [System.IO.FileInfo]) {
+                    $referenceItem
+                } else {
+                    Get-ChildItem -LiteralPath $resolvedReferencePath -File -Recurse
+                }
             }
         )
         $utf8WithoutBom = [System.Text.UTF8Encoding]::new($false)

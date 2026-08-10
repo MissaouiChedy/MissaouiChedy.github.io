@@ -12,7 +12,7 @@ Azure event hubs is designed to enable event re-processing via its event retenti
 </p>
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/AzureEventhubCheckpointRewindCover.webp" alt="Azure Event hubs Checkpoint Rewind Cover" />
+  <img src="{{ site.url }}/imgs/AzureEventhubCheckpointRewindCover.optimized.webp" alt="Azure Event hubs Checkpoint Rewind Cover" />
 </div>
 
 Azure event hubs is designed to enable event re-processing via its [event retention](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-features#event-retention) and [checkpointing](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-features#checkpointing) principles.
@@ -32,7 +32,7 @@ the processing.
 Consider the following, event stream:
 
 <div class="img-container">
-![Event Stream Checkpoint]({{ site.url }}/imgs/EventStreamCheckpoint.webp)
+![Event Stream Checkpoint]({{ site.url }}/imgs/EventStreamCheckpoint.optimized.webp)
 </div>
 
 Suppose here that the *Consumer Client* just started, it will read from the checkpoint store that processing should start at *ev 3* and will proceed accordingly. 
@@ -44,7 +44,7 @@ Using this method, we don't have to fiddle with the checkpoint blob directly to 
 ### Blob Checkpoint Store Structure
 Taking a look at the checkpoint store container, we can observe that it is structured as following:
 <div class="img-container">
-![Checkpoint Store Blob Structure]({{ site.url }}/imgs/CheckpointStoreBlobStructure.webp)
+![Checkpoint Store Blob Structure]({{ site.url }}/imgs/CheckpointStoreBlobStructure.optimized.webp)
 </div>
 
 Under the `checkpoint` folder, we have 1 blob per partition containing checkpoint data of the partition.
@@ -54,7 +54,7 @@ Under [ownership folder](https://learn.microsoft.com/en-us/azure/event-hubs/even
 If we take a look at the metadata of the blob under `checkpoint`, we can see that it contains 3 fields:
 
 <div class="img-container">
-![Checkpoint Store Blob Metadata]({{ site.url }}/imgs/CheckpointStoreBlobMetadata.webp)
+![Checkpoint Store Blob Metadata]({{ site.url }}/imgs/CheckpointStoreBlobMetadata.optimized.webp)
 </div>
 
 **offset** is a value expressed in bytes indicating where the processing is at in terms of data volume.
@@ -98,7 +98,7 @@ Unfortunately, **updating the checkpoint store has a cost** and it will decrease
 
 When running the sample on my laptop, calling `UpdateCheckpointAsync` takes around ~150ms:
 <div class="img-container">
-![Checkpoint Update Cost]({{ site.url }}/imgs/CheckpointUpdateCost.webp)
+![Checkpoint Update Cost]({{ site.url }}/imgs/CheckpointUpdateCost.optimized.webp)
 </div>
 
 If our sample was running in the same Azure region as the storage account, network latency would be less significant but **still,** it is now accepted as best practice to not checkpoint at each event, consider the following:

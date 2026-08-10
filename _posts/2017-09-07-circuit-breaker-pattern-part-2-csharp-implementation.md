@@ -16,7 +16,7 @@ In this post, we are going to take a look at an example .NET Core implementation
 In this example, we have a .NET Core console application that uses a MongoDB database instance, a very simple structure:
 
 <div class="img-container">
-![Example structure]({{ site.url }}/imgs/CBCSExampleStrucuture.webp)
+![Example structure]({{ site.url }}/imgs/CBCSExampleStrucuture.optimized.webp)
 </div>
 
 The console app asks the MongoDB instance to perform two operations:
@@ -92,7 +92,7 @@ Written: { Id: 41, Name: 'Baby Roy 41'}
 The following class diagram depicts the internal structure of the console application:
 
 <div class="img-container">
-![example uml class diagram]({{ site.url }}/imgs/CBUMLClassDiagram.png)
+![example uml class diagram]({{ site.url }}/imgs/CBUMLClassDiagram.webp)
 </div>
 The [`Program`](https://github.com/MissaouiChedy/CircuitBreakerSample/blob/master/src/Program.cs)class contains the `Main` method which is the entry point of the application, this is where we implemented the previously described behavior.
 
@@ -111,7 +111,7 @@ Now let's take a closer look at it.
 In the [basic principles post]({{ site.url }}/article/circuit-breaker-pattern-part-1-basic-principle.html), we mentioned that the circuit breaker is a state machine that has 3 states with defined transitions:
 
 <div class="img-container">
-![Circuit Breaker States]({{ site.url }}/imgs/CircuitBreakerStates.webp)
+![Circuit Breaker States]({{ site.url }}/imgs/CircuitBreakerStates.optimized.webp)
 </div>
 
 Essentially, state machine objects execute different behaviors depending on their state, this can be implemented by using nested `if` or `switch` statements, by using a [decision table](https://en.wikipedia.org/wiki/Decision_table) or by using *the state design pattern*.

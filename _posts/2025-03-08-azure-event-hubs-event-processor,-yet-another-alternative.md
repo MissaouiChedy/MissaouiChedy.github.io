@@ -13,7 +13,7 @@ In this post, we continue exploring alternative ways to process Azure Event Hubs
 
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/AzureEventhubEventProcessorCover.webp" alt="Azure Eventhubs Event Processor Cover" />
+  <img src="{{ site.url }}/imgs/AzureEventhubEventProcessorCover.optimized.webp" alt="Azure Eventhubs Event Processor Cover" />
 </div>
 
 In this post, we continue exploring alternative ways to process Azure Event Hubs events with the [.NET SDK.](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/eventhub)
@@ -272,7 +272,7 @@ In `ListOwnershipAsync`, we simply return what we stored in the cache via `Claim
 In Redis, an ownership record for a specific partition will look like this:
 
 <div class="img-container">
-  ![Event OwnerShip In Redis]({{ site.url }}/imgs/EventOwnerShipInRedis.webp)
+  ![Event OwnerShip In Redis]({{ site.url }}/imgs/EventOwnerShipInRedis.optimized.webp)
 </div>
 
 ## Managing Partition Checkpoints Storage
@@ -345,7 +345,7 @@ Implementation is straightforward, we leverage `_checkpointOwnershipStore` to st
 In redis, a checkpoint record for a specific partition will look like this:
 
 <div class="img-container">
-  ![Event checkpoint In Redis]({{ site.url }}/imgs/EventCheckpointInRedis.webp)
+  ![Event checkpoint In Redis]({{ site.url }}/imgs/EventCheckpointInRedis.optimized.webp)
 </div>
 
 ## Additional Customization

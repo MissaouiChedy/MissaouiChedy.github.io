@@ -20,7 +20,7 @@ The full code for the example is [available on Github](https://github.com/Missao
 
 ## The Example
 <div class="img-container">
-![example]({{ site.url }}/imgs/InsideRendering.webp)
+![example]({{ site.url }}/imgs/InsideRendering.optimized.webp)
 </div>
 In the previous screenshot the inner html `p` element having a red border is rendered from the `InnerTagHelper`, the outer html div having a black border is rendered from the `WrapperTagHelper`.
 

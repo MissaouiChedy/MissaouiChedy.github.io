@@ -12,7 +12,7 @@ We will explore in this post the EventHubConsumerClient, another alternative for
 </p>
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/AzureEventhubConsumerClientCover.webp" alt="Azure Eventhub Consumer Client Cover" />
+  <img src="{{ site.url }}/imgs/AzureEventhubConsumerClientCover.optimized.webp" alt="Azure Eventhub Consumer Client Cover" />
 </div>
 
 In a [previous post,](https://blog.techdominator.com/article/consuming-messages-with-azure-event-hubs.html) we explored the typical way of consuming events from Azure Event Hubs by using the [`EventProcessorClient`](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/eventhub/Azure.Messaging.EventHubs.Processor/samples/Sample04_ProcessingEvents.md) class.
@@ -166,14 +166,14 @@ Latest sequence number is read at the beginning of the processing and is recorde
 Running this sample from my laptop on an [Azure Cache for Redis](https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/cache-overview) instance produces results that I did not expect 😬:
 
 <div class="img-container">
-![Event Stream Checkpoint With Redis]({{ site.url }}/imgs/EventStreamCheckpointWithRedis.webp)
+![Event Stream Checkpoint With Redis]({{ site.url }}/imgs/EventStreamCheckpointWithRedis.optimized.webp)
 </div>
 
 The network latency is such that the checkpoint duration is [similar to the blob storage checkpoint.](https://blog.techdominator.com/article/azure-event-hubs-checkpoints-&-rewinding.html#checkpoint-cost--best-practices)
 
 However, checkpointing on a local redis instance is way faster in the order of single digit milliseconds:
 <div class="img-container">
-![Event Stream Checkpoint With Redis Local]({{ site.url }}/imgs/EventStreamCheckpointWithRedisLocal.webp)
+![Event Stream Checkpoint With Redis Local]({{ site.url }}/imgs/EventStreamCheckpointWithRedisLocal.optimized.webp)
 </div>
 
 ## Closing Thoughts

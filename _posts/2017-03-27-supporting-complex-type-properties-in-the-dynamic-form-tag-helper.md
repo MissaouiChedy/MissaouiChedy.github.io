@@ -27,7 +27,7 @@ The dynamic form tag helper needs to take in consideration such properties in or
 Our dynamic tag helper needs to generate the following form, when given an object of the previous `PersonViewModel` class:
 
 <div class="img-container">
-![Complex Property Form]({{ site.url }}/imgs/ComplexProperty.webp)
+![Complex Property Form]({{ site.url }}/imgs/ComplexProperty.optimized.webp)
 </div>
 
 Before we continue, I would like to point out that my current definition of complex types is sloppy, what about generic, iterable, enum and struct types? Are they also consider complex? This is not very clear yet.

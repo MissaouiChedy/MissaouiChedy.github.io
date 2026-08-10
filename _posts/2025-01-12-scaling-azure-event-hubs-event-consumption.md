@@ -21,7 +21,7 @@ Consider an application running on a single VM with say 4 CPUs and 16 GB of RAM,
 to handle a load of hundreds of requests per second:
 
 <div class="img-container">
-![Initial Scale]({{ site.url }}/imgs/InitialScale.webp)
+![Initial Scale]({{ site.url }}/imgs/InitialScale.optimized.webp)
 </div>
 
 Overtime the application is getting successful and needs to handle more users and more requests per second.
@@ -30,12 +30,12 @@ In this case, we have two choices:
 
 1 - Increase the resources of the VM to, for example, 8 CPUs and 32 GB of RAM *(Vertical Scaling):*
 <div class="img-container">
-![Vertical Scale]({{ site.url }}/imgs/VerticalScale.webp)
+![Vertical Scale]({{ site.url }}/imgs/VerticalScale.optimized.webp)
 </div>
 
 2 - Add a second VM and balance the load between the two VMS *(Horizontal Scaling):*
 <div class="img-container">
-![Horizontal Scale]({{ site.url }}/imgs/HorizontalScale.webp)
+![Horizontal Scale]({{ site.url }}/imgs/HorizontalScale.optimized.webp)
 </div>
 
 *Scaling Vertically* is **simple and straightforward** but it can have some drawbacks such as:
@@ -63,7 +63,7 @@ Discussing Horizontal vs Vertical Scaling further is out of the scope of this po
 Based on a *partition key value* provided by the event producer, event hub uses a hashing algorithm to determine the partition to which the event will be assigned.
 
 <div class="img-container">
-![Event Hub Partitions]({{ site.url }}/imgs/EventHubsPartitions.webp)
+![Event Hub Partitions]({{ site.url }}/imgs/EventHubsPartitions.optimized.webp)
 </div>
 
 Azure Event Hubs guarantees that **events having the same partition key value always land on the same partition.**

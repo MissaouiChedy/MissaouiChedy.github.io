@@ -24,7 +24,7 @@ The [PhoenixSharp](https://github.com/Mazyod/PhoenixSharp) repository can be clo
 The project wouldn't initially build in my machine I suspect that this is due the fact that the .NET Framework 3.0 SDK is not installed, I was able to get the project to build by changing the target to .NET Framework 4.5.2.
 
 <div class="img-container">
-![PhoenixSharp target framework]({{ site.url }}/imgs/PhoenixSharpTarget.PNG)
+![PhoenixSharp target framework]({{ site.url }}/imgs/PhoenixSharpTarget.optimized.webp)
 </div>
 
 Using *PhoenixSharp* from a Xamarin Android project requires adding a reference to the `Phoenix` project from the Xamarin Android project and to install two nuget packages:
