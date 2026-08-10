@@ -5,6 +5,7 @@ date: 2025-01-26
 categories: article
 tags: [azure-event-hubs, checkpointing, event-processing]
 comments: true
+lcp_image: /imgs/AzureEventhubCheckpointRewindCover.optimized.webp
 ---
 
 <p class="summary">
@@ -12,7 +13,7 @@ Azure event hubs is designed to enable event re-processing via its event retenti
 </p>
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/AzureEventhubCheckpointRewindCover.optimized.webp" width="693" height="396" alt="Azure Event hubs Checkpoint Rewind Cover" />
+  <img src="{{ site.url }}/imgs/AzureEventhubCheckpointRewindCover.optimized.webp" width="693" height="396" alt="Azure Event hubs Checkpoint Rewind Cover" fetchpriority="high" />
 </div>
 
 Azure event hubs is designed to enable event re-processing via its [event retention](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-features#event-retention) and [checkpointing](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-features#checkpointing) principles.

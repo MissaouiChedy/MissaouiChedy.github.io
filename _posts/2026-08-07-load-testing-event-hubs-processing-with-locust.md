@@ -5,6 +5,7 @@ date: 2026-08-07
 categories: article
 tags: [azure-event-hubs, locust, load-testing, performance-testing]
 comments: true
+lcp_image: /imgs/LoadTestingEventHubsProcessingLocust.optimized.webp
 ---
 
 <p class="summary">
@@ -12,7 +13,7 @@ Discussion of how to use Azure Load to load test Event Hubs triggered Azure Func
 </p>
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/LoadTestingEventHubsProcessingLocust.optimized.webp" width="693" height="462" alt="Load Testing Event Hubs Processing With Locust" />
+  <img src="{{ site.url }}/imgs/LoadTestingEventHubsProcessingLocust.optimized.webp" width="693" height="462" alt="Load Testing Event Hubs Processing With Locust" fetchpriority="high" />
 </div>
 
 Load testing a request/response API is straightforward: send the request, wait for the response, and the response time already tells you most of what you need to know about the system's performances.

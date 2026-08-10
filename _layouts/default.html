@@ -8,6 +8,11 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="preload" href="{{ site.url }}/font-awesome-4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" type="font/woff2" crossorigin>
+	{% if page.url == '/' and site.posts.first.lcp_image %}
+	<link rel="preload" as="image" href="{{ site.url }}{{ site.posts.first.lcp_image }}" fetchpriority="high">
+	{% elsif page.lcp_image %}
+	<link rel="preload" as="image" href="{{ site.url }}{{ page.lcp_image }}" fetchpriority="high">
+	{% endif %}
 	{% capture critical_css %}{% include critical-styles.scss %}{% endcapture %}
 	<style>{{ critical_css | scssify }}</style>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,800,800i|Archivo+Narrow|Oswald:400,600|Inconsolata&display=optional" media="print" onload="this.media='all'">

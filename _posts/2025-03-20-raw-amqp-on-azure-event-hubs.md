@@ -5,6 +5,7 @@ date: 2025-03-20
 categories: article
 tags: [azure-event-hubs, amqp, event-streaming]
 comments: true
+lcp_image: /imgs/RawAMQPOnAzureEventHubsCover.optimized.webp
 ---
 
 <p class="summary">
@@ -13,7 +14,7 @@ Azure Event Hubs enables developer to use low-level protocols to send and receiv
 
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/RawAMQPOnAzureEventHubsCover.optimized.webp" width="693" height="396" alt="Raw AMQP on Azure Event Hubs Cover" />
+  <img src="{{ site.url }}/imgs/RawAMQPOnAzureEventHubsCover.optimized.webp" width="693" height="396" alt="Raw AMQP on Azure Event Hubs Cover" fetchpriority="high" />
 </div>
 
 Azure Event Hubs enables developer to use low-level protocols to send and receive events, when needed.

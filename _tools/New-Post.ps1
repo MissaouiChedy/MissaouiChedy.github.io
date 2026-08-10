@@ -24,6 +24,11 @@ Optional target path.
 - If a relative path is provided, it is resolved under _posts.
 - If a full path is provided and the file exists, update mode is used.
 
+.PARAMETER LcpImage
+Optional site-relative path of the post's cover/LCP image (e.g. /imgs/MyCover.optimized.webp).
+The lcp_image field is always written to front matter; when omitted it is created with an empty value.
+The layout preloads the image only when lcp_image is non-empty.
+
 .EXAMPLE
 ./_tools/New-Post.ps1 -Title "My New Article"
 
@@ -47,7 +52,9 @@ param(
     [Parameter(Mandatory)]
     [string]$Title,
 
-    [string]$Path
+    [string]$Path,
+
+    [string]$LcpImage
 )
 
 $ErrorActionPreference = 'Stop'
@@ -74,8 +81,15 @@ function Get-FrontMatterContent {
         [string]$PostTitle,
 
         [Parameter(Mandatory)]
-        [string]$DateValue
+        [string]$DateValue,
+
+        [string]$LcpImage
     )
+
+    $lcpImageValue = ''
+    if (-not [string]::IsNullOrWhiteSpace($LcpImage)) {
+        $lcpImageValue = $LcpImage
+    }
 
     return @"
 ---
@@ -85,6 +99,7 @@ date: $DateValue
 categories: article
 tags: []
 comments: true
+lcp_image: $lcpImageValue
 ---
 "@
 }
@@ -185,7 +200,7 @@ if ($fullPathProvided -and (Test-Path -LiteralPath $targetPath -PathType Leaf)) 
     return
 }
 
-$content = Get-FrontMatterContent -PostTitle $Title -DateValue $date
+$content = Get-FrontMatterContent -PostTitle $Title -DateValue $date -LcpImage $LcpImage
 
 if ($PSCmdlet.ShouldProcess($targetPath, 'Create or overwrite post file')) {
     Set-Content -LiteralPath $targetPath -Encoding UTF8 -Value $content

@@ -5,6 +5,7 @@ date: 2025-02-09
 categories: article
 tags: [azure-event-hubs, event-processing, checkpointing]
 comments: true
+lcp_image: /imgs/AzureEventhubConsumerClientCover.optimized.webp
 ---
 
 <p class="summary">
@@ -12,7 +13,7 @@ We will explore in this post the EventHubConsumerClient, another alternative for
 </p>
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/AzureEventhubConsumerClientCover.optimized.webp" width="693" height="396" alt="Azure Eventhub Consumer Client Cover" />
+  <img src="{{ site.url }}/imgs/AzureEventhubConsumerClientCover.optimized.webp" width="693" height="396" alt="Azure Eventhub Consumer Client Cover" fetchpriority="high" />
 </div>
 
 In a [previous post,](https://blog.techdominator.com/article/consuming-messages-with-azure-event-hubs.html) we explored the typical way of consuming events from Azure Event Hubs by using the [`EventProcessorClient`](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/eventhub/Azure.Messaging.EventHubs.Processor/samples/Sample04_ProcessingEvents.md) class.

@@ -5,6 +5,7 @@ date: 2025-03-08
 categories: article
 tags: [azure-event-hubs, event-processing, checkpointing]
 comments: true
+lcp_image: /imgs/AzureEventhubEventProcessorCover.optimized.webp
 ---
 
 <p class="summary">
@@ -13,7 +14,7 @@ In this post, we continue exploring alternative ways to process Azure Event Hubs
 
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/AzureEventhubEventProcessorCover.optimized.webp" width="693" height="396" alt="Azure Eventhubs Event Processor Cover" />
+  <img src="{{ site.url }}/imgs/AzureEventhubEventProcessorCover.optimized.webp" width="693" height="396" alt="Azure Eventhubs Event Processor Cover" fetchpriority="high" />
 </div>
 
 In this post, we continue exploring alternative ways to process Azure Event Hubs events with the [.NET SDK.](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/eventhub)

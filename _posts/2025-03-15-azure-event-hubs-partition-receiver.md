@@ -5,6 +5,7 @@ date: 2025-03-15
 categories: article
 tags: [azure-event-hubs, event-processing, partitions]
 comments: true
+lcp_image: /imgs/AzureEventHubsPartitionReceiverCover.optimized.webp
 ---
 
 <p class="summary">
@@ -13,7 +14,7 @@ The Partition Receiver is a yet another event consuming alternative available in
 
 
 <div class="img-container">
-  <img src="{{ site.url }}/imgs/AzureEventHubsPartitionReceiverCover.optimized.webp" width="693" height="396" alt="Azure Event Hubs Partition Receiver Cover" />
+  <img src="{{ site.url }}/imgs/AzureEventHubsPartitionReceiverCover.optimized.webp" width="693" height="396" alt="Azure Event Hubs Partition Receiver Cover" fetchpriority="high" />
 </div>
 
 
