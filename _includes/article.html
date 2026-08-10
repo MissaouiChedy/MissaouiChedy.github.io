@@ -67,14 +67,30 @@
 		};
 		*/
 		
-		(function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
-			var d = document, s = d.createElement('script');
-			
-			// IMPORTANT: Replace EXAMPLE with your forum shortname!
-			s.src = 'https://techdominator.disqus.com/embed.js';
-			
-			s.setAttribute('data-timestamp', +new Date());
-			(d.head || d.body).appendChild(s);
+		// Lazy-load Disqus only when the comments section approaches the
+		// viewport, keeping embed.js's forced reflows off the critical path.
+		(function() {
+			var loaded = false;
+			function loadDisqus() {
+				if (loaded) return;
+				loaded = true;
+				var d = document, s = d.createElement('script');
+				s.src = 'https://techdominator.disqus.com/embed.js';
+				s.setAttribute('data-timestamp', +new Date());
+				(d.head || d.body).appendChild(s);
+			}
+			var thread = document.getElementById('disqus_thread');
+			if ('IntersectionObserver' in window) {
+				var observer = new IntersectionObserver(function(entries) {
+					if (entries[0].isIntersecting) {
+						observer.disconnect();
+						loadDisqus();
+					}
+				}, { rootMargin: '400px' });
+				observer.observe(thread);
+			} else {
+				window.addEventListener('load', loadDisqus);
+			}
 		})();
 	</script>
 	<noscript>
