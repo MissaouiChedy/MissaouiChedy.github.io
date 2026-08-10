@@ -8,8 +8,8 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="preload" href="{{ site.url }}/font-awesome-4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" type="font/woff2" crossorigin>
-	<link href="{{ site.url }}/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<link href="{{ site.url }}/css/main.css" rel="stylesheet">
+	{% capture critical_css %}{% include critical-styles.scss %}{% endcapture %}
+	<style>{{ critical_css | scssify }}</style>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,800,800i|Archivo+Narrow|Oswald:400,600|Inconsolata&display=swap" media="print" onload="this.media='all'">
 	<noscript>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,800,800i|Archivo+Narrow|Oswald:400,600|Inconsolata&display=swap">
