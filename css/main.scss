@@ -224,6 +224,7 @@ article.post
 			}
 
 			.heading-anchor-link {
+				position: absolute;
 				display: inline-flex;
 				align-items: center;
 				justify-content: center;
@@ -591,6 +592,10 @@ span.danger {
 	text-align: center;
 	font-size: 1.2em;
 	font-family: $default-font-family;
+}
+
+#disqus_thread {
+	min-height: 20em;
 }
 
 blockquote {
