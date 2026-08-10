@@ -2,33 +2,32 @@
 
 <#
 .SYNOPSIS
-Optimizes GIF, PNG, JPEG, and WebP images for web delivery.
+Optimizes PNG, JPEG, and WebP images for web delivery.
 
 .DESCRIPTION
 Select images in one of three ways: pass file paths, use -New to select tracked
 images changed in the unstaged Git diff, or use -All to recursively select all
-supported images below -Folder.
+supported images below -Folder. Under -All and -New, only files not already
+named *.optimized.webp are selected as optimization sources.
 
-By default, each GIF is converted to a web-optimized MP4 video (H.264,
-yuv420p pixel format, faststart) written as *.mp4. PNG and JPEG images are
-converted to WebP, while WebP images are written as *.optimized.webp. Use
--ReplaceOriginals to optimize non-GIF files in place without changing their
-formats.
+PNG and JPEG images are converted to WebP, while WebP images are written as
+*.optimized.webp. Use -ReplaceOriginals to optimize files in place without
+changing their formats. Convert GIF files to MP4 videos with
+_tools/Optimize-Gif.ps1 instead.
 
-GIF conversion uses ffmpeg. The converted MP4 is accepted only when it is
-smaller than the source and retains the source dimensions and total
-animation duration. Other formats use ImageMagick. A candidate is accepted
-only when it is smaller and retains the source frame count, dimensions, and
-total animation duration.
+Images larger than -MaxWidth x -MaxHeight are scaled down proportionally to
+fit within that box (aspect ratio preserved, dimensions may change slightly);
+smaller images keep their current size.
+
+Optimization uses ImageMagick. A candidate is accepted only when it is smaller
+and retains the source frame count, total animation duration, and expected
+dimensions after any resize.
 
 PREREQUISITES
 - PowerShell 7 or later.
 - ImageMagick 7 available as "magick" on PATH.
   Install on Windows with:
   winget install --id ImageMagick.ImageMagick --exact
-- ffmpeg and ffprobe available on PATH when converting GIF files.
-  Install on Windows with:
-  winget install --id Gyan.FFmpeg --exact
 - Git available on PATH when using -New.
 
 .PARAMETER FilePath
@@ -50,28 +49,27 @@ Repository or working root used to resolve relative paths. Defaults to the
 parent directory of this script's directory.
 
 .PARAMETER WebPQuality
-ImageMagick quality used for WebP output. Defaults to 75.
+ImageMagick quality used for WebP output. Defaults to 65.
 
 .PARAMETER JpegQuality
-ImageMagick quality used for in-place JPEG optimization. Defaults to 80.
+ImageMagick quality used for in-place JPEG optimization. Defaults to 75.
 
-.PARAMETER GifVideoCrf
-Constant Rate Factor passed to ffmpeg's H.264 encoder for GIF to MP4
-conversion. Lower values produce higher quality and larger files; values
-from 23 to 30 are typical for web delivery. Defaults to 26.
+.PARAMETER MaxWidth
+Maximum image width in pixels. Wider images are scaled down proportionally.
+Defaults to 693.
+
+.PARAMETER MaxHeight
+Maximum image height in pixels. Taller images are scaled down proportionally.
+Defaults to 462.
 
 .PARAMETER ReplaceOriginals
-Optimizes each image in place and preserves its current format. Without this
-switch, optimized copies are produced. This option has no effect when
-converting GIF files because GIFs are always converted to MP4 videos; the
-source GIF is left untouched and a warning is printed.
+Optimizes each image in place and preserves its current format. Under -All and
+-New this also re-processes *.optimized.webp files, which are otherwise
+skipped. Without this switch, optimized copies are produced.
 
 .PARAMETER UpdateReferences
 Updates references below -ReferencePath when an optimized copy has a new name
-or extension. This option cannot be combined with -ReplaceOriginals and has
-no effect on GIF files: references to *.gif files are never rewritten to
-*.mp4 because <img> elements cannot play video. Update those references and
-switch the markup to <video autoplay loop muted playsinline> manually.
+or extension. This option cannot be combined with -ReplaceOriginals.
 
 .PARAMETER RemoveOriginals
 Removes source images after successful copy creation and reference updates.
@@ -82,14 +80,14 @@ One or more folders or files searched by -UpdateReferences. Relative paths resol
 -RootPath. Defaults to "_posts", "about-chedy-missaoui.html", and "_includes/article.html".
 
 .EXAMPLE
-./_tools/Optimize-Images.ps1 imgs/photo.jpg, imgs/demo.gif
+./_tools/Optimize-Images.ps1 imgs/photo.jpg, imgs/hero.png
 
 Optimizes the two explicitly supplied images and creates optimized copies.
 
 .EXAMPLE
-./_tools/Optimize-Images.ps1 -New -WhatIf
+./_tools/Optimize-Images.ps1 -New
 
-Previews optimization of supported images in the unstaged Git diff.
+Optimizes supported images in the unstaged Git diff.
 
 .EXAMPLE
 ./_tools/Optimize-Images.ps1 -All -Folder imgs
@@ -102,25 +100,15 @@ Recursively optimizes all supported images below the imgs folder.
 Optimizes every supported image in place with custom static-image quality.
 
 .EXAMPLE
-./_tools/Optimize-Images.ps1 imgs/demo.gif -GifVideoCrf 30 -UpdateReferences -RemoveOriginals
-
-Converts demo.gif to a web-optimized demo.mp4, updates references below the
-default reference paths, then removes the original GIF.
-
-.EXAMPLE
 ./_tools/Optimize-Images.ps1 imgs/photo.png -UpdateReferences -RemoveOriginals
 
 Creates photo.webp, updates references below _posts, then removes photo.png.
 
 .NOTES
-Supported extensions are .gif, .png, .jpg, .jpeg, and .webp. Use -WhatIf to
-preview file selection and output actions before changing files.
-
-GIF conversion updates file references to *.mp4 names only; switch the
-markup to <video autoplay loop muted playsinline> manually because browsers
-cannot play MP4 files through <img> elements.
+Supported extensions are .png, .jpg, .jpeg, and .webp. Convert GIF files to
+MP4 videos with _tools/Optimize-Gif.ps1.
 #>
-[CmdletBinding(DefaultParameterSetName = 'Paths', SupportsShouldProcess)]
+[CmdletBinding(DefaultParameterSetName = 'Paths')]
 param(
     [Parameter(Mandatory, Position = 0, ParameterSetName = 'Paths', ValueFromPipeline, ValueFromPipelineByPropertyName)]
     [Alias('FullName')]
@@ -143,8 +131,11 @@ param(
     [ValidateRange(1, 100)]
     [int]$JpegQuality = 75,
 
-    [ValidateRange(0, 51)]
-    [int]$GifVideoCrf = 26,
+    [ValidateRange(1, 65535)]
+    [int]$MaxWidth = 693,
+
+    [ValidateRange(1, 65535)]
+    [int]$MaxHeight = 462,
 
     [switch]$ReplaceOriginals,
     [switch]$UpdateReferences,
@@ -156,7 +147,7 @@ param(
 begin {
     $ErrorActionPreference = 'Stop'
     $supportedExtensions = [System.Collections.Generic.HashSet[string]]::new(
-        [string[]]@('.gif', '.png', '.jpg', '.jpeg', '.webp'),
+        [string[]]@('.png', '.jpg', '.jpeg', '.webp'),
         [System.StringComparer]::OrdinalIgnoreCase
     )
 
@@ -219,62 +210,34 @@ begin {
         }
     }
 
+    function Get-ScaledDimensions {
+        param(
+            [Parameter(Mandatory)][int]$Width,
+            [Parameter(Mandatory)][int]$Height,
+            [Parameter(Mandatory)][int]$MaxWidth,
+            [Parameter(Mandatory)][int]$MaxHeight
+        )
+
+        # Mirror ImageMagick's "WxH>" geometry: shrink only, preserve aspect ratio.
+        $scale = [math]::Min(1.0, [math]::Min($MaxWidth / $Width, $MaxHeight / $Height))
+
+        return [pscustomobject]@{
+            Width  = [math]::Max(1, [int][math]::Round($Width * $scale, [System.MidpointRounding]::AwayFromZero))
+            Height = [math]::Max(1, [int][math]::Round($Height * $scale, [System.MidpointRounding]::AwayFromZero))
+        }
+    }
+
     function Test-ImageInfoMatches {
         param(
             [Parameter(Mandatory)]$SourceInfo,
-            [Parameter(Mandatory)]$CandidateInfo
+            [Parameter(Mandatory)]$CandidateInfo,
+            [Parameter(Mandatory)]$ExpectedDimensions
         )
 
         return $CandidateInfo.FrameCount -eq $SourceInfo.FrameCount -and
-            $CandidateInfo.Width -eq $SourceInfo.Width -and
-            $CandidateInfo.Height -eq $SourceInfo.Height -and
+            $CandidateInfo.Width -eq $ExpectedDimensions.Width -and
+            $CandidateInfo.Height -eq $ExpectedDimensions.Height -and
             $CandidateInfo.DurationTicks -eq $SourceInfo.DurationTicks
-    }
-
-    function Get-VideoInfo {
-        param(
-            [Parameter(Mandatory)][string]$VideoPath,
-            [Parameter(Mandatory)]$FfprobeCommand
-        )
-
-        $rawDimensions = & $FfprobeCommand.Source -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0 $VideoPath
-        if ($LASTEXITCODE -ne 0 -or $rawDimensions -notmatch '^(\d+)x(\d+)$') {
-            throw "Could not inspect video metadata for $VideoPath."
-        }
-        $width = [int]$Matches[1]
-        $height = [int]$Matches[2]
-
-        $rawDuration = & $FfprobeCommand.Source -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 $VideoPath
-        $durationSeconds = 0.0
-        $durationParsed = [double]::TryParse(
-            $rawDuration,
-            [System.Globalization.NumberStyles]::Float,
-            [System.Globalization.CultureInfo]::InvariantCulture,
-            [ref]$durationSeconds
-        )
-        if ($LASTEXITCODE -ne 0 -or -not $durationParsed) {
-            throw "Could not inspect video duration for $VideoPath."
-        }
-
-        return [pscustomobject]@{
-            Width           = $width
-            Height          = $height
-            DurationSeconds = $durationSeconds
-        }
-    }
-
-    function Test-VideoInfoMatches {
-        param(
-            [Parameter(Mandatory)]$SourceInfo,
-            [Parameter(Mandatory)]$VideoInfo
-        )
-
-        $sourceDurationSeconds = $SourceInfo.DurationTicks / 100.0
-        $durationTolerance = [math]::Max(0.5, $sourceDurationSeconds * 0.05)
-
-        return [math]::Abs($VideoInfo.Width - $SourceInfo.Width) -le 1 -and
-            [math]::Abs($VideoInfo.Height - $SourceInfo.Height) -le 1 -and
-            [math]::Abs($VideoInfo.DurationSeconds - $sourceDurationSeconds) -le $durationTolerance
     }
 
     function Remove-Candidates {
@@ -331,6 +294,12 @@ end {
 
             $resolvedPath = Resolve-FromRoot -Path $selectedPath
             $extension = [System.IO.Path]::GetExtension($resolvedPath)
+            if ($extension -ieq '.gif') {
+                if ($PSCmdlet.ParameterSetName -eq 'Paths') {
+                    Write-Warning "GIF conversion moved to _tools/Optimize-Gif.ps1; skipped: $selectedPath"
+                }
+                continue
+            }
             if (-not $supportedExtensions.Contains($extension)) {
                 if ($PSCmdlet.ParameterSetName -eq 'Paths') {
                     Write-Warning "Unsupported image type skipped: $selectedPath"
@@ -338,6 +307,7 @@ end {
                 continue
             }
             if ($PSCmdlet.ParameterSetName -ne 'Paths' -and
+                -not $ReplaceOriginals -and
                 [System.IO.Path]::GetFileNameWithoutExtension($resolvedPath).EndsWith('.optimized', [System.StringComparison]::OrdinalIgnoreCase)) {
                 continue
             }
@@ -361,23 +331,6 @@ end {
         throw 'ImageMagick 7 is required. Install it with: winget install --id ImageMagick.ImageMagick --exact'
     }
 
-    $ffmpeg = $null
-    $ffprobe = $null
-    if ($images | Where-Object { $_.Extension -ieq '.gif' }) {
-        if ($ReplaceOriginals) {
-            Write-Warning '-ReplaceOriginals has no effect on GIF files: GIFs are always converted to MP4 videos and the source GIF is left untouched.'
-        }
-        if ($UpdateReferences) {
-            Write-Warning '-UpdateReferences has no effect on GIF files: references to *.gif files are not rewritten to *.mp4 because <img> elements cannot play video. Update the markup manually.'
-        }
-
-        $ffmpeg = Get-Command ffmpeg -ErrorAction SilentlyContinue
-        $ffprobe = Get-Command ffprobe -ErrorAction SilentlyContinue
-        if (-not $ffmpeg -or -not $ffprobe) {
-            throw 'ffmpeg and ffprobe are required for GIF conversion and must be available on PATH. Install with: winget install --id Gyan.FFmpeg --exact'
-        }
-    }
-
     $webpFormats = & $magick.Source -list format 2>&1
     $webpFormatsText = $webpFormats -join [System.Environment]::NewLine
     if ($LASTEXITCODE -ne 0 -or $webpFormatsText -notmatch '(?m)^\s*WEBP\*?\s') {
@@ -391,109 +344,66 @@ end {
             $directory = $image.DirectoryName
             $baseName = [System.IO.Path]::GetFileNameWithoutExtension($sourcePath)
             $sourceExtension = $image.Extension.ToLowerInvariant()
-            $outputExtension = if ($ReplaceOriginals -and $sourceExtension -ne '.gif') {
-                $sourceExtension
-            } elseif ($sourceExtension -eq '.gif') {
-                '.mp4'
-            } else {
-                '.webp'
-            }
-            $targetPath = if ($ReplaceOriginals -and $sourceExtension -ne '.gif') {
+            $outputExtension = if ($ReplaceOriginals) { $sourceExtension } else { '.webp' }
+            $targetPath = if ($ReplaceOriginals) {
                 $sourcePath
             } elseif ($sourceExtension -eq '.webp') {
-                Join-Path $directory "$baseName.optimized$outputExtension"
+                Join-Path $directory "$baseName.optimized.webp"
             } else {
-                Join-Path $directory "$baseName$outputExtension"
-            }
-            $action = if ($ReplaceOriginals -and $sourceExtension -ne '.gif') {
-                'Optimize image in place'
-            } else {
-                "Create $([System.IO.Path]::GetFileName($targetPath))"
-            }
-
-            if (-not $PSCmdlet.ShouldProcess($relativePath, $action)) {
-                continue
+                Join-Path $directory "$baseName.webp"
             }
 
             $sourceInfo = Get-ImageInfo -ImagePath $sourcePath -MagickCommand $magick
+            $expectedDimensions = Get-ScaledDimensions -Width $sourceInfo.Width -Height $sourceInfo.Height -MaxWidth $MaxWidth -MaxHeight $MaxHeight
             $sourceBytes = $image.Length
             $temporaryStem = Join-Path $directory "$baseName.optimize.$([guid]::NewGuid().ToString('N'))"
             $candidates = @()
 
             try {
-                if ($sourceExtension -eq '.gif') {
-                    if ($sourceInfo.FrameCount -lt 2) {
-                        Write-Warning "$relativePath contains one frame; converting it to MP4 anyway."
-                    }
+                $candidatePath = "$temporaryStem$outputExtension"
+                $candidates = @([pscustomobject]@{ Optimizer = 'ImageMagick'; Path = $candidatePath })
+                $arguments = @($sourcePath)
+                if ($sourceInfo.FrameCount -gt 1) {
+                    $arguments += '-coalesce'
+                }
+                if ($expectedDimensions.Width -ne $sourceInfo.Width -or
+                    $expectedDimensions.Height -ne $sourceInfo.Height) {
+                    $arguments += @('-resize', "${MaxWidth}x${MaxHeight}>")
+                }
 
-                    $candidatePath = "$temporaryStem.mp4"
-                    $candidates = @([pscustomobject]@{ Optimizer = 'ffmpeg'; Path = $candidatePath })
+                switch ($outputExtension) {
+                    '.png' {
+                        $arguments += @(
+                            '-strip',
+                            '-define', 'png:compression-level=9',
+                            '-define', 'png:compression-strategy=1',
+                            '-define', 'png:compression-filter=5'
+                        )
+                    }
+                    { $_ -in @('.jpg', '.jpeg') } {
+                        $arguments += @('-strip', '-interlace', 'Plane', '-sampling-factor', '4:2:0', '-quality', $JpegQuality)
+                    }
+                    '.webp' {
+                        $arguments += @(
+                            '-strip',
+                            '-define', 'webp:method=6',
+                            '-define', 'webp:auto-filter=true',
+                            '-define', 'webp:pass=10',
+                            '-quality', $WebPQuality
+                        )
+                    }
+                }
+                $arguments += $candidatePath
 
-                    $ffmpegArguments = @(
-                        '-hide_banner',
-                        '-loglevel', 'error',
-                        '-y',
-                        '-i', $sourcePath,
-                        '-movflags', '+faststart',
-                        '-pix_fmt', 'yuv420p',
-                        '-vf', 'scale=trunc(iw/2)*2:trunc(ih/2)*2',
-                        '-c:v', 'libx264',
-                        '-preset', 'slow',
-                        '-crf', $GifVideoCrf,
-                        '-an',
-                        $candidatePath
-                    )
-                    & $ffmpeg.Source @ffmpegArguments
-                    if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $candidatePath)) {
-                        throw "ffmpeg failed to convert $relativePath to MP4."
-                    }
-                } else {
-                    $candidatePath = "$temporaryStem$outputExtension"
-                    $candidates = @([pscustomobject]@{ Optimizer = 'ImageMagick'; Path = $candidatePath })
-                    $arguments = @($sourcePath)
-                    if ($sourceInfo.FrameCount -gt 1) {
-                        $arguments += '-coalesce'
-                    }
-
-                    switch ($outputExtension) {
-                        '.png' {
-                            $arguments += @(
-                                '-strip',
-                                '-define', 'png:compression-level=9',
-                                '-define', 'png:compression-strategy=1',
-                                '-define', 'png:compression-filter=5'
-                            )
-                        }
-                        { $_ -in @('.jpg', '.jpeg') } {
-                            $arguments += @('-strip', '-interlace', 'Plane', '-sampling-factor', '4:2:0', '-quality', $JpegQuality)
-                        }
-                        '.webp' {
-                            $arguments += @(
-                                '-strip',
-                                '-define', 'webp:method=6',
-                                '-define', 'webp:auto-filter=true',
-                                '-define', 'webp:pass=10',
-                                '-quality', $WebPQuality
-                            )
-                        }
-                    }
-                    $arguments += $candidatePath
-
-                    & $magick.Source @arguments
-                    if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $candidatePath)) {
-                        throw "ImageMagick failed to optimize $relativePath."
-                    }
+                & $magick.Source @arguments
+                if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $candidatePath)) {
+                    throw "ImageMagick failed to optimize $relativePath."
                 }
 
                 $validCandidates = @(
                     foreach ($candidate in $candidates) {
-                        if ([System.IO.Path]::GetExtension($candidate.Path) -ieq '.mp4') {
-                            $candidateInfo = Get-VideoInfo -VideoPath $candidate.Path -FfprobeCommand $ffprobe
-                            $metadataMatches = Test-VideoInfoMatches -SourceInfo $sourceInfo -VideoInfo $candidateInfo
-                        } else {
-                            $candidateInfo = Get-ImageInfo -ImagePath $candidate.Path -MagickCommand $magick
-                            $metadataMatches = Test-ImageInfoMatches -SourceInfo $sourceInfo -CandidateInfo $candidateInfo
-                        }
+                        $candidateInfo = Get-ImageInfo -ImagePath $candidate.Path -MagickCommand $magick
+                        $metadataMatches = Test-ImageInfoMatches -SourceInfo $sourceInfo -CandidateInfo $candidateInfo -ExpectedDimensions $expectedDimensions
                         if (-not $metadataMatches) {
                             Write-Warning "Rejected $($candidate.Optimizer) for $relativePath because image metadata changed."
                             continue
@@ -518,6 +428,7 @@ end {
                 [pscustomobject]@{
                     Image         = $relativePath
                     Format        = $sourceExtension.TrimStart('.').ToUpperInvariant()
+                    Size          = "$($expectedDimensions.Width)x$($expectedDimensions.Height)"
                     Optimizer     = $bestCandidate.Optimizer
                     OriginalKB    = [math]::Round($sourceBytes / 1KB, 1)
                     OptimizedKB   = [math]::Round($bestCandidate.Bytes / 1KB, 1)
@@ -531,10 +442,6 @@ end {
             }
         }
     )
-
-    if ($UpdateReferences) {
-        $results = @($results | Where-Object { $_.SourcePath -eq $_.TargetPath -or $_.Format -ne 'GIF' })
-    }
 
     if ($UpdateReferences -and $results.Count -gt 0) {
         $referenceFiles = @(
@@ -568,7 +475,7 @@ end {
                 $updatedContent = $updatedContent.Replace($sourceName, $targetName)
             }
 
-            if ($updatedContent -ne $content -and $PSCmdlet.ShouldProcess($referenceFile.FullName, 'Update image references')) {
+            if ($updatedContent -ne $content) {
                 [System.IO.File]::WriteAllText($referenceFile.FullName, $updatedContent, $utf8WithoutBom)
             }
         }
@@ -576,15 +483,14 @@ end {
 
     if ($RemoveOriginals) {
         foreach ($result in $results) {
-            if ($result.SourcePath -ne $result.TargetPath -and
-                $PSCmdlet.ShouldProcess($result.SourcePath, 'Remove original after successful optimization')) {
+            if ($result.SourcePath -ne $result.TargetPath) {
                 Remove-Item -LiteralPath $result.SourcePath -Force
             }
         }
     }
 
     $results |
-        Select-Object Image, Format, Optimizer, OriginalKB, OptimizedKB, SavingPercent, Output |
+        Select-Object Image, Format, Size, Optimizer, OriginalKB, OptimizedKB, SavingPercent, Output |
         Format-Table -AutoSize
 
     if (-not $ReplaceOriginals -and -not $UpdateReferences -and $results.Count -gt 0) {
