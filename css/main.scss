@@ -20,6 +20,15 @@ $code-background-color: #f9f9f9;
 @import 'reset';
 @import 'highlight';
 
+@font-face {
+	font-family: 'FontAwesome';
+	src: url('../font-awesome-4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
+		url('../font-awesome-4.7.0/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
 body {
 	display: flex;
 	min-height: 100vh;
