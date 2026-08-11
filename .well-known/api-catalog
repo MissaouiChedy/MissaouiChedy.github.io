@@ -1,0 +1,25 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://blog.techdominator.com/",
+      "service-desc": [
+        {
+          "href": "https://blog.techdominator.com/sitemap.xml",
+          "type": "application/xml"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://blog.techdominator.com/posts.html",
+          "type": "text/html"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://blog.techdominator.com/",
+          "type": "text/html"
+        }
+      ]
+    }
+  ]
+}
