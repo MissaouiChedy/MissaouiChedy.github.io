@@ -23,6 +23,11 @@
 	{% if page.url != '/' %}
 		<link rel="canonical" href="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
 	{% endif %}
+	{% if page.url == '/' %}
+	<link rel="alternate" type="text/markdown" href="{{ site.url }}/index.md" title="Markdown version">
+	{% elsif page.url %}
+	<link rel="alternate" type="text/markdown" href="{{ page.url | replace: '.html', '.md' | prepend: site.baseurl | prepend: site.url }}" title="Markdown version">
+	{% endif %}
 	{% include discovery-links.html %}
 	{% include jsonld.html %}
 	{% include ga.html %}
