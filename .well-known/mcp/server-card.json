@@ -13,18 +13,22 @@
     "tools": [
       {
         "name": "search_posts",
-        "description": "Search blog posts by title, tag or content keyword."
+        "description": "Search blog posts by title, tag, summary, or content keyword."
       },
       {
         "name": "list_posts",
-        "description": "List published blog posts with their URLs, dates and tags."
+        "description": "List published blog posts with their URLs, titles, dates and tags."
       },
       {
         "name": "get_post",
-        "description": "Retrieve the content of a single blog post by its URL."
+        "description": "Retrieve the text content of a single blog post by its URL."
       }
     ],
     "resources": [
+      {
+        "name": "posts",
+        "uri": "https://blog.techdominator.com/posts.json"
+      },
       {
         "name": "sitemap",
         "uri": "https://blog.techdominator.com/sitemap.xml"
