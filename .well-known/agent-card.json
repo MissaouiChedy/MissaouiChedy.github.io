@@ -1,0 +1,85 @@
+{
+  "protocolVersion": "0.3.0",
+  "name": "Tech Dominator Blog",
+  "description": "Technical blog by Chedy Missaoui imposing technical domination on Azure and other Microsoft technologies. Deep coverage of Azure Event Hubs, ASP.NET Core, C#, Elixir/Phoenix, and web development. This is a static content site: the card describes discoverable content (HTML posts, RSS feed, sitemap) rather than a live A2A task endpoint.",
+  "url": "https://blog.techdominator.com",
+  "preferredTransport": "JSONRPC",
+  "version": "1.0.0",
+  "provider": {
+    "organization": "Chedy Missaoui",
+    "url": "https://blog.techdominator.com/about-chedy-missaoui.html"
+  },
+  "iconUrl": "https://blog.techdominator.com/favicon.png",
+  "documentationUrl": "https://blog.techdominator.com/posts.html",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "defaultInputModes": ["text/plain"],
+  "defaultOutputModes": ["text/html", "text/plain"],
+  "skills": [
+    {
+      "id": "azure-event-hubs",
+      "name": "Azure Event Hubs",
+      "description": "In-depth series on producing and consuming events, scaling consumption, checkpointing and rewinding, consumer clients, partition receivers, raw AMQP, the Kafka surface, and load testing with JMeter and Locust.",
+      "tags": ["azure", "azure-event-hubs", "event-streaming", "event-processing", "checkpointing", "amqp", "kafka", "csharp", "load-testing", "jmeter", "locust"],
+      "examples": [
+        "How do I scale event consumption in Azure Event Hubs?",
+        "How do checkpoints and rewinding work in Azure Event Hubs?",
+        "How do I load-test Event Hubs processing with Locust?"
+      ]
+    },
+    {
+      "id": "aspnet-core-tag-helpers",
+      "name": "ASP.NET Core Tag Helpers",
+      "description": "Cheat sheets and deep dives on using, creating, nesting, and programmatically rendering Tag Helpers, including a dynamic form Tag Helper and View Components.",
+      "tags": ["aspnet-core", "tag-helpers", "dynamic-forms", "view-components", "rendering", "csharp"],
+      "examples": [
+        "How do I render a Tag Helper inside another Tag Helper?",
+        "How do I build a dynamic form Tag Helper in ASP.NET Core?"
+      ]
+    },
+    {
+      "id": "csharp-dotnet",
+      "name": "C# and .NET",
+      "description": "Articles on async/await internals, Reactive Extensions (Rx), and general C# software engineering.",
+      "tags": ["csharp", "async-await", "reactive-programming", "concurrency", "dotnet"],
+      "examples": [
+        "How does async/await work under the hood in C#?",
+        "How do I adapt callback-based asynchronous interfaces to async/await?"
+      ]
+    },
+    {
+      "id": "elixir-phoenix",
+      "name": "Elixir and Phoenix",
+      "description": "Functional programming on the Erlang platform: GenServer patterns and contention, fault-tolerant state conservation, Phoenix routes/controllers/channels, state machines, and interop with Python and C++ NIFs.",
+      "tags": ["elixir", "erlang", "phoenix", "genserver", "functional-programming", "fault-tolerance", "concurrency", "interoperability"],
+      "examples": [
+        "How do I conserve GenServer state between crashes?",
+        "How do I implement a state machine in Elixir?"
+      ]
+    },
+    {
+      "id": "web-development",
+      "name": "Web Development",
+      "description": "Front-end fundamentals: HTML cheat sheets, CSS animations, modern layouts with grids and flexboxes, ES6, and React.",
+      "tags": ["html", "css", "javascript", "es6", "react", "web-development", "responsive-design", "animations"],
+      "examples": [
+        "How do modern CSS layouts with grids and flexboxes work?",
+        "What are the basics of CSS animations?"
+      ]
+    },
+    {
+      "id": "software-design",
+      "name": "Software Design and Architecture",
+      "description": "Design patterns and architecture topics: the circuit breaker pattern (in C# and Elixir), MVVM, specification view models, and automated testing.",
+      "tags": ["software-architecture", "design-patterns", "circuit-breaker", "mvvm", "fault-tolerance", "automated-testing"],
+      "examples": [
+        "How do I implement the circuit breaker pattern in C#?",
+        "What is the MVVM pattern?"
+      ]
+    }
+  ],
+  "supportsAuthenticatedExtendedCard": false
+}

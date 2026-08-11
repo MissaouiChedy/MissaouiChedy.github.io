@@ -15,6 +15,11 @@ Do not use em dashes in the writing. Use commas, colons, semicolons, parentheses
 
 Keep paragraphs short, ideally 3-5 sentences. Use bullet points for lists.
 
+# Housekeeping
+
+With new posts, make sure to update the following artifacts:
+- `.well-known\agent-card.json` a2a agent card
+
 # Writing Styles and Patterns to Avoid
 
 > Patterns to avoid are adapted from and inspired by https://tropes.fyi/tropes-md 

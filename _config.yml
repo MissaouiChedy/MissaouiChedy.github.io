@@ -45,6 +45,8 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - "*.bak"
+include:
+  - ".well-known"
 sass:
   style: compressed
   sass_dir: _sass
