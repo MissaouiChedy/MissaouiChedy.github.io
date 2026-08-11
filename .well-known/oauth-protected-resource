@@ -1,0 +1,12 @@
+{
+  "resource": "https://blog.techdominator.com",
+  "authorization_servers": [
+    "https://blog.techdominator.com"
+  ],
+  "scopes_supported": [
+    "read"
+  ],
+  "bearer_methods_supported": [
+    "header"
+  ]
+}
