@@ -23,6 +23,7 @@
 	{% if page.url != '/' %}
 		<link rel="canonical" href="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
 	{% endif %}
+	{% include discovery-links.html %}
 	{% include jsonld.html %}
 	{% include ga.html %}
 </head>
