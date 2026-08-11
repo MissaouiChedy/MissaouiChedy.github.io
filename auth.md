@@ -27,25 +27,21 @@ understand how to interact with this site:
 
 ## Registration
 
-Agents that wish to identify themselves or register for future protected
-resources should follow the `agent_auth` block in
-`/.well-known/oauth-authorization-server`:
+Tech Dominator does not issue tokens or require OAuth registration for read access. Agents may optionally identify themselves via standard `User-Agent` headers.
 
-- **Registration endpoint (`register_uri`)**: this document (`/auth.md`).
+If metadata tracking is used, the `agent_auth` block in `/.well-known/oauth-authorization-server` provides information:
+
+- **Registration document (`register_uri`)**: `https://blog.techdominator.com/auth.md`.
 - **Supported identity types**: `agent`.
-- **Supported credential types**: `public` (no secret required for read access).
+- **Supported credential types**: `public` (no secret or token required).
 
-## Claims
+## Claims & Scopes
 
-Requested claims and profile information, where applicable, are described under
-the `#claims` section referenced by the authorization-server metadata. For this
-public blog, the only supported scope is `read`.
+No OAuth scopes or access claims are enforced. All public content is accessible freely without authorization claims or access tokens.
 
 ## Revocation
 
-If credentials are ever issued for protected resources, revocation instructions
-are published under the `#revocation` section referenced by the
-authorization-server metadata.
+Because no credentials or access tokens are issued or required, credential revocation is not applicable.
 
 ## Contact
 

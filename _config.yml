@@ -51,8 +51,6 @@ include:
  
 keep_files:
   - ".well-known"
-  # Serve the raw markdown source (not the HTML conversion) so agents requesting
-  # /auth.md with an Accept: text/markdown preference get markdown.
   - "auth.md"
 
 sass:
