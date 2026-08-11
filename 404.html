@@ -1,0 +1,143 @@
+---
+layout: default
+title: 404 - Page Not Found
+permalink: /404.html
+robots: noindex
+---
+
+<style>
+.nf-wrap {
+	text-align: center;
+	padding: 2em 1em 3em;
+}
+.nf-code {
+	position: relative;
+	display: inline-block;
+	font-family: "Oswald", "Helvetica", "Sans Serif";
+	font-weight: 600;
+	font-size: 8em;
+	line-height: 1;
+	letter-spacing: 0.05em;
+	color: #000;
+	margin: 0.2em 0 0.1em;
+}
+.nf-code::before,
+.nf-code::after {
+	content: "404";
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	overflow: hidden;
+}
+.nf-code::before {
+	color: #FAA200;
+	animation: nf-glitch-top 2.4s infinite linear alternate-reverse;
+	clip-path: inset(0 0 55% 0);
+}
+.nf-code::after {
+	color: #555;
+	animation: nf-glitch-bottom 1.9s infinite linear alternate-reverse;
+	clip-path: inset(55% 0 0 0);
+}
+@keyframes nf-glitch-top {
+	0%   { transform: translate(0, 0); }
+	20%  { transform: translate(-3px, -2px); }
+	40%  { transform: translate(2px, 1px); }
+	60%  { transform: translate(-2px, 2px); }
+	80%  { transform: translate(3px, -1px); }
+	100% { transform: translate(0, 0); }
+}
+@keyframes nf-glitch-bottom {
+	0%   { transform: translate(0, 0); }
+	25%  { transform: translate(2px, 2px); }
+	50%  { transform: translate(-3px, -1px); }
+	75%  { transform: translate(2px, -2px); }
+	100% { transform: translate(0, 0); }
+}
+.nf-terminal {
+	display: inline-block;
+	text-align: left;
+	background: #111;
+	color: #ddd;
+	border: 1px solid #333;
+	border-top: 3px solid #FAA200;
+	border-radius: 6px;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+	font-family: "consolas", "Inconsolata", "monospace";
+	font-size: 0.95em;
+	padding: 1.2em 1.6em;
+	max-width: 34em;
+	margin-top: 1em;
+}
+.nf-terminal .nf-prompt { color: #FAA200; }
+.nf-terminal .nf-cmd { color: #fff; }
+.nf-terminal .nf-out { color: #f0716c; }
+.nf-cursor {
+	display: inline-block;
+	width: 0.55em;
+	height: 1.1em;
+	background: #FAA200;
+	vertical-align: text-bottom;
+	animation: nf-blink 1s steps(1) infinite;
+}
+@keyframes nf-blink {
+	0%, 49%   { opacity: 1; }
+	50%, 100% { opacity: 0; }
+}
+.nf-actions {
+	margin-top: 1.6em;
+}
+.nf-btn {
+	display: inline-block;
+	font-family: "Oswald", "Helvetica", "Sans Serif";
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: 1em;
+	padding: 0.5em 1.2em;
+	margin: 0 0.4em;
+	border: 2px solid #000;
+	color: #000;
+	background: #fff;
+	transition: background 0.2s ease, color 0.2s ease;
+}
+.nf-btn:hover {
+	background: #000;
+	color: #FAA200;
+}
+.nf-btn.nf-btn-primary {
+	background: #000;
+	color: #FAA200;
+	border-color: #FAA200;
+}
+.nf-btn.nf-btn-primary:hover {
+	background: #FAA200;
+	color: #000;
+}
+@media screen and (min-width: 320px) and (max-width: 480px) {
+	.nf-code { font-size: 5em; }
+	.nf-terminal { font-size: 0.85em; padding: 1em; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.nf-code::before,
+	.nf-code::after,
+	.nf-cursor { animation: none; }
+}
+</style>
+
+<div class="nf-wrap">
+	<div class="nf-code" aria-label="404">404</div>
+
+	<div class="nf-terminal" role="note" aria-label="Error details">
+		<div><span class="nf-prompt">techdominator:~$</span> <span class="nf-cmd">GET {{ page.url | default: "/this-page" }}</span></div>
+		<div class="nf-out">&gt; 404 Not Found, the resource you requested does not exist (anymore?)</div>
+		<div><span class="nf-prompt">techdominator:~$</span> <span class="nf-cursor"></span></div>
+	</div>
+
+	<p>Looks like this page took an unhandled exception. No stack trace here, but the rest of the blog still works.</p>
+
+	<div class="nf-actions">
+		<a class="nf-btn nf-btn-primary" href="{{ site.url }}/">Home</a>
+		<a class="nf-btn" href="{{ site.url }}/posts.html">Browse Posts</a>
+	</div>
+</div>
