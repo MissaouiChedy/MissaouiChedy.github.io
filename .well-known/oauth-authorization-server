@@ -1,0 +1,23 @@
+{
+  "issuer": "https://blog.techdominator.com",
+  "authorization_endpoint": "https://blog.techdominator.com/auth.md",
+  "token_endpoint": "https://blog.techdominator.com/auth.md",
+  "jwks_uri": "https://blog.techdominator.com/.well-known/jwks.json",
+  "response_types_supported": [
+    "none"
+  ],
+  "grant_types_supported": [
+    "client_credentials"
+  ],
+  "agent_auth": {
+    "register_uri": "https://blog.techdominator.com/auth.md",
+    "identity_types_supported": [
+      "agent"
+    ],
+    "credential_types_supported": [
+      "public"
+    ],
+    "claims_uri": "https://blog.techdominator.com/auth.md#claims",
+    "revocation_uri": "https://blog.techdominator.com/auth.md#revocation"
+  }
+}
