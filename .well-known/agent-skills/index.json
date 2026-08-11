@@ -6,7 +6,7 @@
       "type": "content-retrieval",
       "description": "How an AI agent discovers and retrieves content from the Tech Dominator blog.",
       "url": "https://blog.techdominator.com/.well-known/agent-skills/blog-content-skill.md",
-      "sha256": "cd97d450757e23a610502dfc60f8b5348a06d8b4ab521a3f1d3fb5d2a12b92c7"
+      "sha256": "9aa5e0d578119376b8eae831234c2157ca8befd923a36f2b97e046bed32c4a4b"
     }
   ]
 }

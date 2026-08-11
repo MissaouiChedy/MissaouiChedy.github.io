@@ -12,12 +12,13 @@ Microsoft technologies).
 
 ## How to use it
 
-1. Fetch the sitemap at `https://blog.techdominator.com/sitemap.xml` to list
-   every published URL, or browse `https://blog.techdominator.com/posts.html`.
-2. Fetch individual HTML pages/posts or subscribe to the Atom feed at `https://blog.techdominator.com/feed.xml`.
+1. Query post metadata (titles, URLs, publication dates, tags, and summaries) by fetching `https://blog.techdominator.com/posts.json` or reading the sitemap at `https://blog.techdominator.com/sitemap.xml`.
+2. Fetch individual HTML pages/posts, interact via WebMCP tools (`search_posts`, `list_posts`, `get_post`), or subscribe to the Atom feed at `https://blog.techdominator.com/feed.xml`.
 
 ## Related resources
 
+- JSON Posts Index: `https://blog.techdominator.com/posts.json`
+- MCP Server Card: `https://blog.techdominator.com/.well-known/mcp/server-card.json`
 - API Catalog: `https://blog.techdominator.com/.well-known/api-catalog`
 - Atom feed: `https://blog.techdominator.com/feed.xml`
 - Authentication & registration: `https://blog.techdominator.com/auth.md`
