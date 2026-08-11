@@ -10,18 +10,19 @@ images changed in the unstaged Git diff, or use -All to recursively select all
 supported images below -Folder. Under -All and -New, only files not already
 named *.optimized.webp are selected as optimization sources.
 
-PNG and JPEG images are converted to WebP, while WebP images are written as
-*.optimized.webp. Use -ReplaceOriginals to optimize files in place without
-changing their formats. Convert GIF files to MP4 videos with
-_tools/Optimize-Gif.ps1 instead.
+PNG and JPEG images are always converted to WebP, even under
+-ReplaceOriginals; that switch only preserves the format of files already in
+WebP. Convert GIF files to MP4 videos with _tools/Optimize-Gif.ps1 instead.
 
 Images larger than -MaxWidth x -MaxHeight are scaled down proportionally to
 fit within that box (aspect ratio preserved, dimensions may change slightly);
 smaller images keep their current size.
 
-Optimization uses ImageMagick. A candidate is accepted only when it is smaller
-and retains the source frame count, total animation duration, and expected
-dimensions after any resize.
+Optimization uses ImageMagick and proceeds in two independent steps. First the
+image is optimized at its original dimensions; the result is kept only when it
+retains the source frame count, total animation duration, and dimensions, and
+is smaller than the source. Then, whenever the image exceeds -MaxWidth x
+-MaxHeight, it is resized regardless of optimization gains.
 
 PREREQUISITES
 - PowerShell 7 or later.
@@ -63,9 +64,10 @@ Maximum image height in pixels. Taller images are scaled down proportionally.
 Defaults to 462.
 
 .PARAMETER ReplaceOriginals
-Optimizes each image in place and preserves its current format. Under -All and
--New this also re-processes *.optimized.webp files, which are otherwise
-skipped. Without this switch, optimized copies are produced.
+Optimizes each image in place. PNG and JPEG sources are still converted to
+WebP; only WebP sources keep their format. Under -All and -New this also
+re-processes *.optimized.webp files, which are otherwise skipped. Without
+this switch, optimized copies are produced.
 
 .PARAMETER UpdateReferences
 Updates references below -ReferencePath when an optimized copy has a new name
@@ -105,8 +107,9 @@ Optimizes every supported image in place with custom static-image quality.
 Creates photo.webp, updates references below _posts, then removes photo.png.
 
 .NOTES
-Supported extensions are .png, .jpg, .jpeg, and .webp. Convert GIF files to
-MP4 videos with _tools/Optimize-Gif.ps1.
+Supported extensions are .png, .jpg, .jpeg, and .webp. PNG and JPEG sources
+are always converted to WebP. Convert GIF files to MP4 videos with
+_tools/Optimize-Gif.ps1.
 #>
 [CmdletBinding(DefaultParameterSetName = 'Paths')]
 param(
@@ -126,10 +129,10 @@ param(
     [string]$RootPath = (Split-Path -Parent $PSScriptRoot),
 
     [ValidateRange(1, 100)]
-    [int]$WebPQuality = 65,
+    [int]$WebPQuality = 85,
 
     [ValidateRange(1, 100)]
-    [int]$JpegQuality = 75,
+    [int]$JpegQuality = 85,
 
     [ValidateRange(1, 65535)]
     [int]$MaxWidth = 693,
@@ -344,13 +347,28 @@ end {
             $directory = $image.DirectoryName
             $baseName = [System.IO.Path]::GetFileNameWithoutExtension($sourcePath)
             $sourceExtension = $image.Extension.ToLowerInvariant()
-            $outputExtension = if ($ReplaceOriginals) { $sourceExtension } else { '.webp' }
-            $targetPath = if ($ReplaceOriginals) {
+            # PNG and JPEG sources are always converted to WebP; -ReplaceOriginals
+            # only affects where the result is written and still re-processes
+            # *.optimized.webp sources under -All and -New.
+            $outputExtension = '.webp'
+            $targetPath = if ($ReplaceOriginals -and $sourceExtension -eq '.webp') {
                 $sourcePath
             } elseif ($sourceExtension -eq '.webp') {
                 Join-Path $directory "$baseName.optimized.webp"
             } else {
                 Join-Path $directory "$baseName.webp"
+            }
+            if ($targetPath -ne $sourcePath -and -not $uniquePaths.Add($targetPath)) {
+                # Another selected source (e.g. sample.jpg after sample.png) already
+                # claimed this target; fall back to a unique name.
+                $suffix = 2
+                do {
+                    $targetPath = Join-Path $directory "$baseName-$suffix.webp"
+                    $suffix++
+                } until ($uniquePaths.Add($targetPath))
+            }
+            if ($ReplaceOriginals -and $targetPath -ne $sourcePath) {
+                Write-Warning "$relativePath is converted to WebP despite -ReplaceOriginals; update references to '$(Get-RelativePath -Path $targetPath)' manually."
             }
 
             $sourceInfo = Get-ImageInfo -ImagePath $sourcePath -MagickCommand $magick
@@ -360,20 +378,17 @@ end {
             $candidates = @()
 
             try {
-                $candidatePath = "$temporaryStem$outputExtension"
-                $candidates = @([pscustomobject]@{ Optimizer = 'ImageMagick'; Path = $candidatePath })
-                $arguments = @($sourcePath)
+                $needsResize = $expectedDimensions.Width -ne $sourceInfo.Width -or
+                    $expectedDimensions.Height -ne $sourceInfo.Height
+
+                $coalesceArguments = @()
                 if ($sourceInfo.FrameCount -gt 1) {
-                    $arguments += '-coalesce'
-                }
-                if ($expectedDimensions.Width -ne $sourceInfo.Width -or
-                    $expectedDimensions.Height -ne $sourceInfo.Height) {
-                    $arguments += @('-resize', "${MaxWidth}x${MaxHeight}>")
+                    $coalesceArguments = @('-coalesce')
                 }
 
-                switch ($outputExtension) {
+                $formatArguments = switch ($outputExtension) {
                     '.png' {
-                        $arguments += @(
+                        @(
                             '-strip',
                             '-define', 'png:compression-level=9',
                             '-define', 'png:compression-strategy=1',
@@ -381,10 +396,10 @@ end {
                         )
                     }
                     { $_ -in @('.jpg', '.jpeg') } {
-                        $arguments += @('-strip', '-interlace', 'Plane', '-sampling-factor', '4:2:0', '-quality', $JpegQuality)
+                        @('-strip', '-interlace', 'Plane', '-sampling-factor', '4:2:0', '-quality', $JpegQuality)
                     }
                     '.webp' {
-                        $arguments += @(
+                        @(
                             '-strip',
                             '-define', 'webp:method=6',
                             '-define', 'webp:auto-filter=true',
@@ -393,46 +408,64 @@ end {
                         )
                     }
                 }
-                $arguments += $candidatePath
 
-                & $magick.Source @arguments
-                if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $candidatePath)) {
+                # Step 1: optimize at the original dimensions. The optimized output
+                # is kept only when it is valid and smaller than the source.
+                $optimizedCandidatePath = "$temporaryStem.optimized$outputExtension"
+                $candidates = @([pscustomobject]@{ Path = $optimizedCandidatePath })
+                $optimizeArguments = @($sourcePath) + $coalesceArguments + $formatArguments + @($optimizedCandidatePath)
+                & $magick.Source @optimizeArguments
+                if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $optimizedCandidatePath)) {
                     throw "ImageMagick failed to optimize $relativePath."
                 }
 
-                $validCandidates = @(
-                    foreach ($candidate in $candidates) {
-                        $candidateInfo = Get-ImageInfo -ImagePath $candidate.Path -MagickCommand $magick
-                        $metadataMatches = Test-ImageInfoMatches -SourceInfo $sourceInfo -CandidateInfo $candidateInfo -ExpectedDimensions $expectedDimensions
-                        if (-not $metadataMatches) {
-                            Write-Warning "Rejected $($candidate.Optimizer) for $relativePath because image metadata changed."
-                            continue
-                        }
-                        [pscustomobject]@{
-                            Optimizer = $candidate.Optimizer
-                            Path      = $candidate.Path
-                            Bytes     = (Get-Item -LiteralPath $candidate.Path).Length
-                        }
-                    }
-                )
+                $workingPath = $sourcePath
+                $optimizedInfo = Get-ImageInfo -ImagePath $optimizedCandidatePath -MagickCommand $magick
+                $optimizedMatches = Test-ImageInfoMatches -SourceInfo $sourceInfo -CandidateInfo $optimizedInfo -ExpectedDimensions $sourceInfo
+                $optimizedBytes = (Get-Item -LiteralPath $optimizedCandidatePath).Length
+                if (-not $optimizedMatches) {
+                    Write-Warning "Rejected optimized output for $relativePath because image metadata changed."
+                } elseif ($optimizedBytes -lt $sourceBytes) {
+                    $workingPath = $optimizedCandidatePath
+                }
 
-                $bestCandidate = $validCandidates | Sort-Object Bytes | Select-Object -First 1
-                if (-not $bestCandidate -or $bestCandidate.Bytes -ge $sourceBytes) {
-                    Write-Warning "Skipped $relativePath because no validated output was smaller."
+                # Step 2: resize whenever the image exceeds the maximum dimensions,
+                # regardless of whether the optimization step produced any gains.
+                $finalPath = $workingPath
+                $finalBytes = if ($workingPath -eq $sourcePath) { $sourceBytes } else { $optimizedBytes }
+                if ($needsResize) {
+                    $resizedCandidatePath = "$temporaryStem.resized$outputExtension"
+                    $candidates += [pscustomobject]@{ Path = $resizedCandidatePath }
+                    $resizeArguments = @($workingPath) + $coalesceArguments + @('-resize', "${MaxWidth}x${MaxHeight}>") + $formatArguments + @($resizedCandidatePath)
+                    & $magick.Source @resizeArguments
+                    if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $resizedCandidatePath)) {
+                        throw "ImageMagick failed to resize $relativePath."
+                    }
+
+                    $resizedInfo = Get-ImageInfo -ImagePath $resizedCandidatePath -MagickCommand $magick
+                    if (-not (Test-ImageInfoMatches -SourceInfo $sourceInfo -CandidateInfo $resizedInfo -ExpectedDimensions $expectedDimensions)) {
+                        throw "Resized output for $relativePath does not match the expected image metadata."
+                    }
+                    $finalPath = $resizedCandidatePath
+                    $finalBytes = (Get-Item -LiteralPath $resizedCandidatePath).Length
+                }
+
+                if ($finalPath -eq $sourcePath) {
+                    Write-Warning "Skipped $relativePath because the optimized output was not smaller."
                     continue
                 }
 
-                Move-Item -LiteralPath $bestCandidate.Path -Destination $targetPath -Force
+                Move-Item -LiteralPath $finalPath -Destination $targetPath -Force
                 $targetRelativePath = Get-RelativePath -Path $targetPath
 
                 [pscustomobject]@{
                     Image         = $relativePath
                     Format        = $sourceExtension.TrimStart('.').ToUpperInvariant()
                     Size          = "$($expectedDimensions.Width)x$($expectedDimensions.Height)"
-                    Optimizer     = $bestCandidate.Optimizer
+                    Optimizer     = 'ImageMagick'
                     OriginalKB    = [math]::Round($sourceBytes / 1KB, 1)
-                    OptimizedKB   = [math]::Round($bestCandidate.Bytes / 1KB, 1)
-                    SavingPercent = [math]::Round((1 - ($bestCandidate.Bytes / $sourceBytes)) * 100, 1)
+                    OptimizedKB   = [math]::Round($finalBytes / 1KB, 1)
+                    SavingPercent = [math]::Round((1 - ($finalBytes / $sourceBytes)) * 100, 1)
                     Output        = $targetRelativePath
                     SourcePath    = $sourcePath
                     TargetPath    = $targetPath
