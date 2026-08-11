@@ -1,0 +1,10 @@
+# robots.txt for https://blog.techdominator.com
+# Ref: RFC 9309
+
+User-agent: *
+Allow: /
+Disallow: /tag.html
+Disallow: /tags.html
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+
+Sitemap: https://blog.techdominator.com/sitemap.xml
