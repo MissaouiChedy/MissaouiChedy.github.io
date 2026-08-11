@@ -23,6 +23,7 @@
 	{% if page.url != '/' %}
 		<link rel="canonical" href="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
 	{% endif %}
+	{% include discovery-links.html %}
 	{% include jsonld.html %}
 	{% include ga.html %}
 </head>
@@ -49,6 +50,7 @@
     </footer>
 	<script defer src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
 	<script defer src="{{ site.url }}/js/main.js" type="text/javascript"></script>
+	<script defer src="{{ site.url }}/js/webmcp.js" type="text/javascript"></script>
 	
 </body>
 </html>

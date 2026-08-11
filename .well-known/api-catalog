@@ -1,0 +1,41 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://blog.techdominator.com/",
+      "service-desc": [
+        {
+          "href": "https://blog.techdominator.com/posts.json",
+          "type": "application/json"
+        },
+        {
+          "href": "https://blog.techdominator.com/sitemap.xml",
+          "type": "application/xml"
+        },
+        {
+          "href": "https://blog.techdominator.com/feed.xml",
+          "type": "application/atom+xml"
+        },
+        {
+          "href": "https://blog.techdominator.com/.well-known/mcp/server-card.json",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://blog.techdominator.com/posts.html",
+          "type": "text/html"
+        },
+        {
+          "href": "https://blog.techdominator.com/auth.md",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://blog.techdominator.com/",
+          "type": "text/html"
+        }
+      ]
+    }
+  ]
+}
