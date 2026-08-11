@@ -21,7 +21,7 @@
       },
       {
         "name": "get_post",
-        "description": "Retrieve the markdown content of a single blog post by its URL."
+        "description": "Retrieve the content of a single blog post by its URL."
       }
     ],
     "resources": [
