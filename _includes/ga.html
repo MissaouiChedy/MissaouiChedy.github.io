@@ -1,22 +1,3 @@
 <script>
-(function () {
-	var loaded = false;
-	function loadGA() {
-		if (loaded) return;
-		loaded = true;
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){ dataLayer.push(arguments); }
-		window.gtag = gtag;
-		gtag('js', new Date());
-		gtag('config', 'G-4R5E91P38X');
-		var s = document.createElement('script');
-		s.async = 1;
-		s.src = 'https://www.googletagmanager.com/gtag/js?id=G-4R5E91P38X';
-		document.head.appendChild(s);
-	}
-	window.addEventListener('load', function () { setTimeout(loadGA, 2500); });
-	['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(function (evt) {
-		window.addEventListener(evt, loadGA, { once: true, passive: true });
-	});
-})();
+!function(){var n=!1;function t(){if(!n){n=!0,window.dataLayer=window.dataLayer||[],window.gtag=a,a("js",new Date),a("config","G-4R5E91P38X");var t=document.createElement("script");t.async=1,t.src="https://www.googletagmanager.com/gtag/js?id=G-4R5E91P38X",document.head.appendChild(t)}function a(){dataLayer.push(arguments)}}window.addEventListener("load",function(){setTimeout(t,2500)}),["scroll","pointerdown","keydown","touchstart"].forEach(function(n){window.addEventListener(n,t,{once:!0,passive:!0})})}();
 </script>
