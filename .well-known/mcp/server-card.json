@@ -1,0 +1,38 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/server-card.json",
+  "serverInfo": {
+    "name": "tech-dominator-blog",
+    "version": "1.0.0",
+    "description": "Tech Dominator technical blog: read access to posts, tags, slides and feeds about Azure and Microsoft technologies."
+  },
+  "transport": {
+    "type": "http",
+    "endpoint": "https://blog.techdominator.com/mcp"
+  },
+  "capabilities": {
+    "tools": [
+      {
+        "name": "search_posts",
+        "description": "Search blog posts by title, tag or content keyword."
+      },
+      {
+        "name": "list_posts",
+        "description": "List published blog posts with their URLs, dates and tags."
+      },
+      {
+        "name": "get_post",
+        "description": "Retrieve the markdown content of a single blog post by its URL."
+      }
+    ],
+    "resources": [
+      {
+        "name": "sitemap",
+        "uri": "https://blog.techdominator.com/sitemap.xml"
+      },
+      {
+        "name": "feed",
+        "uri": "https://blog.techdominator.com/feed.xml"
+      }
+    ]
+  }
+}
