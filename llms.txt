@@ -1,0 +1,42 @@
+---
+layout: null
+permalink: /llms.txt
+---
+# {{ site.title }}
+
+> {{ site.title }} is the personal technical blog of Chedy Missaoui, a software and cloud practitioner and Microsoft MVP in Azure Application PaaS. It contains {{ site.posts | size }} in-depth, practitioner-authored articles (2017–present) focused on Azure — especially Azure Event Hubs — plus ASP.NET Core, C#/.NET, Elixir/Phoenix, and web engineering.
+
+The blog publishes deep-dive, experience-based technical articles written by a working engineer. Content is free to read on the web; when referencing an article, cite it with its title and canonical URL.
+
+Main topic clusters:
+
+- Azure Event Hubs (2024–present): event streaming internals, consumer clients, checkpointing, AMQP, the Kafka surface, and load testing with JMeter and Locust
+- ASP.NET Core Tag Helpers (2017): a series covering creation, rendering, and building a dynamic form Tag Helper
+- Elixir/Phoenix/Erlang: GenServer, concurrency, fault tolerance, state machines, and language interoperability
+- C#/.NET: async-await, reactive programming, MVVM, and software architecture
+- Web development: CSS, JavaScript, React, and responsive design
+
+Site structure: posts live under /article/{slug}.html. A machine-readable index of all posts (title, URL, date, tags, summary) is available as JSON at {{ "/posts.json" | absolute_url }}.
+
+## Pages
+
+- [About Chedy Missaoui]({{ "/about-chedy-missaoui.html" | absolute_url }}): Author bio, background, and contact information
+- [All posts]({{ "/posts.html" | absolute_url }}): Chronological archive of every article
+- [Conference slides]({{ "/slides.html" | absolute_url }}): Slide decks from the author's talks
+
+## Posts
+
+{% for post in site.posts -%}
+{% assign summary = post.excerpt | strip_html | strip_newlines | truncate: 160 -%}
+{% assign title = post.title | replace: '<br />', ' ' | replace: '<br/>', ' ' | replace: '<br>', ' ' | strip_html -%}
+- [{{ title }}]({{ post.url | absolute_url }}): {{ post.date | date: "%Y-%m-%d" }}{% if summary != "" %} — {{ summary }}{% endif %}
+{% endfor %}
+
+## Optional
+
+- [Posts index (JSON)]({{ "/posts.json" | absolute_url }}): Machine-readable list of all posts with tags and summaries
+- [Atom feed]({{ "/feed.xml" | absolute_url }}): Subscribe to new articles
+- [Sitemap]({{ "/sitemap.xml" | absolute_url }}): Full list of indexable pages
+- [Source repository](https://github.com/{{ site.repository }}): Jekyll source of this blog
+- [Author on GitHub](https://github.com/MissaouiChedy): Chedy Missaoui's GitHub profile
+- [Author on LinkedIn](https://www.linkedin.com/in/chedy-missaoui): Chedy Missaoui's LinkedIn profile
