@@ -53,14 +53,12 @@ module Jekyll
     end
 
     # Reduce a full HTML document to its meaningful content so the conversion to
-    # markdown drops <head> markup, scripts and styles. Prefer the inner content
-    # of <main>/<article> when present, falling back to <body>.
+    # markdown drops <head> markup. Prefer the inner content of <main>/<article>
+    # when present, falling back to <body>.
     def extract_body(html)
       doc = html.to_s
       body = doc[%r{<body[^>]*>(.*?)</body>}mi, 1] || doc
-      main = body[%r{<(main|article)\b[^>]*>(.*?)</\1>}mi, 2] || body
-      main = main.gsub(%r{<script\b[^>]*>.*?</script>}mi, "")
-      main.gsub(%r{<style\b[^>]*>.*?</style>}mi, "")
+      body[%r{<(main|article)\b[^>]*>(.*?)</\1>}mi, 2] || body
     end
 
     def markdown_url_for(url)
