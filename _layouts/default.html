@@ -15,9 +15,9 @@
 	{% endif %}
 	{% capture critical_css %}{% include critical-styles.scss %}{% endcapture %}
 	<style>{{ critical_css | scssify }}</style>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,800,800i|Archivo+Narrow|Oswald:400,600|Inconsolata&display=optional" media="print" onload="this.media='all'">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Inconsolata&family=Oswald:wght@400;600&display=optional" media="print" onload="this.media='all'">
 	<noscript>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,800,800i|Archivo+Narrow|Oswald:400,600|Inconsolata&display=optional">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Inconsolata&family=Oswald:wght@400;600&display=optional">
 	</noscript>
 	<link rel="icon shortcut" type="image/png" href="{{ site.url }}/favicon.png">
 	{% if page.url != '/' %}
