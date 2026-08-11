@@ -1,0 +1,99 @@
+{% comment %}
+  Site-wide JSON-LD structured data (@graph):
+  - Every page: WebSite + Person (author) nodes.
+  - Home page:  Blog node.
+  - Post pages: BlogPosting + BreadcrumbList nodes.
+  The Person @id matches the microdata itemid used in _includes/article.html.
+{% endcomment %}
+{%- assign author_id = site.url | append: '/about-chedy-missaoui.html#ident' -%}
+{%- if page.layout == 'post' -%}
+  {%- if page.lcp_image -%}
+    {%- assign post_image = page.lcp_image | prepend: site.url -%}
+  {%- else -%}
+    {%- assign post_image = nil -%}
+    {%- assign chunks = page.content | split: 'src="' -%}
+    {%- for chunk in chunks offset: 1 -%}
+      {%- assign candidate = chunk | split: '"' | first -%}
+      {%- if candidate contains '/imgs/' -%}
+        {%- assign post_image = candidate -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if post_image -%}
+      {%- unless post_image contains '://' -%}
+        {%- assign post_image = post_image | prepend: site.url -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "url": "{{ site.url }}/",
+      "name": {{ site.title | jsonify }},
+      "description": {{ site.description | strip_newlines | strip | jsonify }},
+      "inLanguage": "en",
+      "publisher": { "@id": "{{ author_id }}" }
+    },
+    {
+      "@type": "Person",
+      "@id": "{{ author_id }}",
+      "name": {{ site.author | jsonify }},
+      "url": "{{ site.url }}/about-chedy-missaoui.html",
+      "sameAs": [
+        "https://github.com/MissaouiChedy",
+        "https://www.linkedin.com/in/chedy-missaoui"
+      ]
+    }
+    {%- if page.url == '/' -%}
+    ,{
+      "@type": "Blog",
+      "@id": "{{ site.url }}/#blog",
+      "url": "{{ site.url }}/",
+      "name": {{ site.title | jsonify }},
+      "description": {{ site.description | strip_newlines | strip | jsonify }},
+      "inLanguage": "en",
+      "author": { "@id": "{{ author_id }}" },
+      "publisher": { "@id": "{{ author_id }}" },
+      "isPartOf": { "@id": "{{ site.url }}/#website" },
+      "license": "https://creativecommons.org/licenses/by/4.0/"
+    }
+    {%- endif -%}
+    {%- if page.layout == 'post' -%}
+    ,{
+      "@type": "BlogPosting",
+      "@id": "{{ page.url | absolute_url }}#post",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "{{ page.url | absolute_url }}" },
+      "headline": {{ page.title | jsonify }},
+      "description": {{ page.excerpt | strip_html | strip_newlines | strip | jsonify }},
+      {%- if post_image %}
+      "image": { "@type": "ImageObject", "url": {{ post_image | jsonify }} },
+      {%- endif %}
+      "datePublished": "{{ page.date | date_to_xmlschema }}",
+      "dateModified": "{{ page.date | date_to_xmlschema }}",
+      "author": { "@id": "{{ author_id }}" },
+      "publisher": { "@id": "{{ author_id }}" },
+      "isPartOf": { "@id": "{{ site.url }}/#website" },
+      {%- if page.tags and page.tags != empty %}
+      "keywords": {{ page.tags | join: ", " | jsonify }},
+      {%- endif %}
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
+      "license": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}/" },
+        { "@type": "ListItem", "position": 2, "name": "Posts", "item": "{{ site.url }}/posts.html" },
+        { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }} }
+      ]
+    }
+    {%- endif %}
+  ]
+}
+</script>
