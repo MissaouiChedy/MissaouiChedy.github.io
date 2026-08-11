@@ -6,6 +6,7 @@
   The Person @id matches the microdata itemid used in _includes/article.html.
 {% endcomment %}
 {%- assign author_id = site.url | append: '/about-chedy-missaoui.html#ident' -%}
+{%- assign org_id = site.url | append: '/#org' -%}
 {%- if page.layout == 'post' -%}
   {%- if page.lcp_image -%}
     {%- assign post_image = page.lcp_image | prepend: site.url -%}
@@ -37,7 +38,19 @@
       "name": {{ site.title | jsonify }},
       "description": {{ site.description | strip_newlines | strip | jsonify }},
       "inLanguage": "en",
-      "publisher": { "@id": "{{ author_id }}" }
+      "publisher": { "@id": "{{ org_id }}" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "{{ org_id }}",
+      "name": {{ site.title | jsonify }},
+      "url": "{{ site.url }}/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}/imgs/TechDominatorLogo.png",
+        "width": 150,
+        "height": 150
+      }
     },
     {
       "@type": "Person",
@@ -58,7 +71,7 @@
       "description": {{ site.description | strip_newlines | strip | jsonify }},
       "inLanguage": "en",
       "author": { "@id": "{{ author_id }}" },
-      "publisher": { "@id": "{{ author_id }}" },
+      "publisher": { "@id": "{{ org_id }}" },
       "isPartOf": { "@id": "{{ site.url }}/#website" },
       "license": "https://creativecommons.org/licenses/by/4.0/"
     }
@@ -76,7 +89,7 @@
       "datePublished": "{{ page.date | date_to_xmlschema }}",
       "dateModified": "{{ page.date | date_to_xmlschema }}",
       "author": { "@id": "{{ author_id }}" },
-      "publisher": { "@id": "{{ author_id }}" },
+      "publisher": { "@id": "{{ org_id }}" },
       "isPartOf": { "@id": "{{ site.url }}/#website" },
       {%- if page.tags and page.tags != empty %}
       "keywords": {{ page.tags | join: ", " | jsonify }},
