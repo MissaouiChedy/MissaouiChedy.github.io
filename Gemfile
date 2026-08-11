@@ -23,5 +23,5 @@ group :jekyll_plugins do
    gem "jekyll-feed"
    gem "jekyll-sitemap"
    gem "rouge"
-   gem 'wdm', '~> 0.2.0' if Gem.win_platform?
+   gem 'wdm', '~> 0.2.0', install_if: Gem.win_platform?
 end
