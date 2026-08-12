@@ -5,6 +5,9 @@ $header-font: "Oswald", "Helvetica", "Sans Serif";
 $code-font: "consolas", "Inconsolata", "monospace", "Sans Serif";
 $time-fonts: "Archivo Narrow", "Oswald", "Helvetica", "Sans Serif";
 $my-orange: #FAA200;
+// Slightly darker variant of the brand orange that meets WCAG AA (4.5:1) on white/#f9f9f9 backgrounds.
+// Use for text links; keep $my-orange for decorative accents and text on dark backgrounds.
+$link-orange: #B35C00;
 $code-background-color: #f9f9f9;
 
 @mixin on-mobile() {
@@ -84,7 +87,7 @@ time {
 	font-family: $time-fonts;
 	font-weight: normal;
 	font-size: 1em;
-	color: #888;
+	color: #666;
 	letter-spacing: 0.04em;
 }
 
@@ -161,17 +164,17 @@ article.post
 			justify-content: center;
 			margin-top: 0.6em;
 			li {
-				color: #777;
+				color: #666;
 				font-family: $time-fonts;
 				font-size: 0.85em;
 				line-height: 1.4;
 				text-transform: lowercase;
 				a {
-					color: #777;
+					color: #666;
 					font-size: inherit;
 					&:hover,
 					&:focus-visible {
-						color: $my-orange;
+						color: $link-orange;
 					}
 				}
 				&:not(:last-child)::after {
@@ -196,7 +199,7 @@ article.post
 				font-size: 0.8em;
 				transition: background-color 0.2s ease;
 				&:hover {
-					background-color: $my-orange;
+					background-color: $link-orange;
 				}
 			}
 		}
@@ -219,7 +222,7 @@ article.post
 					font-weight: normal;
 					color: black;
 					&:hover {
-						color: $my-orange;
+						color: $link-orange;
 					}
 				}
 			}
@@ -230,7 +233,7 @@ article.post
 	}
 	%regular-link {
 		text-decoration: underline;
-		color: $my-orange;
+		color: $link-orange;
 		font-weight: 400;
 	}
 	div.content {
@@ -247,7 +250,7 @@ article.post
 				width: 1.1em;
 				height: 1.1em;
 				margin-left: 0.35em;
-				color: #999;
+				color: #767676;
 				opacity: 0;
 				vertical-align: middle;
 				font-size: 0.6em;
@@ -260,7 +263,7 @@ article.post
 			}
 
 			.heading-anchor-link:hover {
-				color: $my-orange;
+				color: $link-orange;
 			}
 		}
 	}
@@ -379,7 +382,7 @@ article.post
 			a {
 				text-decoration: none;
 				background-color: transparent;
-				color: $my-orange;
+				color: $link-orange;
 				font-size: 1em;
 			}
 		}
@@ -457,7 +460,7 @@ div.archives
 
 			padding: 0;
 			&:hover {
-				color: $my-orange;
+				color: $link-orange;
 			}
 		}
 		
@@ -504,7 +507,7 @@ section.tags-index {
 				}
 				.tag-count {
 					flex: 0 0 auto;
-					color: #777;
+					color: #666;
 					font-family: $time-fonts;
 					font-size: 0.8em;
 					white-space: nowrap;
@@ -524,7 +527,7 @@ main.tag-results {
 		font-family: $default-font-family;
 		font-size: $default-font-size;
 		a {
-			color: $my-orange;
+			color: $link-orange;
 			text-decoration: underline;
 		}
 	}
@@ -539,18 +542,18 @@ main.tag-results {
 		header {
 			padding-bottom: 0.8em;
 			.tag-back {
-				color: #777;
+				color: #666;
 				font-family: $time-fonts;
 				font-size: 0.9em;
 				&:hover {
-					color: $my-orange;
+					color: $link-orange;
 				}
 			}
 			h1 {
 				padding-bottom: 0.1em;
 			}
 			p {
-				color: #777;
+				color: #666;
 				font-family: $time-fonts;
 			}
 		}
@@ -603,17 +606,17 @@ footer.site-footer
 	margin-bottom: 0.2em;
 	max-width: 30em;
 	a {
-		color: $my-orange;
+		color: $link-orange;
 		text-decoration: underline;
 	}
 }
 span.danger {
-	color: red;
+	color: #C00000;
 	font-weight: bold;
 }
 
 .comment-error-message {
-	color: red;
+	color: #C00000;
 	font-weight: bold;
 	text-align: center;
 	font-size: 1.2em;
@@ -647,7 +650,7 @@ blockquote {
 		font-style: normal;
 		font-size: 0.85em;
 		font-family: $time-fonts;
-		color: $my-orange;
+		color: $link-orange;
 		text-transform: uppercase;
 		letter-spacing: 0.08em;
 
