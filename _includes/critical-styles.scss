@@ -127,9 +127,13 @@ header.site-header {
 
 			display: inline-block;
 			padding-left: 0.5em;
-			h4 {
+			.nav-label {
 				font-family: $header-font;
+				font-size: 1.414em;
+				font-weight: 600;
+				line-height: 1.05;
 				text-transform: lowercase;
+				letter-spacing: 0.02em;
 			}
 			a:hover {
 				color: $my-orange;
@@ -215,6 +219,15 @@ article.post
 		width: 20vw;
 		right: 0;
 		top: 12vw;
+		.outline-title {
+			font-family: $header-font;
+			font-size: 1.414em;
+			font-weight: 600;
+			line-height: 1.05;
+			text-transform: capitalize;
+			letter-spacing: 0.02em;
+			padding-top: 0.4em;
+		}
 		
 		ul {
 			list-style: none;
@@ -432,10 +445,15 @@ article.post
 			&:hover {
 				border-color: $my-orange;
 			}
-			h3 {
+			.share-title {
+				display: inline-block;
 				padding: 0;
 				margin: 0;
 				font-family: $header-font;
+				font-size: 1.999em;
+				font-weight: 600;
+				line-height: 1.05;
+				text-transform: capitalize;
 				letter-spacing: 0.08em;
 			}
 			a {

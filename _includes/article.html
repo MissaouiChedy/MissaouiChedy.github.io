@@ -1,7 +1,7 @@
 
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 	<div id="outline">
-	    <h4>outline</h4>
+	    <p class="outline-title">outline</p>
 		<ul>
 		</ul>
 	</div>
@@ -44,7 +44,7 @@
 		{{ include.post_arg.content }}
 	</div>
 	<footer class="article-footer">
-		<div class="share"><a href="{{ include.post_arg.url }}"><h3>SHARE&nbsp;THIS</h3></a></div>
+		<div class="share"><a href="{{ include.post_arg.url }}"><span class="share-title">SHARE&nbsp;THIS</span></a></div>
 	</footer>
 	{% if include.post_arg.comments %} 
 	<div id="disqus_thread"></div>
