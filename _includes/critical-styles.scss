@@ -58,6 +58,8 @@ body {
 	padding-top: 0.4em;
 	padding-bottom: 0em;
 	margin-bottom: 0em;
+	display: inline-block;
+	line-height: 1.25;
 	font-family: $title-fonts;
 	line-height: 1.05;
 	font-weight: 600;
@@ -172,6 +174,9 @@ article.post
 				a {
 					color: #666;
 					font-size: inherit;
+					display: inline-block;
+					line-height: 1.7;
+					padding: 0.15em 0.4em;
 					&:hover,
 					&:focus-visible {
 						color: $link-orange;
@@ -179,7 +184,7 @@ article.post
 				}
 				&:not(:last-child)::after {
 					content: "\00b7";
-					margin: 0 0.55em;
+					margin: 0 0.7em;
 					color: $my-orange;
 				}
 			}
@@ -518,6 +523,9 @@ section.tags-index {
 	@include on-mobile() {
 		margin-right: 0.5em;
 		margin-left: 0.5em;
+		ul.tags-grid {
+			gap: 0.9em;
+		}
 	}
 }
 
@@ -538,6 +546,9 @@ main.tag-results {
 		display: none;
 		&:target {
 			display: block;
+		}
+		div.archive-entry a {
+			font-size: 1.7em;
 		}
 		header {
 			padding-bottom: 0.8em;
@@ -600,6 +611,7 @@ div.about {
 footer.site-footer 
 {
 	font-size: 0.8em;
+	line-height: 1.9;
 	text-align: center;
 	margin: 0 auto;
 	margin-top: 1em;
@@ -608,6 +620,14 @@ footer.site-footer
 	a {
 		color: $link-orange;
 		text-decoration: underline;
+	}
+	span.ai-note-link {
+		display: block;
+		margin-top: 0.4em;
+		a {
+			display: inline-block;
+			padding: 0.35em 0.6em;
+		}
 	}
 }
 span.danger {
