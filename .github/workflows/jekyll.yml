@@ -37,9 +37,9 @@ jobs:
         # https://github.com/ruby/setup-ruby/releases/tag/v1.321.0
         uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b
         with:
-          # Must match RUBY VERSION in Gemfile.lock exactly, because the Gemfile
-          # uses `ruby RUBY_VERSION` and bundler runs in frozen/deployment mode.
-          ruby-version: '3.4.9'
+          # No ruby-version input: setup-ruby reads .ruby-version, which is also
+          # what Bundler uses (Gemfile has `ruby file: ".ruby-version"`), so the
+          # version is specified exactly once for local builds and CI.
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
           cache-version: 0 # Increment this number if you need to re-download cached gems
       - name: Setup Pages

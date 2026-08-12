@@ -1,7 +1,7 @@
 {
   "protocolVersion": "0.3.0",
   "name": "Tech Dominator Blog",
-  "description": "Technical blog by Chedy Missaoui imposing technical domination on Azure and other Microsoft technologies. Deep coverage of Azure Event Hubs, ASP.NET Core, C#, Elixir/Phoenix, and web development. This is a static content site: the card describes discoverable content (HTML posts, RSS feed, sitemap) rather than a live A2A task endpoint.",
+  "description": "Technical blog by Chedy Missaoui imposing technical domination on Azure and other Microsoft technologies. Deep coverage of Azure Event Hubs, ASP.NET Core, C#, Elixir/Phoenix, and web development. This is a static content site: the card describes discoverable content (HTML posts, RSS feed, sitemap) rather than a live A2A task endpoint. Every page is also available as Markdown: replace the .html extension with .md (served as text/markdown).",
   "url": "https://blog.techdominator.com",
   "preferredTransport": "JSONRPC",
   "version": "1.0.0",
@@ -17,7 +17,7 @@
     "stateTransitionHistory": false
   },
   "defaultInputModes": ["text/plain"],
-  "defaultOutputModes": ["text/html", "text/plain"],
+  "defaultOutputModes": ["text/html", "text/markdown", "text/plain"],
   "skills": [
     {
       "id": "azure-event-hubs",

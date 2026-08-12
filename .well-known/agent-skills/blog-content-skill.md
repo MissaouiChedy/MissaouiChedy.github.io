@@ -15,6 +15,15 @@ Microsoft technologies).
 1. Query post metadata (titles, URLs, publication dates, tags, and summaries) by fetching `https://blog.techdominator.com/posts.json` or reading the sitemap at `https://blog.techdominator.com/sitemap.xml`.
 2. Fetch individual HTML pages/posts, interact via WebMCP tools (`search_posts`, `list_posts`, `get_post`), or subscribe to the Atom feed at `https://blog.techdominator.com/feed.xml`.
 
+## Markdown versions
+
+Every HTML page has a Markdown twin served with `Content-Type: text/markdown`:
+replace the `.html` extension with `.md` in any page URL (for example,
+`https://blog.techdominator.com/article/load-testing-event-hubs-processing-with-locust.md`
+or `https://blog.techdominator.com/about-chedy-missaoui.md`). Prefer the `.md`
+version when consuming article content as an agent; the sitemap lists both
+variants of every page.
+
 ## Related resources
 
 - JSON Posts Index: `https://blog.techdominator.com/posts.json`

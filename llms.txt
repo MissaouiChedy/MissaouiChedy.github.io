@@ -16,7 +16,7 @@ Main topic clusters:
 - C#/.NET: async-await, reactive programming, MVVM, and software architecture
 - Web development: CSS, JavaScript, React, and responsive design
 
-Site structure: posts live under /article/{slug}.html. A machine-readable index of all posts (title, URL, date, tags, summary) is available as JSON at {{ "/posts.json" | absolute_url }}.
+Site structure: posts live under /article/{slug}.html. Every page is also available as Markdown: replace the .html extension with .md (for example, {{ "/article/load-testing-event-hubs-processing-with-locust.html" | absolute_url }} is also at {{ "/article/load-testing-event-hubs-processing-with-locust.md" | absolute_url }}; the About page is at {{ "/about-chedy-missaoui.md" | absolute_url }}). Markdown versions are served with Content-Type: text/markdown and are the preferred format for agents. A machine-readable index of all posts (title, URL, date, tags, summary) is available as JSON at {{ "/posts.json" | absolute_url }}.
 
 ## Pages
 
