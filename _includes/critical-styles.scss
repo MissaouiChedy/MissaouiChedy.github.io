@@ -216,9 +216,17 @@ article.post
 	div#outline {
 		display: none;
 		position: fixed;
-		width: 20vw;
-		right: 0;
+		width: 16em;
+		box-sizing: border-box;
+		// Dock just left of the centered 46em content column:
+		// right edge = content's left edge (50% - 23em) minus a 1em gap.
+		left: calc(50% - 23em - 16em - 1em);
 		top: 12vw;
+		padding: 0.6em 0.9em;
+		background-color: white;
+		border: 1px solid #f0f0f0;
+		border-radius: 4px;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 		.outline-title {
 			font-family: $header-font;
 			font-size: 1.414em;
@@ -247,6 +255,11 @@ article.post
 		}
 		@include on-mobile() {
 			width: 0;
+		}
+		// Below ~80em the viewport cannot fit the 46em content column plus
+		// a 16em panel with 1em gaps on both sides; hide it to avoid overlap.
+		@media screen and (max-width: 80em) {
+			display: none !important;
 		}
 	}
 	%regular-link {

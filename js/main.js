@@ -61,10 +61,10 @@ function addHeadingLinkIcon(elem) {
 }
 
 $(document).ready(function () {
-	if ($('div#outline') && !($('span.no-outline'))) {
+	if ($('div#outline').length && !$('span.no-outline').length) {
 		if ($('article.post div.content h2').length > 4) {
 			$('article.post div.content h2').each(function (index, elem) {
-				var title = $(elem).html();
+				var title = $(elem).clone().children('.heading-anchor-link').remove().end().text();
 				var title_id = $(elem).attr('id') || ensureUniqueId(generateId(elem));
 				$(elem).attr('id', title_id);
 				addHeadingLinkIcon(elem);

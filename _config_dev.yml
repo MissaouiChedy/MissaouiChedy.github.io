@@ -1,0 +1,5 @@
+# Local development overrides — use with:
+#   bundle exec jekyll serve --config _config.yml,_config_dev.yml
+# Points all site.url references (scripts, fonts, canonical links) at localhost
+# so local changes are testable. Never deployed.
+url: http://127.0.0.1:4000
