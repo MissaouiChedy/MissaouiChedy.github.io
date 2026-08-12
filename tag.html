@@ -2,7 +2,7 @@
 layout: default
 title: Tagged Articles
 ---
-<main class="tag-results">
+<div class="tag-results">
 	<p class="tag-results-intro">Choose a tag from the <a href="{{ site.baseurl }}/tags.html">tags index</a>.</p>
 	{% assign sorted_tags = site.tags | sort %}
 	{% for tag in sorted_tags %}
@@ -25,4 +25,4 @@ title: Tagged Articles
 		</div>
 	</section>
 	{% endfor %}
-</main>
+</div>
