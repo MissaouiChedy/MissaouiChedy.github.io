@@ -15,6 +15,10 @@ Demonstration of how to use the Event Hubs Kafka protocol surface for sending/re
   <img src="{{ site.url }}/imgs/AzureEventHubsKafkaSurface.optimized.webp" width="693" height="386" alt="Azure Event Hubs Kafka Surface" />
 </div>
 
+**UPDATE,** 07 Sep 2026 &mdash; Corrected reference to `EventProcessorClient` which was wrongly referred to as `EventConsumerClient`
+
+***
+
 Azure Event Hubs exposes a [Kafka protocol surface](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-for-kafka-ecosystem-overview) that allows Kafka clients to connect to an Event Hubs namespace without any changes to the broker infrastructure. This feature is available starting from the **Standard tier** and supports Kafka version 1.0 and later.
 
 When I first read about this, my initial reaction was: what for? Event Hubs already has a capable SDK, so why bother with a Kafka compatibility layer? It turns out there are some compelling use cases, which we will get into shortly.
@@ -167,9 +171,9 @@ After the send loop exits, `producer.Flush` is called to ensure any buffered mes
 
 ### Receiving Events and Checkpointing
 
-Event consumption in Kafka works via polling: the consumer calls `Consume` repeatedly to fetch the next available event from its assigned partitions. This is conceptually similar to how the [Event Hubs SDK works with `EventHubConsumerClient`,](https://blog.techdominator.com/article/consuming-messages-with-azure-event-hubs.html) though the API surface differs.
+Event consumption in Kafka works via polling: the consumer calls `Consume` repeatedly to fetch the next available event from its assigned partitions. This is conceptually similar to how the [Event Hubs SDK works with `EventProcessorClient`,](https://blog.techdominator.com/article/consuming-messages-with-azure-event-hubs.html) though the API surface differs.
 
-With [Confluent.Kafka](https://github.com/confluentinc/confluent-kafka-dotnet) a loop should be explicitly defined as opposed to the Event Hubs SDK's `EventHubConsumerClient` which exposes events to register handling callbacks.  
+With [Confluent.Kafka](https://github.com/confluentinc/confluent-kafka-dotnet) a loop should be explicitly defined as opposed to the Event Hubs SDK's `EventProcessorClient` which exposes events to register handling callbacks.  
 
 Checkpointing in Kafka is handled by committing offsets back to the broker, which tracks the consumer group's position per partition. 
 
