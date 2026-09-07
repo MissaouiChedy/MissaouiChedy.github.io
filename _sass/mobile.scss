@@ -1,4 +1,4 @@
-@media screen and (min-width: 320px) and (max-width: 480px) {
+@media screen and (max-width: 48em) {
 	
 	h1 {
 		font-size: 2.441em;
@@ -16,7 +16,6 @@
 
 
 	article.post {
-		padding: 0.5em;
 		div.navigation {
 			padding-top: 0.6em;
 		}
@@ -25,8 +24,7 @@
 		}
 
 		figure.highlight {
-			overflow-y: scroll;
-			margin-left: -2em; 
+			overflow-x: auto;
 		}
 	}
 

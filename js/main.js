@@ -60,6 +60,58 @@ function addHeadingLinkIcon(elem) {
 	});
 }
 
+function trackOutlineSections() {
+	var outline = document.getElementById('outline');
+	if (!outline) {
+		return;
+	}
+
+	var links = Array.from(outline.querySelectorAll('a[href^="#"]'));
+	var sections = links.map(function (link) {
+		return document.getElementById(link.getAttribute('href').slice(1));
+	});
+	if (!sections.length) {
+		return;
+	}
+
+	var currentIndex = -1;
+	var scheduled = false;
+	function updateCurrentSection() {
+		scheduled = false;
+		if (!outline.getClientRects().length) {
+			return;
+		}
+		var nextIndex = 0;
+		var threshold = window.innerHeight * 0.2;
+		sections.forEach(function (section, index) {
+			if (section && section.getBoundingClientRect().top <= threshold) {
+				nextIndex = index;
+			}
+		});
+		if (nextIndex === currentIndex) {
+			return;
+		}
+		links.forEach(function (link, index) {
+			if (index === nextIndex) {
+				link.setAttribute('aria-current', 'location');
+			} else {
+				link.removeAttribute('aria-current');
+			}
+		});
+		currentIndex = nextIndex;
+	}
+	function scheduleUpdate() {
+		if (!scheduled) {
+			scheduled = true;
+			window.requestAnimationFrame(updateCurrentSection);
+		}
+	}
+	window.addEventListener('scroll', scheduleUpdate, { passive: true });
+	window.addEventListener('resize', scheduleUpdate);
+	window.addEventListener('load', scheduleUpdate);
+	scheduleUpdate();
+}
+
 $(document).ready(function () {
 	if ($('div#outline').length && !$('span.no-outline').length) {
 		if ($('article.post div.content h2').length > 4) {
@@ -81,6 +133,7 @@ $(document).ready(function () {
 		}
 		addHeadingLinkIcon(elem);
 	});
+	trackOutlineSections();
 	
 	if ($('#disqus_thread').children().length == 0) {
 		$('#disqus_thread').append('<p class="comment-error-message">Your browser settings(Tracking Protection) are maybe blocking the comment section !</p>')
