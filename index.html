@@ -1,6 +1,54 @@
 ---
 layout: default
 ---
-<div class="main">
-	{% include article.html post_arg=site.posts.first %}
+<div class="welcome">
+	<section class="welcome-hero" aria-labelledby="welcome-title">
+		<p class="welcome-kicker">Tech Dominator</p>
+		<h1 id="welcome-title">Practical ideas for building better software in the cloud.</h1>
+		<p class="welcome-intro">I’m Chedy Missaoui. I write about Azure, distributed systems, DevOps, and the engineering choices that make modern platforms useful in production.</p>
+		<div class="welcome-actions">
+			<a class="welcome-button" href="{{ site.baseurl }}/about-chedy-missaoui.html">Meet Chedy</a>
+			<a class="welcome-text-link" href="{{ site.baseurl }}/posts.html">Browse the full archive <span aria-hidden="true">→</span></a>
+		</div>
+	</section>
+
+	<section class="welcome-section" aria-labelledby="recent-posts-title">
+		<div class="welcome-section-heading">
+			<div>
+				<p class="welcome-kicker">Keep exploring</p>
+				<h2 id="recent-posts-title">Recent posts</h2>
+			</div>
+			<a class="welcome-text-link" href="{{ site.baseurl }}/posts.html">All posts <span aria-hidden="true">→</span></a>
+		</div>
+		<ul class="recent-posts">
+			{% for post in site.posts limit: 5 %}
+			<li>
+				<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+				<a href="{{ post.url }}">{{ post.title }}</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+
+	<section class="welcome-section starting-points" aria-labelledby="starting-points-title">
+		<p class="welcome-kicker">Not sure where to begin?</p>
+		<h2 id="starting-points-title">Good places to start</h2>
+		<div class="starting-point-grid">
+			<a class="starting-point" href="{{ site.baseurl }}/article/sending-messages-with-azure-event-hubs.html">
+				<span class="starting-point-label">Azure fundamentals</span>
+				<strong>Sending messages with Azure Event Hubs</strong>
+				<span>Get oriented with a practical introduction to event streaming.</span>
+			</a>
+			<a class="starting-point" href="{{ site.baseurl }}/article/load-testing-event-hubs-processing-with-locust.html">
+				<span class="starting-point-label">Performance</span>
+				<strong>Load testing Event Hubs processing with Locust</strong>
+				<span>Learn how to measure asynchronous systems where the work happens later.</span>
+			</a>
+			<a class="starting-point" href="{{ site.baseurl }}/article/circuit-breaker-pattern-part-1-basic-principle.html">
+				<span class="starting-point-label">Design patterns</span>
+				<strong>The circuit breaker pattern</strong>
+				<span>Understand the pattern before reaching for an implementation.</span>
+			</a>
+		</div>
+	</section>
 </div>
