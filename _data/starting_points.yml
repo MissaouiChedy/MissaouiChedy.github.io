@@ -1,0 +1,25 @@
+# Curated entry points listed in the "start here" section of the home page.
+# Each item points at the post that opens a topic:
+#   title: name of the topic
+#   url:   post that is the best first read for that topic
+#   blurb: one sentence describing what the topic covers
+#   tag:   tag gathering the rest of the posts on that topic (optional)
+- title: "Azure Event Hubs"
+  url: /article/sending-messages-with-azure-event-hubs.html
+  blurb: "Sending a first event, then consuming, scaling, checkpointing and load testing an event stream."
+  tag: azure-event-hubs
+
+- title: "ASP.NET Core Tag Helpers"
+  url: /article/the-very-basics-of-nesting-for-tag-helpers.html
+  blurb: "Nesting and rendering Tag Helpers, up to building a dynamic form Tag Helper from scratch."
+  tag: tag-helpers
+
+- title: "Elixir and the Erlang platform"
+  url: /article/elixir-erlang-platform.html
+  blurb: "What makes the BEAM different, with GenServers, fault tolerance and interop with Python and C++."
+  tag: elixir
+
+- title: "C# under the hood"
+  url: /article/understanding_async_await_c_sharp.html
+  blurb: "How async/await actually works, plus reactive extensions and everyday C# design decisions."
+  tag: csharp

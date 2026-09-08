@@ -586,6 +586,168 @@ div.archives
 	}
 }
 
+div.home {
+	margin-top: 1.5em;
+	margin-bottom: 3em;
+	section {
+		margin-bottom: $space-l;
+	}
+	h2.home-section-title {
+		display: block;
+		padding-top: 0;
+		padding-bottom: 0.2em;
+		margin-bottom: $space-s;
+		font-size: 1.414em;
+		color: #666;
+		border-bottom: 2px solid $my-orange;
+	}
+	section.home-intro {
+		h1 {
+			padding-top: 0;
+			font-size: 2.5em;
+			text-transform: none;
+		}
+		p.home-lead {
+			font-family: $default-font-family;
+			font-size: $default-font-size;
+			line-height: 1.6;
+			padding-top: 0.6em;
+			a {
+				color: $link-orange;
+				text-decoration: underline;
+			}
+		}
+		p.home-actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.6em;
+			margin-top: 1.2em;
+			a.home-action {
+				display: inline-block;
+				background-color: black;
+				color: white;
+				font-family: $header-font;
+				padding: 0.6em 1em;
+				border-radius: 3px;
+				letter-spacing: 0.06em;
+				font-size: 0.9em;
+				text-transform: lowercase;
+				transition: background-color 0.2s ease;
+				&:hover,
+				&:focus-visible {
+					background-color: $link-orange;
+				}
+				&.home-action-secondary {
+					background-color: transparent;
+					color: #222;
+					border: 1px solid #ccc;
+					&:hover,
+					&:focus-visible {
+						color: $link-orange;
+						border-color: $my-orange;
+						background-color: transparent;
+					}
+				}
+			}
+		}
+	}
+	ul.home-post-list {
+		li {
+			display: flex;
+			align-items: baseline;
+			gap: 1em;
+			margin-bottom: $space-s;
+			time {
+				flex: 0 0 7em;
+				font-size: 0.9em;
+				white-space: nowrap;
+			}
+			a {
+				@extend %title;
+				padding-top: 0;
+				color: black;
+				font-size: 1.4em;
+				line-height: 1.2;
+				text-transform: none;
+				overflow-wrap: anywhere;
+				&:hover,
+				&:focus-visible {
+					color: $link-orange;
+				}
+			}
+			@include on-mobile() {
+				flex-direction: column;
+				gap: 0.2em;
+				time {
+					flex-basis: auto;
+				}
+			}
+		}
+	}
+	p.home-more {
+		font-family: $time-fonts;
+		a {
+			color: #666;
+			&:hover,
+			&:focus-visible {
+				color: $link-orange;
+			}
+			&::after {
+				content: "\00a0\2192";
+			}
+		}
+	}
+	ul.home-start-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(18em, 1fr));
+		gap: 0.9em;
+		li {
+			display: flex;
+			flex-direction: column;
+			min-width: 0;
+			padding: 1em 1.1em;
+			border-left: 3px solid $my-orange;
+			background-color: #f5f5f5;
+			h3 {
+				padding-top: 0;
+				font-size: 1.2em;
+				text-transform: none;
+				overflow-wrap: anywhere;
+				a {
+					color: #222;
+					font-size: inherit;
+					&:hover,
+					&:focus-visible {
+						color: $link-orange;
+					}
+				}
+			}
+			p {
+				font-family: $default-font-family;
+				font-size: 0.95em;
+				line-height: 1.5;
+				padding-top: 0.4em;
+				padding-bottom: 0.6em;
+				color: #333;
+			}
+			a.home-start-tag {
+				margin-top: auto;
+				color: #666;
+				font-family: $time-fonts;
+				font-size: 0.85em;
+				text-transform: lowercase;
+				&:hover,
+				&:focus-visible {
+					color: $link-orange;
+				}
+				&::after {
+					content: "\00a0\2192";
+				}
+			}
+		}
+	}
+}
+
 section.tags-index {
 	margin-top: 2em;
 	margin-bottom: 3em;

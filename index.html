@@ -1,6 +1,47 @@
 ---
 layout: default
 ---
-<div class="main">
-	{% include article.html post_arg=site.posts.first %}
+{% include sponsor-banner.html %}
+<div class="home">
+	<section class="home-intro">
+		<h1>Deep dives from the trenches</h1>
+		<p class="home-lead">
+			Tech Dominator is the technical blog of <a href="{{ site.url }}/about-chedy-missaoui.html">Chedy Missaoui</a>,
+			software engineer and Microsoft MVP. Every post is a hands-on write-up of something actually built,
+			measured or broken: mostly Azure — Event Hubs in particular — along with C#/.NET, ASP.NET Core,
+			Elixir and web engineering.
+		</p>
+		<p class="home-actions">
+			<a class="home-action" href="{{ site.url }}{{ site.posts.first.url }}">read the latest post</a>
+			<a class="home-action home-action-secondary" href="{{ site.url }}/posts.html">browse all {{ site.posts | size }} posts</a>
+		</p>
+	</section>
+
+	<section class="home-recent" aria-labelledby="home-recent-title">
+		<h2 class="home-section-title" id="home-recent-title">Recent posts</h2>
+		<ul class="home-post-list">
+		{% for post in site.posts limit: 5 %}
+			<li>
+				<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+				<a href="{{ post.url }}">{{ post.title | replace: '<br />', ' ' | replace: '<br/>', ' ' | replace: '<br>', ' ' | strip_html }}</a>
+			</li>
+		{% endfor %}
+		</ul>
+		<p class="home-more"><a href="{{ site.url }}/posts.html">the full archive, year by year</a></p>
+	</section>
+
+	<section class="home-start" aria-labelledby="home-start-title">
+		<h2 class="home-section-title" id="home-start-title">Start here</h2>
+		<ul class="home-start-grid">
+		{% for entry in site.data.starting_points %}
+			<li>
+				<h3><a href="{{ site.baseurl }}{{ entry.url }}">{{ entry.title }}</a></h3>
+				<p>{{ entry.blurb }}</p>
+				{% if entry.tag %}
+				<a class="home-start-tag" href="{{ site.baseurl }}/tag.html#{{ entry.tag }}">all {{ entry.tag | replace: '-', ' ' }} posts</a>
+				{% endif %}
+			</li>
+		{% endfor %}
+		</ul>
+	</section>
 </div>
