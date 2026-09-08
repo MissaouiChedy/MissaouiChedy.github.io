@@ -3,7 +3,7 @@
   "serverInfo": {
     "name": "tech-dominator-blog",
     "version": "1.0.0",
-    "description": "Tech Dominator technical blog: read access to posts, tags, slides and feeds about Azure and Microsoft technologies."
+    "description": "Practical Azure engineering: .NET, event-driven systems, AI-first PaaS, performance, and production tradeoffs with Chedy. Read access to posts, tags, slides and feeds."
   },
   "transport": {
     "type": "http",
