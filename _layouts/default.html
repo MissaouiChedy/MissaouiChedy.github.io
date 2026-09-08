@@ -4,6 +4,48 @@
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="{{ site.description }}" />
+	{% if page.title %}
+	{% assign og_title = page.title | strip_html | escape %}
+	{% else %}
+	{% assign og_title = site.title | escape %}
+	{% endif %}
+	{% if page.layout == 'post' and page.excerpt %}
+	{% assign og_description = page.excerpt | strip_html | strip_newlines | strip | truncate: 200 | escape %}
+	{% else %}
+	{% assign og_description = site.description | strip_newlines | strip | escape %}
+	{% endif %}
+	{% assign og_image = nil %}
+	{% if page.lcp_image %}
+	{% assign og_image = page.lcp_image | prepend: site.url %}
+	{% elsif page.layout == 'post' %}
+	{% assign og_image_chunks = page.content | split: 'src="' %}
+	{% for chunk in og_image_chunks offset: 1 %}
+	{% assign og_image_candidate = chunk | split: '"' | first %}
+	{% if og_image_candidate contains '/imgs/' %}
+	{% assign og_image = og_image_candidate %}
+	{% break %}
+	{% endif %}
+	{% endfor %}
+	{% if og_image %}
+	{% unless og_image contains '://' %}
+	{% assign og_image = og_image | prepend: site.url %}
+	{% endunless %}
+	{% endif %}
+	{% endif %}
+	{% unless og_image %}
+	{% assign og_image = site.url | append: '/imgs/TechDominatorLogo.png' %}
+	{% endunless %}
+	<meta property="og:title" content="{{ og_title }}" />
+	<meta property="og:description" content="{{ og_description }}" />
+	<meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}" />
+	<meta property="og:site_name" content="{{ site.title | escape }}" />
+	<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}" />
+	<meta property="og:image" content="{{ og_image }}" />
+	<meta name="twitter:card" content="{% if og_image contains 'TechDominatorLogo.png' %}summary{% else %}summary_large_image{% endif %}" />
+	<meta name="twitter:site" content="@{{ site.twitter_username }}" />
+	<meta name="twitter:title" content="{{ og_title }}" />
+	<meta name="twitter:description" content="{{ og_description }}" />
+	<meta name="twitter:image" content="{{ og_image }}" />
 	<title>{% if page.title %}{{ page.title | strip_html | escape }} - {{ site.title }}{% else %}{{ site.title | escape }} - Blog{% endif %}</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
