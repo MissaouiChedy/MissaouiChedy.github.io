@@ -44,8 +44,19 @@
 	<div class="content" itemprop="articleBody">
 		{{ include.post_arg.content }}
 	</div>
+	{% assign share_url = site.url | append: include.post_arg.url %}
+	{% assign share_title = include.post_arg.title | strip_html | strip_newlines | strip %}
 	<footer class="article-footer">
-		<div class="share"><a href="{{ include.post_arg.url }}"><span class="share-title">SHARE&nbsp;THIS</span></a></div>
+		<div class="share" data-share-url="{{ share_url | escape }}" data-share-title="{{ share_title | escape }}">
+			<span class="share-title"><i class="fa fa-share-alt" aria-hidden="true"></i> share&nbsp;this</span>
+			<ul class="share-actions">
+				<li><button type="button" class="share-btn share-copy" aria-label="Copy link" title="Copy link"><i class="fa fa-link" aria-hidden="true"></i></button></li>
+				<li><a class="share-btn share-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url={{ share_url | cgi_escape }}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+				<li><a class="share-btn share-x" href="https://x.com/intent/tweet?url={{ share_url | cgi_escape }}&text={{ share_title | cgi_escape }}" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X"><svg class="x-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></li>
+				<li><a class="share-btn share-reddit" href="https://www.reddit.com/submit?url={{ share_url | cgi_escape }}&title={{ share_title | cgi_escape }}" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit" title="Share on Reddit"><i class="fa fa-reddit" aria-hidden="true"></i></a></li>
+				<li class="share-native-item" hidden><button type="button" class="share-btn share-native" aria-label="More options" title="More options"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button></li>
+			</ul>
+		</div>
 	</footer>
 	{% if include.post_arg.comments %} 
 	<div id="disqus_thread"></div>

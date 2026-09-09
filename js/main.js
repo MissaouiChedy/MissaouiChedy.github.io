@@ -40,6 +40,61 @@ function copyHeadingLink(linkUrl) {
 	return Promise.resolve();
 }
 
+function initShareControls() {
+	$('.share[data-share-url]').each(function (index, elem) {
+		var share = $(elem);
+		var url = share.attr('data-share-url');
+		var title = share.attr('data-share-title');
+
+		var copyButton = share.find('.share-copy');
+		var copyLabel = copyButton.find('.share-copy-label');
+		var copyIcon = copyButton.find('i.fa');
+		var defaultCopyText = copyLabel.length ? copyLabel.text() : '';
+		var defaultCopyTitle = copyButton.attr('title') || 'Copy link';
+
+		copyButton.on('click', function () {
+			copyHeadingLink(url).then(function () {
+				if (copyLabel.length) {
+					copyLabel.text('copied!');
+				}
+				if (copyIcon.length) {
+					copyIcon.removeClass('fa-link').addClass('fa-check');
+				}
+				copyButton.addClass('is-copied').attr('title', 'Copied!').attr('aria-label', 'Copied!');
+
+				setTimeout(function () {
+					if (copyLabel.length) {
+						copyLabel.text(defaultCopyText);
+					}
+					if (copyIcon.length) {
+						copyIcon.removeClass('fa-check').addClass('fa-link');
+					}
+					copyButton.removeClass('is-copied').attr('title', defaultCopyTitle).attr('aria-label', defaultCopyTitle);
+				}, 2000);
+			}).catch(function () {
+				return null;
+			});
+		});
+
+		// Progressive enhancement: the Web Share API (native share sheet)
+		// only exists on supporting browsers, so the button stays hidden otherwise.
+		if (navigator.share) {
+			var nativeItem = share.find('.share-native-item');
+			nativeItem.removeAttr('hidden');
+			nativeItem.find('.share-native').on('click', function () {
+				navigator.share({ title: title, url: url }).catch(function () {
+					return null;
+				});
+			});
+		}
+
+		share.find('.share-linkedin').on('click', function (event) {
+			event.preventDefault();
+			window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url), '_blank', 'noopener,noreferrer');
+		});
+	});
+}
+
 function addHeadingLinkIcon(elem) {
 	var heading = $(elem);
 	if (heading.find('.heading-anchor-link').length > 0) {
@@ -134,6 +189,7 @@ $(document).ready(function () {
 		addHeadingLinkIcon(elem);
 	});
 	trackOutlineSections();
+	initShareControls();
 	
 	if ($('#disqus_thread').children().length == 0) {
 		$('#disqus_thread').append('<p class="comment-error-message">Your browser settings(Tracking Protection) are maybe blocking the comment section !</p>')

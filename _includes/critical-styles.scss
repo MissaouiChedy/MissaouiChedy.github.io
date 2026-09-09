@@ -53,6 +53,12 @@ $space-l: 2.5rem;
 .fa-frown-o:before { content: "\f119"; }
 .fa-envelope:before { content: "\f0e0"; }
 .fa-link:before { content: "\f0c1"; }
+.fa-twitter:before { content: "\f099"; }
+.fa-reddit:before { content: "\f1a1"; }
+.fa-reddit-alien:before { content: "\f281"; }
+.fa-share-alt:before { content: "\f1e0"; }
+.fa-ellipsis-h:before { content: "\f141"; }
+.fa-check:before { content: "\f00c"; }
 
 body {
 	display: flex;
@@ -504,30 +510,164 @@ article.post
 		color: #666;
 		margin-bottom: 0.5em;
 		text-align: right;
+		&.article-footer {
+			padding: 0;
+			border-top: 0;
+			text-align: left;
+			background-color: transparent;
+		}
 		div.share {
-			display: inline-block;
+			box-sizing: border-box;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1em;
+			flex-wrap: wrap;
+			width: 100%;
+			padding: 0.75em 1.15em;
+			border-left: 4px solid $my-orange;
+			border-radius: 0 6px 6px 0;
+			background: linear-gradient(135deg, #242424 0%, #181818 100%);
+			box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+			color: white;
 			.share-title {
-				display: inline-block;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5em;
 				padding: 0;
 				margin: 0;
 				font-family: $header-font;
-				font-size: 1em;
-				font-weight: 400;
-				line-height: 1.4;
-				text-transform: lowercase;
-				letter-spacing: 0;
+				font-size: 1.05em;
+				font-weight: 600;
+				line-height: 1;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				color: #e0e0e0;
+				i.fa {
+					color: $my-orange;
+					font-size: 1.05em;
+				}
 			}
-			a {
+			ul.share-actions {
+				display: flex;
+				align-items: center;
+				flex-wrap: wrap;
+				gap: 0.6em;
+				list-style: none;
 				margin: 0;
-				display: inline-block;
-				padding: 0.5em;
-				color: #666;
+				padding: 0;
+				li {
+					display: inline-flex;
+					margin: 0;
+					padding: 0;
+				}
+				li[hidden] {
+					display: none;
+				}
+			}
+			.share-btn {
+				box-sizing: border-box;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 2.25em;
+				height: 2.25em;
+				margin: 0;
+				padding: 0;
+				border: 1px solid rgba(255, 255, 255, 0.16);
+				border-radius: 4px;
+				background-color: rgba(255, 255, 255, 0.08);
+				color: #f0f0f0;
+				font-size: 1.05em;
+				cursor: pointer;
+				text-decoration: none;
+				transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+				user-select: none;
+				-webkit-user-select: none;
+
+				i.fa {
+					font-size: 1.1em;
+					line-height: 1;
+				}
+
+				.x-icon {
+					width: 1em;
+					height: 1em;
+					fill: currentColor;
+					display: block;
+				}
+
 				&:hover,
 				&:focus-visible {
-					color: $link-orange;
+					color: #ffffff;
+				}
+
+				&:focus-visible {
+					outline: 2px solid $my-orange;
+					outline-offset: 2px;
+				}
+
+				&.share-copy {
+					background-color: $my-orange;
+					border-color: $my-orange;
+					color: #1a1a1a;
+
+					&:hover,
+					&:focus-visible {
+						background-color: #ffb732;
+						border-color: #ffb732;
+						color: #000000;
+						box-shadow: 0 2px 8px rgba(250, 162, 0, 0.4);
+					}
+
+					&.is-copied {
+						background-color: #2e7d32;
+						border-color: #2e7d32;
+						color: #ffffff;
+						box-shadow: 0 2px 8px rgba(46, 125, 50, 0.4);
+					}
+				}
+
+				&.share-linkedin:hover,
+				&.share-linkedin:focus-visible {
+					background-color: #0077b5;
+					border-color: #0077b5;
+					color: #ffffff;
+					box-shadow: 0 2px 8px rgba(0, 119, 181, 0.45);
+				}
+
+				&.share-x:hover,
+				&.share-x:focus-visible {
+					background-color: #000000;
+					border-color: #ffffff;
+					color: #ffffff;
+					box-shadow: 0 2px 8px rgba(255, 255, 255, 0.25);
+				}
+
+				&.share-reddit:hover,
+				&.share-reddit:focus-visible {
+					background-color: #ff4500;
+					border-color: #ff4500;
+					color: #ffffff;
+					box-shadow: 0 2px 8px rgba(255, 69, 0, 0.45);
+				}
+
+				&.share-native:hover,
+				&.share-native:focus-visible {
+					background-color: rgba(255, 255, 255, 0.2);
+					border-color: $my-orange;
+					color: $my-orange;
+					box-shadow: 0 2px 8px rgba(250, 162, 0, 0.3);
 				}
 			}
 		}
+	}
+}
+
+@media screen and (max-width: 48em) {
+	article.post footer.article-footer div.share {
+		padding: 0.75em 0.9em;
+		gap: 0.6em;
 	}
 }
 
