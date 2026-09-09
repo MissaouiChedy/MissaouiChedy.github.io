@@ -669,6 +669,10 @@ article.post
 		padding: 0.75em 0.9em;
 		gap: 0.6em;
 	}
+
+	article.post footer.article-footer div.share.has-native-share .share-web-item {
+		display: none;
+	}
 }
 
 div.archives 

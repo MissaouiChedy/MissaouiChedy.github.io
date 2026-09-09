@@ -80,6 +80,7 @@ function initShareControls() {
 		// only exists on supporting browsers, so the button stays hidden otherwise.
 		if (navigator.share) {
 			var nativeItem = share.find('.share-native-item');
+			share.addClass('has-native-share');
 			nativeItem.removeAttr('hidden');
 			nativeItem.find('.share-native').on('click', function () {
 				navigator.share({ title: title, url: url }).catch(function () {
