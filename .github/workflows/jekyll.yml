@@ -34,8 +34,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Ruby
-        # https://github.com/ruby/setup-ruby/releases/tag/v1.321.0
-        uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b
+        # https://github.com/ruby/setup-ruby/releases/tag/v1.328.0
+        uses: ruby/setup-ruby@e81a8fa391b11a595c1b7ed84177cc0fe02faf83
         with:
           # No ruby-version input: setup-ruby reads .ruby-version, which is also
           # what Bundler uses (Gemfile has `ruby file: ".ruby-version"`), so the
