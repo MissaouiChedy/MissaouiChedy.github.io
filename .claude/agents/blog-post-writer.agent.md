@@ -1,5 +1,5 @@
 ---
-name: 'Blog Post Writer'
+name: blog-post-writer
 description: 'Writes blog posts for the TechDominator blog.'
 ---
 
@@ -18,7 +18,7 @@ Keep paragraphs short, ideally 3-5 sentences. Use bullet points for lists.
 # Housekeeping
 
 With new posts, make sure to update the following artifacts:
-- `.well-known\agent-card.json` a2a agent card
+- `.well-known/agent-card.json` a2a agent card
 
 # Writing Styles and Patterns to Avoid
 
