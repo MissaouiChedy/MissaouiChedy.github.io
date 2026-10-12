@@ -34,10 +34,10 @@
 		{% endif %}
 		<div class="navigation">
 			{% if include.post_arg != site.posts.last %}
-			<a href="{{ include.post_arg.previous.url }}">previous</a>
+			<a class="nav-prev" href="{{ include.post_arg.previous.url }}">previous</a>
 			{% endif %}
 			{% if include.post_arg != site.posts.first %}
-			<a href="{{ include.post_arg.next.url }}">next</a>
+			<a class="nav-next" href="{{ include.post_arg.next.url }}">next</a>
 			{% endif %}
 		</div>
 	</header>

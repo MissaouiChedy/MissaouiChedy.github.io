@@ -2,19 +2,19 @@
 layout: default
 title: Tags
 ---
-<section class="tags-index" aria-labelledby="tags-title">
+<section class="tags-index" aria-label="Tags">
 	<!-- <header>
 		<h1 id="tags-title">tags</h1>
 	</header> -->
 	{% assign sorted_tags = site.tags | sort %}
-	<ul class="tags-grid">
+	<ul class="tags-cloud">
 	{% for tag in sorted_tags %}
-		<li>
+		{% assign tag_count = tag[1] | size %}
+		{% if tag_count >= 10 %}{% assign tag_tier = 4 %}{% elsif tag_count >= 4 %}{% assign tag_tier = 3 %}{% elsif tag_count >= 2 %}{% assign tag_tier = 2 %}{% else %}{% assign tag_tier = 1 %}{% endif %}
+		<li class="tag-tier-{{ tag_tier }}">
 			<a href="{{ site.baseurl }}/tag.html#{{ tag[0] }}">
 				<span class="tag-name">{{ tag[0] | replace: '-', ' ' }}</span>
-				<span class="tag-count">
-					{{ tag[1] | size }} {% if tag[1].size == 1 %}post{% else %}posts{% endif %}
-				</span>
+				<span class="tag-count">{{ tag_count }}<span class="visually-hidden"> {% if tag_count == 1 %}post{% else %}posts{% endif %}</span></span>
 			</a>
 		</li>
 	{% endfor %}
