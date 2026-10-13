@@ -49,9 +49,9 @@
 	{% if page.excerpt %}{% assign page_description = page.excerpt | strip_html | normalize_whitespace %}{% endif %}
 	<meta name="description" content="{% if page_description and page_description != '' %}{{ page_description | escape }}{% else %}{{ site.description | strip_newlines | strip | escape }}{% endif %}" />
 	<title>{% if page.title %}{{ page.title | strip_html | escape }} - {{ site.title }}{% else %}{{ site.title | escape }} - Blog{% endif %}</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="preload" href="{{ site.url }}/font-awesome-4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="{{ site.url }}/fonts/oswald/oswald-v57-latin.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="{{ site.url }}/fonts/archivo-narrow/archivo-narrow-v35-latin.woff2" as="font" type="font/woff2" crossorigin>
 	{% if page.url == '/' and site.posts.first.lcp_image %}
 	<link rel="preload" as="image" href="{{ site.url }}{{ site.posts.first.lcp_image }}" fetchpriority="high">
 	{% elsif page.lcp_image %}
@@ -59,10 +59,6 @@
 	{% endif %}
 	{% capture critical_css %}{% include critical-styles.scss %}{% endcapture %}
 	<style>{{ critical_css | scssify }}</style>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Inconsolata&family=Oswald:wght@400;600&display=optional" media="print" onload="this.media='all'">
-	<noscript>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Inconsolata&family=Oswald:wght@400;600&display=optional">
-	</noscript>
 	<link rel="icon shortcut" type="image/png" href="{{ site.url }}/favicon.png">
 	{% if page.url != '/' %}
 		<link rel="canonical" href="{{ page.url | prepend: site.baseurl | prepend: site.url }}">

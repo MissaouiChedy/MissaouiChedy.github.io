@@ -3,11 +3,12 @@
 @use 'highlight';
 
 $default-font-size: 16.5px;
-$default-font-family: "Georgia", "Serif";
-$title-fonts: "Oswald", "Helvetica", "Sans Serif";
-$header-font: "Oswald", "Helvetica", "Sans Serif";
-$code-font: "consolas", "Inconsolata", "monospace", "Sans Serif";
-$time-fonts: "Archivo Narrow", "Oswald", "Helvetica", "Sans Serif";
+// Generic families (serif, sans-serif, monospace) must stay unquoted, quoted they are looked up as font names.
+$default-font-family: "Georgia", serif;
+$title-fonts: "Oswald", "Oswald Fallback", "Helvetica", sans-serif;
+$header-font: "Oswald", "Oswald Fallback", "Helvetica", sans-serif;
+$code-font: "consolas", "Inconsolata", "Inconsolata Fallback", monospace;
+$time-fonts: "Archivo Narrow", "Archivo Narrow Fallback", "Helvetica", sans-serif;
 $my-orange: #FAA200;
 // Slightly darker variant of the brand orange that meets WCAG AA (4.5:1) on white/#f9f9f9 backgrounds.
 // Use for text links; keep $my-orange for decorative accents and text on dark backgrounds.
@@ -36,6 +37,82 @@ $space-l: 2.5rem;
 	font-weight: normal;
 	font-style: normal;
 	font-display: block;
+}
+
+// Web fonts are self-hosted (latin subsets) with font-display: swap, which guarantees they are
+// always applied, even when they arrive after first paint. Each has a metric-matched local
+// fallback so the swap causes minimal layout shift. Fallback overrides are computed from the
+// web font's metrics against the local font, using English letter frequencies.
+
+// Oswald: variable font (wght 400-700), preloaded in default.html.
+@font-face {
+	font-family: 'Oswald';
+	src: url('/fonts/oswald/oswald-v57-latin.woff2') format('woff2');
+	font-weight: 400 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+// Oswald fallback, against Arial Regular / Bold.
+@font-face {
+	font-family: 'Oswald Fallback';
+	src: local('Arial'), local('ArialMT'), local('Helvetica'), local('Liberation Sans');
+	font-weight: 400;
+	size-adjust: 81.96%;
+	ascent-override: 145.55%;
+	descent-override: 35.26%;
+	line-gap-override: 0%;
+}
+
+@font-face {
+	font-family: 'Oswald Fallback';
+	src: local('Arial Bold'), local('Arial-BoldMT'), local('Helvetica Bold'), local('Liberation Sans Bold');
+	font-weight: 600 700;
+	size-adjust: 83.59%;
+	ascent-override: 142.73%;
+	descent-override: 34.57%;
+	line-gap-override: 0%;
+}
+
+// Archivo Narrow: used for dates and tags, preloaded in default.html.
+@font-face {
+	font-family: 'Archivo Narrow';
+	src: url('/fonts/archivo-narrow/archivo-narrow-v35-latin.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+// Archivo Narrow fallback, against Arial Regular.
+@font-face {
+	font-family: 'Archivo Narrow Fallback';
+	src: local('Arial'), local('ArialMT'), local('Helvetica'), local('Liberation Sans');
+	font-weight: 400;
+	size-adjust: 82.61%;
+	ascent-override: 125.29%;
+	descent-override: 37.77%;
+	line-gap-override: 0%;
+}
+
+// Inconsolata: only used where Consolas is missing (macOS, Linux), so it is not preloaded:
+// a preload would make every Windows visitor download a font they never use.
+@font-face {
+	font-family: 'Inconsolata';
+	src: url('/fonts/inconsolata/inconsolata-v37-latin.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+// Inconsolata fallback, against Courier New.
+@font-face {
+	font-family: 'Inconsolata Fallback';
+	src: local('Courier New'), local('CourierNewPSMT'), local('Liberation Mono');
+	font-weight: 400;
+	size-adjust: 83.32%;
+	ascent-override: 103.10%;
+	descent-override: 22.80%;
+	line-gap-override: 0%;
 }
 
 // Font Awesome 4.7.0 subset - only the icons used on this site,
@@ -464,6 +541,42 @@ article.post
 				border-radius: 0;
 				line-height: 1.55;
 				font-size: 0.85em;
+			}
+			// Rouge renders line numbers as a two-cell table inside the code
+			// block; undo the generic article table styles so it reads as code.
+			table.rouge-table {
+				width: auto;
+				margin: 0;
+				border: 0;
+				border-collapse: collapse;
+				font-family: $code-font;
+				font-size: 1em;
+				line-height: inherit;
+				overflow-wrap: normal;
+				tr, tr:nth-child(even), tr:hover {
+					background-color: transparent;
+				}
+				td {
+					padding: 0;
+					border: 0;
+					vertical-align: top;
+				}
+				pre {
+					margin: 0;
+					overflow: visible;
+					font-family: inherit;
+				}
+				td.rouge-gutter {
+					padding-right: 1em;
+					border-right: 1px solid $code-border-color;
+					text-align: right;
+					color: #8c959f;
+					-webkit-user-select: none;
+					user-select: none;
+				}
+				td.rouge-code {
+					padding-left: 1em;
+				}
 			}
 		}
 		code {

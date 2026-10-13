@@ -3,60 +3,138 @@ layout: default
 title: 404 - Page Not Found
 permalink: /404.html
 robots: noindex
+lcp_image: /imgs/404.optimized.webp
 ---
 
 <style>
+/* Mobile first: one centered column. From 48em up, the picture sits left of the heading block. */
 .nf-wrap {
+	display: grid;
+	grid-template-areas:
+		"head"
+		"figure"
+		"text"
+		"term"
+		"actions";
+	justify-items: center;
+	row-gap: 1.5rem;
+	padding: 2rem 0 3rem;
 	text-align: center;
-	padding: 2em 1em 3em;
+}
+
+/* Heading: the big numeral and the plain-language title form one h1.
+   The reset sets spans back to 400, so each span declares its own weight. */
+.nf-head {
+	grid-area: head;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.35rem;
+	margin: 0;
+	font-family: "Oswald", "Oswald Fallback", "Helvetica", sans-serif;
+	font-weight: 600;
+	color: #000;
 }
 .nf-code {
+	font-size: clamp(5rem, 16vw, 7.5rem);
+	font-weight: 600;
+	line-height: 0.9;
+	letter-spacing: 0.02em;
+	font-variant-numeric: lining-nums;
+}
+.nf-title {
+	font-size: 1.15rem;
+	font-weight: 500;
+	line-height: 1.2;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	color: #333;
+}
+.nf-title::after {
+	content: "";
+	display: block;
+	width: 2.5rem;
+	height: 3px;
+	margin: 0.6rem auto 0;
+	background: #FAA200;
+}
+
+/* The missing page: the zero drifts slowly, its shadow shrinking as it rises. */
+.nf-zero {
 	position: relative;
 	display: inline-block;
-	font-family: "Oswald", "Helvetica", "Sans Serif";
-	font-weight: 600;
-	font-size: 8em;
-	line-height: 1;
-	letter-spacing: 0.05em;
-	color: #000;
-	margin: 0.2em 0 0.1em;
-}
-.nf-code::before,
-.nf-code::after {
-	content: "404";
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	overflow: hidden;
-}
-.nf-code::before {
 	color: #FAA200;
-	animation: nf-glitch-top 2.4s infinite linear alternate-reverse;
-	clip-path: inset(0 0 55% 0);
+	animation: nf-float 3.2s ease-in-out infinite alternate;
 }
-.nf-code::after {
-	color: #555;
-	animation: nf-glitch-bottom 1.9s infinite linear alternate-reverse;
-	clip-path: inset(55% 0 0 0);
+.nf-zero::after {
+	content: "";
+	position: absolute;
+	left: 15%;
+	right: 15%;
+	bottom: -0.06em;
+	height: 0.05em;
+	border-radius: 50%;
+	background: rgba(0, 0, 0, 0.15);
+	animation: nf-shadow 3.2s ease-in-out infinite alternate;
 }
-@keyframes nf-glitch-top {
-	0%   { transform: translate(0, 0); }
-	20%  { transform: translate(-3px, -2px); }
-	40%  { transform: translate(2px, 1px); }
-	60%  { transform: translate(-2px, 2px); }
-	80%  { transform: translate(3px, -1px); }
-	100% { transform: translate(0, 0); }
+@keyframes nf-float {
+	from { transform: translateY(0); }
+	to   { transform: translateY(-0.06em); }
 }
-@keyframes nf-glitch-bottom {
-	0%   { transform: translate(0, 0); }
-	25%  { transform: translate(2px, 2px); }
-	50%  { transform: translate(-3px, -1px); }
-	75%  { transform: translate(2px, -2px); }
-	100% { transform: translate(0, 0); }
+@keyframes nf-shadow {
+	from { transform: translateY(0) scaleX(1); opacity: 1; }
+	to   { transform: translateY(0.06em) scaleX(0.75); opacity: 0.5; }
 }
+
+/* The other 404: a framed postcard that settles in once on load. */
+.nf-figure {
+	grid-area: figure;
+	width: 100%;
+	max-width: 20rem;
+	margin: 0;
+	animation: nf-settle 0.7s ease-out both;
+}
+.nf-figure img {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1;
+	border: 1px solid #e3e6ea;
+	border-radius: 6px;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+	background: #dce9f2;
+}
+.nf-figure figcaption {
+	margin-top: 0.6rem;
+	font-family: "Archivo Narrow", "Archivo Narrow Fallback", "Helvetica", sans-serif;
+	font-size: 0.9rem;
+	line-height: 1.4;
+	letter-spacing: 0.02em;
+	color: #666;
+	text-wrap: balance;
+}
+@keyframes nf-settle {
+	from { opacity: 0; transform: translateY(0.5rem); }
+	to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Body copy matches post paragraphs: Georgia at the body size, 1.7 leading. */
+.nf-text {
+	grid-area: text;
+	max-width: 30em;
+	margin: 0;
+	font-family: "Georgia", serif;
+	font-size: 1.125rem;
+	line-height: 1.7;
+	color: #222;
+	text-wrap: pretty;
+}
+
 .nf-terminal {
-	display: inline-block;
+	grid-area: term;
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 36rem;
 	text-align: left;
 	background: #111;
 	color: #ddd;
@@ -64,11 +142,11 @@ robots: noindex
 	border-top: 3px solid #FAA200;
 	border-radius: 6px;
 	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-	font-family: "consolas", "Inconsolata", "monospace";
-	font-size: 0.95em;
-	padding: 1.2em 1.6em;
-	max-width: 34em;
-	margin-top: 1em;
+	font-family: "consolas", "Inconsolata", "Inconsolata Fallback", monospace;
+	font-size: 0.9rem;
+	line-height: 1.6;
+	padding: 1rem 1.25rem;
+	overflow-wrap: anywhere;
 }
 .nf-terminal .nf-prompt { color: #FAA200; }
 .nf-terminal .nf-cmd { color: #fff; }
@@ -85,56 +163,103 @@ robots: noindex
 	0%, 49%   { opacity: 1; }
 	50%, 100% { opacity: 0; }
 }
+
 .nf-actions {
-	margin-top: 1.6em;
+	grid-area: actions;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.75rem;
 }
+/* Same frame as the tag cloud chips (tags.html): primary mirrors a core (tier-4) tag. */
 .nf-btn {
 	display: inline-block;
-	font-family: "Oswald", "Helvetica", "Sans Serif";
+	box-sizing: border-box;
+	font-family: "Oswald", "Oswald Fallback", "Helvetica", sans-serif;
+	font-weight: 600;
+	font-size: 1rem;
+	line-height: 1.2;
 	text-transform: uppercase;
 	letter-spacing: 0.08em;
-	font-size: 1em;
-	padding: 0.5em 1.2em;
-	margin: 0 0.4em;
-	border: 2px solid #000;
+	padding: 0.3em 0.75em;
 	color: #000;
-	background: #fff;
-	transition: background 0.2s ease, color 0.2s ease;
+	background-color: #fff;
+	border: 2px solid #000;
+	border-radius: 3px;
+	transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
-.nf-btn:hover {
-	background: #000;
-	color: #FAA200;
+.nf-btn:hover,
+.nf-btn:focus-visible {
+	color: #fff;
+	background-color: #000;
+}
+.nf-btn:focus-visible {
+	outline: 2px solid #FAA200;
+	outline-offset: 2px;
 }
 .nf-btn.nf-btn-primary {
-	background: #000;
-	color: #FAA200;
+	color: #fff;
+	background-color: #000;
+}
+.nf-btn.nf-btn-primary:hover,
+.nf-btn.nf-btn-primary:focus-visible {
+	color: #000;
+	background-color: #FAA200;
 	border-color: #FAA200;
 }
-.nf-btn.nf-btn-primary:hover {
-	background: #FAA200;
-	color: #000;
+
+@media screen and (min-width: 48.01em) {
+	.nf-wrap {
+		grid-template-columns: 17rem 1fr;
+		grid-template-areas:
+			"figure head"
+			"figure text"
+			"figure actions"
+			"term   term";
+		align-items: center;
+		justify-items: start;
+		column-gap: 2.5rem;
+		row-gap: 1.25rem;
+		padding-top: 3rem;
+		text-align: left;
+	}
+	.nf-head { align-items: flex-start; align-self: end; }
+	.nf-title::after { margin-left: 0; }
+	.nf-text { align-self: start; }
+	.nf-actions { align-self: start; justify-content: flex-start; }
+	.nf-terminal { justify-self: stretch; max-width: none; margin-top: 1rem; }
 }
-@media screen and (min-width: 320px) and (max-width: 480px) {
-	.nf-code { font-size: 5em; }
-	.nf-terminal { font-size: 0.85em; padding: 1em; }
+@media screen and (max-width: 48em) {
+	.nf-text { font-size: 1.0625rem; }
+	.nf-terminal { font-size: 0.85rem; padding: 0.9rem 1rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-	.nf-code::before,
-	.nf-code::after,
+	.nf-zero,
+	.nf-zero::after,
+	.nf-figure,
 	.nf-cursor { animation: none; }
 }
 </style>
 
 <div class="nf-wrap">
-	<div class="nf-code" aria-label="404">404</div>
+	<h1 class="nf-head">
+		<span class="nf-code" aria-hidden="true">4<span class="nf-zero">0</span>4</span>
+		<span class="nf-title"><span class="visually-hidden">404, </span>Page not found</span>
+	</h1>
+
+	<figure class="nf-figure">
+		<img src="{{ site.baseurl }}/imgs/404.optimized.webp" width="720" height="720" fetchpriority="high" decoding="async"
+			alt="Pixel art of a cream Peugeot 404 pickup parked on a dirt road beside a stone house, with the sea in the distance.">
+		<figcaption>Bash Not Found!</figcaption>
+	</figure>
+
+	<p class="nf-text">Looks like this page took an unhandled exception. No stack trace here, but the rest of the blog still works.</p>
 
 	<div class="nf-terminal" role="note" aria-label="Error details">
 		<div><span class="nf-prompt">techdominator:~$</span> <span class="nf-cmd">GET {{ page.url | default: "/this-page" }}</span></div>
 		<div class="nf-out">&gt; 404 Not Found, the resource you requested does not exist (anymore?)</div>
 		<div><span class="nf-prompt">techdominator:~$</span> <span class="nf-cursor"></span></div>
 	</div>
-
-	<p>Looks like this page took an unhandled exception. No stack trace here, but the rest of the blog still works.</p>
 
 	<div class="nf-actions">
 		<a class="nf-btn nf-btn-primary" href="{{ site.url }}/">Home</a>

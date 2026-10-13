@@ -31,11 +31,10 @@ kramdown:
   syntax_highlighter: rouge
   auto_ids: true
 #  input: GFM
-  span:
-    line_numbers: true
-  block:
-    line_numbers: true
-    start_line: 1
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+      start_line: 1
 
 plugins:
   - jekyll-sitemap
