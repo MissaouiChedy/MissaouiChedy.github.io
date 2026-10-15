@@ -1,6 +1,7 @@
 ---
 layout: default
-title: about me
+title: "Chedy Missaoui, Microsoft MVP and Azure Certified Architect"
+description: "Chedy Missaoui, Microsoft MVP from Tunisia: Microsoft Certified Azure Solutions Architect Expert, DevOps Engineer Expert, Azure AI and GitHub Copilot certified."
 ---
 <div class="about">
 	<article class="post">
@@ -35,6 +36,37 @@ title: about me
 				<a href="https://mvp.microsoft.com/en-US/mvp/profile/b050eff8-3c8f-4290-8d07-6738cf3724b2">
 					<img alt="MVP Badge" src="{{site.url}}/imgs/MVPBadgeHorizontal.optimized.webp" style="max-width: 30%;"/>
 				</a>
+			</div>
+
+			<div class="certifications">
+				<h2 id="certifications">Certifications</h2>
+				<p>
+					I hold the following active professional certifications in Azure architecture, administration, development, DevOps, AI and GitHub. Each badge links to its official verification page.
+				</p>
+				{% comment %}
+					The same list feeds the hasCredential JSON-LD in _includes/jsonld.html.
+					Names keep their official prefix (e.g. "Microsoft Certified:") as that is what people search for.
+				{% endcomment %}
+				{% include active-certifications.html %}
+				<ul class="certification-badges">
+					{% for cert in active_certifications %}
+						{% assign name_parts = cert.name | split: ": " %}
+						{% if name_parts.size > 1 %}
+							{% assign cert_prefix = name_parts.first | append: ":" %}
+							{% assign display_name = cert.name | remove_first: cert_prefix | strip %}
+						{% else %}
+							{% assign cert_prefix = nil %}
+							{% assign display_name = cert.name %}
+						{% endif %}
+						{% if cert.exam %}{% assign exam_suffix = " (" | append: cert.exam | append: ")" %}{% assign display_name = display_name | remove_first: exam_suffix %}{% endif %}
+						<li>
+							<a href="{{ cert.credential_url }}" title="Verify {{ cert.name }}, issued by {{ cert.issuer }}">
+								<img src="{{ site.url }}{{ cert.badge }}" alt="{{ cert.name }} badge" loading="lazy" width="96" height="96"/>
+								<span class="cert-name">{% if cert_prefix %}<span class="cert-prefix">{{ cert_prefix }}</span> {% endif %}{{ display_name }}{% if cert.exam %} <span class="exam">({{ cert.exam }})</span>{% endif %}</span>
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
 			</div>
 
 			<div class="stackoverflow-flair">

@@ -1096,6 +1096,7 @@ div.about {
 		padding-bottom: 0.1em;
 	}
 	div.recognition,
+	div.certifications,
 	div.contact-info,
 	div.speaking,
 	div.ai-transparency-note {
@@ -1108,6 +1109,41 @@ div.about {
 	ul#contact-info {
 		list-style: none;
 		margin-left: -1.8em;
+	}
+	// Scoped under div.content to win over the generic article.post div.content list styles
+	div.content ul.certification-badges {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(8.5em, 1fr));
+		gap: 1em;
+		list-style: none;
+		padding-left: 0;
+		li {
+			padding-bottom: 0;
+			text-align: center;
+			line-height: 1.3;
+			a {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 0.4em;
+			}
+			img {
+				width: 6em;
+				height: 6em;
+				object-fit: contain;
+			}
+			span.cert-name {
+				font-size: 0.8em;
+			}
+			span.cert-prefix {
+				display: block;
+				font-size: 0.85em;
+				color: #666;
+			}
+			span.exam {
+				white-space: nowrap;
+			}
+		}
 	}
 }
 

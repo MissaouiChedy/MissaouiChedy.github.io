@@ -1,0 +1,224 @@
+# Licenses & certifications, extracted from the LinkedIn profile page.
+# Dates are YYYY-MM. `skills_not_shown` counts skills LinkedIn collapsed
+# behind "+N skills"; they were not present in the saved page.
+# `badge` is the image shown in the about page certifications section;
+# `hide: true` keeps an entry off that section.
+certifications:
+  - name: "Microsoft Certified: Azure AI Apps and Agents Developer Associate (AI-103)"
+    issuer: "Microsoft"
+    exam: "AI-103"
+    issued: "2026-09"
+    expires: "2027-09"
+    credential_id: "B1AAF51F6B8E6E0B"
+    credential_url: "https://learn.microsoft.com/api/credentials/share/en-us/ChedyMissaoui-3589/B1AAF51F6B8E6E0B?sharingId=MVP_503336"
+    badge: "/imgs/badges/microsoft-certified-associate-badge.svg"
+    skills:
+      - "Microsoft Foundry"
+      - "Azure AI Search"
+    skills_not_shown: 2
+
+  - name: "GitHub Foundations (GH-900)"
+    issuer: "Microsoft"
+    exam: "GH-900"
+    issued: "2026-06"
+    expires: "2028-06"
+    credential_id: "36255307F7D3359B"
+    credential_url: "https://learn.microsoft.com/api/credentials/share/en-us/ChedyMissaoui-3589/36255307F7D3359B?sharingId=MVP_503336"
+    badge: "/imgs/badges/github-foundations.svg"
+    skills:
+      - "GitHub"
+      - "GitHub Copilot"
+
+  - name: "Microsoft Most Valuable Professional (MVP)"
+    hide: true
+    issuer: "Microsoft"
+    issued: "2026-03"
+    expires: "2027-03"
+    credential_id: "6ded9545-bc55-4df7-8cef-1563c9795385"
+    credential_url: "https://www.credly.com/badges/6ded9545-bc55-4df7-8cef-1563c9795385"
+    skills:
+      - "Community Outreach"
+      - "Leadership"
+    skills_not_shown: 2
+
+  - name: "Microsoft Certified: Azure for SAP Workloads Specialty (AZ-120)"
+    issuer: "Microsoft"
+    exam: "AZ-120"
+    issued: "2026-02"
+    expires: "2027-02"
+    credential_id: "DF6FB7A191726662"
+    credential_url: "https://learn.microsoft.com/api/credentials/share/en-us/ChedyMissaoui-3589/DF6FB7A191726662?sharingId=3737024A27382C2E"
+    badge: "/imgs/badges/microsoft-certified-az-120.optimized.webp"
+    skills:
+      - "SAP Rise"
+      - "SAP HANA"
+    skills_not_shown: 2
+    media_title: "AZ-120"
+
+  - name: "Exploring SAP Business Technology Platform - Course Completion"
+    issuer: "SAP"
+    issued: "2026-02"
+    credential_id: "xicuc-fotel-fovug-felop-rorif"
+    credential_url: "https://badger.learning.sap.com/verify/xicuc-fotel-fovug-felop-rorif"
+    badge: "/imgs/badges/sap-btp-course-completion.optimized.webp"
+    skills:
+      - "Analytics"
+      - "Integration Platform as a Service (iPaaS)"
+    skills_not_shown: 1
+    media_title: "Exploring SAP Business Technology Platform - Course Completion"
+    description: "This badge verifies that the learner has completed the course \"Exploring SAP Business Technology Platform\" on Beginner Level. The learner is familiar with the following topics: - Acquired foundational knowledge of SAP Business Technology Platform. - Insights in the options to integrate and extend applications using intelligent technologies as well as incorporate analytics, database administration, and data management. - Gain an insight into security aspects and sustainability management."
+
+  - name: "GitHub Copilot (GH-300)"
+    issuer: "Microsoft"
+    exam: "GH-300"
+    issued: "2025-12"
+    expires: "2027-12"
+    credential_id: "FE7B505A0D3CC7FE"
+    credential_url: "https://learn.microsoft.com/api/credentials/share/en-us/ChedyMissaoui-3589/FE7B505A0D3CC7FE?sharingId=3737024A27382C2E"
+    badge: "/imgs/badges/github-copilot.svg"
+    skills:
+      - "GitHub Copilot"
+      - "Context Engineering"
+    skills_not_shown: 2
+
+  - name: "Microsoft Certified: Azure AI Engineer Associate (AI-102)"
+    issuer: "Microsoft"
+    exam: "AI-102"
+    issued: "2025-11"
+    expires: "2026-11"
+    credential_id: "B246EE1952B5EDCC"
+    credential_url: "https://learn.microsoft.com/api/credentials/share/en-us/ChedyMissaoui-3589/B246EE1952B5EDCC?sharingId=3737024A27382C2E"
+    hide: true
+    skills:
+      - "Azure AI"
+      - "Azure AI Search"
+    skills_not_shown: 1
+
+  - name: "Microsoft Certified: Azure AI Fundamentals (AI-900)"
+    issuer: "Microsoft"
+    exam: "AI-900"
+    issued: "2025-10"
+    credential_id: "B58D089685B3FE6E"
+    credential_url: "https://learn.microsoft.com/api/credentials/share/en-us/ChedyMissaoui-3589/B58D089685B3FE6E?sharingId=3737024A27382C2E"
+    badge: "/imgs/badges/microsoft-certified-ai-900.optimized.webp"
+    skills:
+      - "Azure AI Foundry"
+      - "Azure AI"
+    skills_not_shown: 1
+
+  - name: "Microsoft Certified: Azure Solutions Architect Expert (AZ-305)"
+    issuer: "Microsoft"
+    exam: "AZ-305"
+    issued: "2025-10"
+    expires: "2027-10"
+    credential_id: "571202C50A9B793D"
+    credential_url: "https://learn.microsoft.com/api/credentials/share/en-us/ChedyMissaoui-3589/571202C50A9B793D?sharingId=3737024A27382C2E"
+    badge: "/imgs/badges/microsoft-certified-az-305.optimized.webp"
+    skills:
+      - "Azure SQL"
+      - "Microsoft Entra ID"
+    skills_not_shown: 3
+
+  - name: "Microsoft Certified: Azure Administrator Associate (AZ-104)"
+    issuer: "Microsoft"
+    exam: "AZ-104"
+    issued: "2025-10"
+    expires: "2027-10"
+    credential_id: "C02FF64308EEA5CC"
+    credential_url: "https://learn.microsoft.com/api/credentials/share/en-us/ChedyMissaoui-3589/C02FF64308EEA5CC?sharingId=3737024A27382C2E"
+    badge: "/imgs/badges/microsoft-certified-az-104.optimized.webp"
+    skills:
+      - "Microsoft Entra ID"
+      - "Azure Policy"
+    skills_not_shown: 4
+
+  - name: "Microsoft Certified: DevOps Engineer Expert (AZ-400)"
+    issuer: "Microsoft"
+    exam: "AZ-400"
+    issued: "2025-10"
+    expires: "2027-10"
+    credential_id: "E709A26AF6F207CB"
+    credential_url: "https://learn.microsoft.com/api/credentials/share/en-us/ChedyMissaoui-3589/E709A26AF6F207CB?sharingId=3737024A27382C2E"
+    badge: "/imgs/badges/microsoft-certified-az-400.optimized.webp"
+    skills:
+      - "Azure DevOps"
+      - "Intégration continue"
+    skills_not_shown: 5
+
+  - name: "Microsoft Certified: Azure Developer Associate (AZ-204)"
+    issuer: "Microsoft"
+    exam: "AZ-204"
+    issued: "2023-06"
+    expires: "2027-06"
+    credential_id: "4079ACA579C21E14"
+    credential_url: "https://learn.microsoft.com/api/credentials/share/en-us/ChedyMissaoui-3589/4079ACA579C21E14?sharingId=3737024A27382C2E"
+    badge: "/imgs/badges/microsoft-certified-az-204.optimized.webp"
+
+  - name: "HashiCorp Certified: Terraform Associate (003)"
+    issuer: "HashiCorp"
+    issued: "2023-04"
+    expires: "2025-04"
+    credential_id: "d222fc2a-9a02-49e2-bbdb-622b0ec59f6a"
+    credential_url: "https://www.credly.com/badges/d222fc2a-9a02-49e2-bbdb-622b0ec59f6a"
+    skills:
+      - "Terraform"
+
+  - name: "Red Hat Certified Specialist in OpenShift Application Development (EX288)"
+    issuer: "Red Hat"
+    exam: "EX288"
+    issued: "2023-01"
+    expires: "2026-01"
+    credential_id: "220-187-108"
+    credential_url: "https://rhtapps.redhat.com/verify?certId=220-187-108"
+
+  - name: "Microsoft Certified: Azure Fundamentals (AZ-900)"
+    issuer: "Microsoft"
+    exam: "AZ-900"
+    issued: "2019-12"
+    credential_url: "https://www.youracclaim.com/badges/1fe9c6ad-d9b7-420d-af03-45a7b3a77b96/linked_in_profile"
+    badge: "/imgs/badges/microsoft-certified-az-900.optimized.webp"
+
+  - name: "ISTQB® Certified Tester - Advanced Level Test Automation Engineer"
+    issuer: "ISTQB® - International Software Testing Qualifications Board"
+    issued: "2019-10"
+    credential_id: "19-CTAL-TAE-164958-06"
+    credential_url: "https://zertdb.isqi.org/en/download/certificate/token/T1895aqkbNFm2846"
+    badge: "/imgs/badges/istqb-logo.optimized.webp"
+
+  - name: "DEVOPS200.5x: DevOps Testing"
+    issuer: "edX"
+    issued: "2019-10"
+    credential_id: "df4e52f0e8064a1fa312575cee52be80"
+    credential_url: "https://courses.edx.org/certificates/df4e52f0e8064a1fa312575cee52be80"
+
+  - name: "DEVOPS200.6x: DevOps for Databases"
+    issuer: "edX"
+    issued: "2019-09"
+    credential_id: "05dddd724d6b44e38412b7b94c252913"
+    credential_url: "https://courses.edx.org/certificates/05dddd724d6b44e38412b7b94c252913"
+
+  - name: "DEVOPS200.3x: Continuous Integration and Continuous Deployment"
+    issuer: "edX"
+    issued: "2019-01"
+    credential_id: "66280f25b7294f5da4c3fa46d91ef92f"
+    credential_url: "https://courses.edx.org/certificates/66280f25b7294f5da4c3fa46d91ef92f"
+
+  - name: "DEVOPS200.1x: DevOps Practices and Principles"
+    issuer: "edX"
+    issued: "2018-12"
+    credential_id: "56507258699348a38a9d1c63d2805334"
+    credential_url: "https://courses.edx.org/certificates/56507258699348a38a9d1c63d2805334"
+
+  - name: "DEVOPS200.2x: Infrastructure as Code"
+    issuer: "edX"
+    issued: "2018-11"
+    credential_id: "71389c634b04483b830b492f7bdd684e"
+    credential_url: "https://courses.edx.org/certificates/71389c634b04483b830b492f7bdd684e"
+
+  - name: "ISTQB® Certified Tester - Foundation Level"
+    issuer: "ISTQB® - International Software Testing Qualifications Board"
+    issued: "2018-03"
+    credential_id: "18-CTFL-133198-06"
+    credential_url: "https://zertdb.isqi.org/en/download/certificate/token/QJc5uCix2U2Apwwh"
+    badge: "/imgs/badges/istqb-logo.optimized.webp"
+

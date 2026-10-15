@@ -20,7 +20,7 @@ Site structure: posts live under /article/{slug}.html. Every page is also availa
 
 ## Pages
 
-- [About Chedy Missaoui]({{ "/about-chedy-missaoui.html" | absolute_url }}): Author bio, background, and contact information
+- [About Chedy Missaoui]({{ "/about-chedy-missaoui.html" | absolute_url }}): Author bio, background, certifications, and contact information
 - [All posts]({{ "/posts.html" | absolute_url }}): Chronological archive of every article
 - [Conference slides]({{ "/slides.html" | absolute_url }}): Slide decks from the author's talks
 

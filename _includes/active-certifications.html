@@ -1,0 +1,12 @@
+{%- comment -%}
+  Assigns `active_certifications`: entries of _data/certifications.yml shown on the about page.
+  Expired entries (checked at build time), edX courses and entries flagged `hide: true` are left out.
+  Shared by the about page certifications section and its JSON-LD (_includes/jsonld.html).
+{%- endcomment -%}
+{%- assign this_month = site.time | date: "%Y-%m" -%}
+{%- assign active_certifications = "" | split: "" -%}
+{%- for cert in site.data.certifications.certifications -%}
+  {%- if cert.issuer == "edX" or cert.hide -%}{%- continue -%}{%- endif -%}
+  {%- if cert.expires and cert.expires < this_month -%}{%- continue -%}{%- endif -%}
+  {%- assign active_certifications = active_certifications | push: cert -%}
+{%- endfor -%}
