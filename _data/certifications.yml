@@ -4,6 +4,15 @@
 # `badge` is the image shown in the about page certifications section;
 # `hide: true` keeps an entry off that section.
 certifications:
+  - name: "Microsoft Certified: AI Agent Builder Associate (AB-620)"
+    issuer: "Microsoft"
+    exam: "AB-620"
+    issued: "2026-10"
+    expires: "2027-10"
+    credential_id: "D5EF9F7A41DA8412"
+    credential_url: "https://learn.microsoft.com/api/credentials/share/en-us/ChedyMissaoui-3589/D5EF9F7A41DA8412?sharingId=MVP_503336"
+    badge: "/imgs/badges/microsoft-certified-ab-620.optimized.webp"
+
   - name: "Microsoft Certified: Azure AI Apps and Agents Developer Associate (AI-103)"
     issuer: "Microsoft"
     exam: "AI-103"
@@ -11,7 +20,7 @@ certifications:
     expires: "2027-09"
     credential_id: "B1AAF51F6B8E6E0B"
     credential_url: "https://learn.microsoft.com/api/credentials/share/en-us/ChedyMissaoui-3589/B1AAF51F6B8E6E0B?sharingId=MVP_503336"
-    badge: "/imgs/badges/microsoft-certified-associate-badge.svg"
+    badge: "/imgs/badges/microsoft-certified-ai-103.optimized.webp"
     skills:
       - "Microsoft Foundry"
       - "Azure AI Search"
