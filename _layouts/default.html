@@ -70,17 +70,23 @@
 </head>
 <body>
 	<header class="site-header">
-		<a href="{{ site.url }}"><h2 class="site-title">{{ site.title }}</h2></a>
+		{% comment %}Pages report their url without the extension under the site's permalink setting.{% endcomment %}
+		{% assign current_path = page.url | remove: '.html' %}
+		<a class="site-title" href="{{ site.url }}">{{ site.title }}</a>
+		<nav aria-label="Primary">
 			<ul>
-			<li><a href="{{ site.url }}/posts.html"><span class="nav-label">posts</span></a></li>
-			<li><a href="{{ site.url }}/tags.html"><span class="nav-label">tags</span></a></li>
-			<li><a href="{{ site.url }}/slides.html"><span class="nav-label">slides</span></a></li>
-			<li><a href="{{ site.url }}/about-chedy-missaoui.html"><span class="nav-label">about</span></a></li>
+			<li><a href="{{ site.url }}/posts.html"{% if current_path == '/posts' %} aria-current="page"{% elsif page.layout == 'post' %} aria-current="true"{% endif %}><span class="nav-label">posts</span></a></li>
+			<li><a href="{{ site.url }}/tags.html"{% if current_path == '/tags' %} aria-current="page"{% elsif current_path == '/tag' %} aria-current="true"{% endif %}><span class="nav-label">tags</span></a></li>
+			<li><a href="{{ site.url }}/slides.html"{% if current_path == '/slides' %} aria-current="page"{% endif %}><span class="nav-label">slides</span></a></li>
+			</ul>
+		</nav>
+		<ul class="site-social">
 			<li><a href="{{ site.url }}/feed.xml" aria-label="RSS feed"><span class="nav-label" aria-hidden="true"><i class="fa fa-rss" aria-hidden="true"></i></span></a></li>
 			<!-- <li><a href="https://twitter.com/{{ site.twitter_username }}"><span class="nav-label"><i class="fa fa-twitter" aria-hidden="true"></i></span></a></li> -->
 			<li><a href="https://github.com/MissaouiChedy" aria-label="GitHub profile"><span class="nav-label" aria-hidden="true"><i class="fa fa-github" aria-hidden="true"></i></span></a></li>
 			<li><a href="https://www.linkedin.com/in/chedy-missaoui" aria-label="LinkedIn profile"><span class="nav-label" aria-hidden="true"><i class="fa fa-linkedin" aria-hidden="true"></i></span></a></li>
-			</ul>
+		</ul>
+		<a class="site-cta" href="{{ site.url }}/about-chedy-missaoui.html"{% if current_path == '/about-chedy-missaoui' %} aria-current="page"{% endif %}>Who am I?</a>
 	</header>
 	<main class="main-content">
 		{{ content }}
