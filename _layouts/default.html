@@ -53,9 +53,7 @@
 	<link rel="preload" href="{{ site.url }}/font-awesome-4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="{{ site.url }}/fonts/oswald/oswald-v57-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="{{ site.url }}/fonts/archivo-narrow/archivo-narrow-v35-latin.woff2" as="font" type="font/woff2" crossorigin>
-	{% if page.url == '/' and site.posts.first.lcp_image %}
-	<link rel="preload" as="image" href="{{ site.url }}{{ site.posts.first.lcp_image }}" fetchpriority="high">
-	{% elsif page.lcp_image %}
+	{% if page.lcp_image %}
 	<link rel="preload" as="image" href="{{ site.url }}{{ page.lcp_image }}" fetchpriority="high">
 	{% endif %}
 	{% capture critical_css %}{% include critical-styles.scss %}{% endcapture %}
@@ -69,9 +67,11 @@
 	{% include ga.html %}
 </head>
 <body>
+	<p class="site-trustbar"><strong>Microsoft MVP</strong> &middot; Azure <span class="site-trustbar-detail">architecture </span>reviews and team workshops</p>
 	<header class="site-header">
-		<a href="{{ site.url }}"><h2 class="site-title">{{ site.title }}</h2></a>
-			<ul>
+		<a class="site-brand" href="{{ site.url }}"><span class="site-mark" aria-hidden="true">TD</span><h2 class="site-title">{{ site.title }}</h2></a>
+			<ul class="site-nav">
+			<li><a href="{{ site.url }}/#services"><span class="nav-label">services</span></a></li>
 			<li><a href="{{ site.url }}/posts.html"><span class="nav-label">posts</span></a></li>
 			<li><a href="{{ site.url }}/tags.html"><span class="nav-label">tags</span></a></li>
 			<li><a href="{{ site.url }}/slides.html"><span class="nav-label">slides</span></a></li>
@@ -81,6 +81,12 @@
 			<li><a href="https://github.com/MissaouiChedy" aria-label="GitHub profile"><span class="nav-label" aria-hidden="true"><i class="fa fa-github" aria-hidden="true"></i></span></a></li>
 			<li><a href="https://www.linkedin.com/in/chedy-missaoui" aria-label="LinkedIn profile"><span class="nav-label" aria-hidden="true"><i class="fa fa-linkedin" aria-hidden="true"></i></span></a></li>
 			</ul>
+			{% if page.url == '/' %}
+			{% include contact-href.html %}
+			<a class="site-cta" href="{{ contact_href }}" data-lead="header">Get a review</a>
+			{% else %}
+			<a class="site-cta" href="{{ site.url }}/">Get a review</a>
+			{% endif %}
 	</header>
 	<main class="main-content">
 		{{ content }}

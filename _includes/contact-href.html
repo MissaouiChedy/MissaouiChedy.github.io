@@ -1,0 +1,15 @@
+{%- comment -%}
+  Assigns `contact_email`, `email_body` and `contact_href`: the mailto link opening an email with
+  a prefilled subject and qualifying questions. Shared by the home page and the site header button.
+{%- endcomment -%}
+{%- assign contact_email = "missaoui.chedy@gmail.com" -%}
+{%- assign email_subject = "Azure review or workshop" | cgi_escape | replace: "+", "%20" -%}
+{%- capture email_body -%}What are you running on Azure?
+
+
+What worries you, or what should your team learn?
+
+
+When do you need this done?{%- endcapture -%}
+{%- assign email_body = email_body | cgi_escape | replace: "+", "%20" -%}
+{%- assign contact_href = "mailto:" | append: contact_email | append: "?subject=" | append: email_subject | append: "&amp;body=" | append: email_body -%}

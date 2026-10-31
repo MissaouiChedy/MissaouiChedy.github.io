@@ -1,6 +1,854 @@
 ---
 layout: default
+title: "Azure Architecture Reviews and Team Workshops"
+description: "Azure architecture reviews and team workshops by Chedy Missaoui, Microsoft MVP in Azure Application PaaS: event-driven systems, Event Hubs, PaaS and AI agents."
+lcp_image: /imgs/LandingHero.optimized.webp
 ---
-<div class="main">
-	{% include article.html post_arg=site.posts.first %}
+
+<style>
+/* The home page is a sales page: its bands run edge to edge, and .lp-container holds the content. */
+.main-content {
+	width: 100%;
+	max-width: none;
+}
+
+.lp {
+	color: #222;
+	font-family: "Georgia", serif;
+}
+.lp-container {
+	width: calc(100% - 3rem);
+	max-width: 60em;
+	margin-inline: auto;
+}
+.lp h1,
+.lp h2,
+.lp h3 {
+	display: block;
+	padding: 0;
+	margin: 0;
+	color: #000;
+	line-height: 1.15;
+	letter-spacing: 0;
+	text-transform: none;
+	text-wrap: balance;
+}
+.lp p,
+.lp li {
+	font-size: 1.125rem;
+	line-height: 1.7;
+	text-wrap: pretty;
+}
+.lp a {
+	font-size: inherit;
+}
+.lp-text-link {
+	color: #B35C00;
+	text-decoration: underline;
+	text-decoration-color: rgba(179, 92, 0, 0.45);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.18em;
+}
+.lp-text-link:hover,
+.lp-text-link:focus-visible {
+	text-decoration-color: #B35C00;
+}
+.lp-section {
+	padding-block: 4.5rem 0;
+	scroll-margin-top: 1rem;
+}
+.lp-section h2,
+.lp-dark h2 {
+	margin-bottom: 1rem;
+	font-size: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+/* Same frame as the tag cloud chips and the 404 buttons, larger because these are the point of the page. */
+.lp-btn {
+	display: inline-block;
+	box-sizing: border-box;
+	padding: 0.6em 1.1em;
+	border: 2px solid transparent;
+	border-radius: 3px;
+	font-family: "Oswald", "Oswald Fallback", "Helvetica", sans-serif;
+	font-weight: 600;
+	line-height: 1.2;
+	letter-spacing: 0.06em;
+	text-align: center;
+	text-transform: uppercase;
+	transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+.lp a.lp-btn {
+	font-size: 1.05rem;
+}
+.lp a.lp-btn-large {
+	font-size: 1.1rem;
+}
+.lp-btn:focus-visible {
+	outline: 2px solid #FAA200;
+	outline-offset: 2px;
+}
+.lp-btn-primary {
+	color: #000;
+	background-color: #FAA200;
+	border-color: #FAA200;
+}
+.lp-btn-primary:hover,
+.lp-btn-primary:focus-visible {
+	background-color: #fff;
+	border-color: #fff;
+}
+.lp-btn-ghost {
+	color: #fff;
+	border-color: #777;
+}
+.lp-btn-ghost:hover,
+.lp-btn-ghost:focus-visible {
+	color: #000;
+	background-color: #fff;
+	border-color: #fff;
+}
+.lp-btn-dark {
+	color: #fff;
+	background-color: #000;
+	border-color: #000;
+}
+.lp-btn-dark:hover,
+.lp-btn-dark:focus-visible {
+	color: #000;
+	background-color: #fff;
+}
+
+/* Hero: copy on the left of the 60em column, art bleeding off the right edge of the screen. */
+.lp-hero {
+	display: grid;
+	color: #ddd;
+	background-color: #0b0b0b;
+}
+.lp-hero-copy {
+	box-sizing: border-box;
+	padding: 2.25rem 1rem 2rem;
+}
+.lp .lp-eyebrow {
+	margin-bottom: 0.9rem;
+	color: #FAA200;
+	font-family: "Archivo Narrow", "Archivo Narrow Fallback", "Helvetica", sans-serif;
+	font-size: 1.05rem;
+	line-height: 1.4;
+	letter-spacing: 0.04em;
+}
+.lp h1 {
+	color: #fff;
+	font-size: clamp(2.25rem, 0.6rem + 3.2vw, 3.5rem);
+	line-height: 1.08;
+}
+.lp .lp-lead {
+	margin-top: 1.25rem;
+	line-height: 1.6;
+}
+.lp-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	margin-top: 1.75rem;
+}
+.lp .lp-action-note {
+	margin-top: 0.75rem;
+	color: #aaa;
+	font-size: 1rem;
+	line-height: 1.5;
+}
+.lp-hero-art img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+.lp-proof {
+	display: grid;
+	gap: 1.25rem;
+	padding: 1.5rem 1rem;
+	background-color: #161616;
+	border-top: 1px solid #2a2a2a;
+}
+.lp .lp-proof li {
+	color: #bbb;
+	font-family: "Archivo Narrow", "Archivo Narrow Fallback", "Helvetica", sans-serif;
+	font-size: 1rem;
+	line-height: 1.35;
+}
+.lp-proof strong {
+	display: block;
+	margin-bottom: 0.2rem;
+	color: #FAA200;
+	font-family: "Oswald", "Oswald Fallback", "Helvetica", sans-serif;
+	font-size: 1.75rem;
+	font-weight: 600;
+	line-height: 1.15;
+}
+
+/* Credentials straight after the claim, so it can be checked. */
+.lp-trust {
+	padding-block: 1.5rem;
+	background-color: #f7f7f5;
+	border-bottom: 1px solid #e3e6ea;
+}
+.lp-trust-inner {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem 2rem;
+}
+.lp .lp-trust-caption {
+	flex: 1 1 16rem;
+	color: #555;
+	font-family: "Archivo Narrow", "Archivo Narrow Fallback", "Helvetica", sans-serif;
+	font-size: 1.05rem;
+	line-height: 1.4;
+}
+.lp-trust-caption strong {
+	display: block;
+	color: #000;
+	font-family: "Oswald", "Oswald Fallback", "Helvetica", sans-serif;
+	font-size: 1.25rem;
+	font-weight: 600;
+	line-height: 1.3;
+}
+.lp-badges {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.75rem 1.25rem;
+}
+.lp .lp-badges li {
+	line-height: 0;
+}
+.lp-badges a {
+	display: block;
+}
+.lp-badges img {
+	display: block;
+	width: 4.75rem;
+	height: 4.75rem;
+	object-fit: contain;
+}
+.lp-badges img.lp-badge-mvp {
+	width: 10rem;
+	height: auto;
+}
+
+.lp-services {
+	display: grid;
+	gap: 1.5rem;
+	margin-top: 1.5rem;
+}
+.lp-service {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	background-color: #fff;
+	border: 1px solid #e3e6ea;
+	border-radius: 6px;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+	scroll-margin-top: 1rem;
+}
+.lp-service-art {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-bottom: 4px solid #FAA200;
+}
+.lp-service-body {
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: column;
+	padding: 1.5rem;
+}
+.lp-service h3 {
+	font-size: 1.75rem;
+}
+.lp .lp-service-audience {
+	margin-top: 0.6rem;
+	font-size: 1.0625rem;
+	line-height: 1.6;
+}
+.lp .lp-service-label {
+	margin-top: 1.25rem;
+	color: #666;
+	font-family: "Archivo Narrow", "Archivo Narrow Fallback", "Helvetica", sans-serif;
+	font-size: 1rem;
+	line-height: 1.4;
+	letter-spacing: 0.04em;
+}
+.lp-service ul {
+	margin-top: 0.4rem;
+	padding-left: 1.25em;
+	list-style-type: square;
+}
+.lp .lp-service li {
+	padding-bottom: 0.35em;
+	font-size: 1.0625rem;
+	line-height: 1.5;
+}
+.lp-service li::marker {
+	color: #FAA200;
+}
+.lp .lp-service-outcome {
+	/* Pushes the outcome and button to the bottom, so both cards line up. */
+	margin-top: auto;
+	padding-top: 1rem;
+	font-size: 1.0625rem;
+	line-height: 1.6;
+}
+.lp-service-outcome strong {
+	font-weight: 700;
+}
+.lp-service .lp-btn {
+	margin-top: 1.25rem;
+}
+
+.lp-dark {
+	margin-top: 4.5rem;
+	padding-block: 4rem;
+	color: #ddd;
+	background-color: #181818;
+}
+.lp .lp-dark h2 {
+	color: #fff;
+}
+.lp-dark .lp-text-link {
+	color: #FAA200;
+	text-decoration-color: rgba(250, 162, 0, 0.5);
+}
+.lp-dark .lp-text-link:hover,
+.lp-dark .lp-text-link:focus-visible {
+	text-decoration-color: #FAA200;
+}
+.lp .lp-finding-intro {
+	max-width: 42em;
+}
+
+/* Diagram of the finding below: what a producer-side load test sees, and what it cannot. */
+.lp-flow {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 2.75rem minmax(0, 1.3fr) 2.75rem minmax(0, 1fr);
+	align-items: center;
+	row-gap: 0.75rem;
+	margin-top: 2rem;
+}
+.lp-flow-node {
+	padding: 0.75rem 0.25rem;
+	color: #fff;
+	background-color: #0b0b0b;
+	border: 2px solid #555;
+	border-radius: 4px;
+	font-family: "Oswald", "Oswald Fallback", "Helvetica", sans-serif;
+	font-size: clamp(0.85rem, 0.7rem + 0.8vw, 1.15rem);
+	font-weight: 600;
+	line-height: 1.2;
+	text-align: center;
+}
+.lp-flow-hub {
+	border-color: #FAA200;
+}
+.lp-flow-queue {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 3px;
+	margin: 0.5rem 0.25rem 0;
+}
+.lp-flow-queue span {
+	width: 0.6rem;
+	height: 0.6rem;
+	background-color: #FAA200;
+}
+.lp-flow-link {
+	color: #bbb;
+	font-family: "Archivo Narrow", "Archivo Narrow Fallback", "Helvetica", sans-serif;
+	font-size: 0.8rem;
+	line-height: 1.1;
+	text-align: center;
+}
+.lp-flow-link::after {
+	content: "\2192";
+	display: block;
+	color: #FAA200;
+	font-size: 1.25rem;
+	line-height: 1.1;
+}
+.lp-flow-scope {
+	display: flex;
+	grid-column: 1 / -1;
+	font-family: "Archivo Narrow", "Archivo Narrow Fallback", "Helvetica", sans-serif;
+	font-size: 1rem;
+	line-height: 1.35;
+}
+.lp-flow-scope p {
+	flex: 1 1 0;
+	box-sizing: border-box;
+	padding: 0.5rem 0.5rem 0 0;
+	color: #bbb;
+	border-top: 3px solid #777;
+}
+.lp .lp-flow-scope p {
+	font-size: inherit;
+	line-height: inherit;
+}
+.lp .lp-flow-scope p + p {
+	padding-left: 0.5rem;
+	color: #FAA200;
+	border-top-color: #FAA200;
+}
+.lp-flow-scope strong {
+	display: block;
+	font-weight: 700;
+}
+
+/* Same terminal look as the 404 page, on purpose: it is the site's way of showing engineering output. */
+.lp-finding {
+	display: grid;
+	gap: 0.3rem 1.25rem;
+	margin-top: 1.5rem;
+	padding: 1.25rem 1.5rem;
+	background: #0b0b0b;
+	color: #ddd;
+	border: 1px solid #333;
+	border-top: 3px solid #FAA200;
+	border-radius: 6px;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+	font-family: "consolas", "Inconsolata", "Inconsolata Fallback", monospace;
+	font-size: 0.95rem;
+	line-height: 1.6;
+	overflow-wrap: anywhere;
+}
+.lp-finding dt {
+	margin-top: 0.7rem;
+	color: #FAA200;
+	font-weight: 400;
+}
+.lp-finding dt:first-child {
+	margin-top: 0;
+}
+.lp-finding dd {
+	color: #ddd;
+}
+.lp-finding dd.lp-finding-title {
+	color: #fff;
+	font-weight: 700;
+}
+.lp-finding code {
+	color: #fff;
+	font-family: inherit;
+}
+
+.lp-steps {
+	display: grid;
+	gap: 2rem;
+	margin-top: 1.5rem;
+	counter-reset: lp-step;
+}
+.lp .lp-steps li {
+	position: relative;
+	counter-increment: lp-step;
+	font-size: 1.0625rem;
+	line-height: 1.6;
+}
+.lp-step-icon {
+	display: block;
+	width: 5.5rem;
+	height: 5.5rem;
+	margin-bottom: 0.9rem;
+	border-radius: 8px;
+}
+.lp-steps h3 {
+	margin-bottom: 0.35rem;
+	font-size: 1.35rem;
+}
+.lp-steps h3::before {
+	content: counter(lp-step) ". ";
+	color: #B35C00;
+}
+
+.lp-who {
+	display: grid;
+	gap: 1.5rem;
+	margin-top: 1.5rem;
+}
+.lp-who img.lp-portrait {
+	display: block;
+	width: 11rem;
+	height: auto;
+	border-radius: 4px;
+}
+.lp-who p + p {
+	margin-top: 0.9rem;
+}
+
+.lp-final {
+	margin-top: 4.5rem;
+	padding-block: 3rem;
+	color: #000;
+	background-color: #FAA200;
+}
+.lp-final-inner {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1.5rem 2rem;
+}
+.lp-final-art {
+	display: block;
+	flex: 0 0 auto;
+	width: 9rem;
+	height: 9rem;
+	border-radius: 8px;
+}
+.lp-final-copy {
+	flex: 1 1 20rem;
+}
+.lp .lp-final h2 {
+	color: #000;
+	font-size: clamp(1.75rem, 4vw, 2.5rem);
+}
+.lp .lp-final p {
+	margin-top: 0.6rem;
+}
+.lp-final .lp-btn {
+	margin-top: 1.25rem;
+}
+.lp-final .lp-btn:focus-visible {
+	outline-color: #000;
+}
+.lp .lp-final .lp-email {
+	margin-top: 0.9rem;
+	font-size: 1rem;
+	line-height: 1.5;
+}
+.lp-email a {
+	color: #000;
+	font-weight: 700;
+	overflow-wrap: anywhere;
+	text-decoration: underline;
+	text-underline-offset: 0.18em;
+}
+
+/* The blog stays reachable, but is deliberately the quietest thing on the page. */
+.lp-latest {
+	margin-top: 2.5rem;
+	font-family: "Archivo Narrow", "Archivo Narrow Fallback", "Helvetica", sans-serif;
+}
+.lp .lp-latest h2 {
+	margin-bottom: 0.5rem;
+	color: #666;
+	font-family: inherit;
+	font-size: 1rem;
+	font-weight: 400;
+	letter-spacing: 0.04em;
+}
+.lp .lp-latest li {
+	display: flex;
+	align-items: baseline;
+	gap: 0.75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+}
+.lp-latest time {
+	flex: 0 0 4.5em;
+	font-size: 0.9rem;
+}
+.lp-latest a {
+	color: #444;
+}
+.lp-latest a:hover,
+.lp-latest a:focus-visible {
+	color: #B35C00;
+	text-decoration: underline;
+}
+.lp .lp-latest-all {
+	margin-top: 0.5rem;
+	font-size: 1rem;
+	line-height: 1.5;
+}
+
+@media screen and (min-width: 48.01em) {
+	.lp-hero {
+		grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+	}
+	/* Lines the copy and the proof row up with the 60em column of the sections below. */
+	.lp-hero-copy {
+		padding: 3.5rem 2.5rem 3rem max(1.5rem, calc((100vw - 60em) / 2));
+	}
+	.lp-hero-art {
+		position: relative;
+	}
+	/* Absolute, so the art fills whatever height the copy needs without adding to it. */
+	.lp-hero-art img {
+		position: absolute;
+		inset: 0;
+		height: 100%;
+		object-fit: cover;
+		-webkit-mask-image: linear-gradient(to right, transparent 0, #000 22%);
+		mask-image: linear-gradient(to right, transparent 0, #000 22%);
+	}
+	.lp-proof {
+		grid-column: 1 / -1;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2rem;
+		padding-inline: max(1.5rem, calc((100vw - 60em) / 2));
+	}
+	.lp-services {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	.lp-finding {
+		grid-template-columns: 9rem 1fr;
+	}
+	.lp-finding dt,
+	.lp-finding dt:first-child {
+		margin-top: 0;
+	}
+	.lp-finding dd {
+		margin-bottom: 0.5rem;
+	}
+	.lp-steps {
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2.5rem;
+	}
+	/* Points from each step to the next. */
+	.lp-steps li:not(:last-child)::after {
+		content: "\2192";
+		position: absolute;
+		top: 1.6rem;
+		right: 0.25rem;
+		color: #FAA200;
+		font-family: "Oswald", "Oswald Fallback", "Helvetica", sans-serif;
+		font-size: 2.25rem;
+		font-weight: 600;
+		line-height: 1;
+	}
+	.lp-who {
+		grid-template-columns: 11rem 1fr;
+		gap: 2rem;
+		align-items: start;
+	}
+}
+@media screen and (max-width: 48em) {
+	.lp-container {
+		width: calc(100% - 2rem);
+	}
+	.lp p,
+	.lp li {
+		font-size: 1.0625rem;
+	}
+	.lp-section {
+		padding-top: 3.5rem;
+	}
+	.lp-dark,
+	.lp-final {
+		margin-top: 3.5rem;
+	}
+	.lp-dark {
+		padding-block: 3rem;
+	}
+	.lp-finding {
+		padding: 1rem 1.1rem;
+		font-size: 0.9rem;
+	}
+	.lp-btn {
+		width: 100%;
+	}
+	/* Equal boxes and tight padding: "Consumers" must fit on the narrowest phones. */
+	.lp-flow {
+		grid-template-columns: minmax(0, 1fr) 1.75rem minmax(0, 1fr) 1.75rem minmax(0, 1fr);
+	}
+	.lp-flow-node {
+		padding-inline: 1px;
+	}
+	.lp-flow-link {
+		font-size: 0.7rem;
+	}
+	.lp-final-art {
+		width: 6rem;
+		height: 6rem;
+	}
+	.lp .lp-latest li {
+		flex-direction: column;
+		gap: 0;
+		padding-bottom: 0.5rem;
+	}
+	.lp-latest time {
+		flex-basis: auto;
+	}
+}
+</style>
+
+{% include active-certifications.html %}
+{% include contact-href.html %}
+
+<div class="lp">
+	<section class="lp-hero">
+		<div class="lp-hero-copy">
+			<p class="lp-eyebrow">Azure architecture reviews and team workshops</p>
+			<h1>Find out how your Azure system behaves under load before your users do</h1>
+			<p class="lp-lead">I'm Chedy Missaoui, a Microsoft MVP in Azure Application PaaS. I review event-driven and PaaS systems on Azure and run workshops for engineering teams. You get findings and tradeoffs specific to your system, not a generic list of best practices.</p>
+			<div class="lp-actions">
+				<a class="lp-btn lp-btn-primary lp-btn-large" href="{{ contact_href }}" data-lead="hero">Email me about your system</a>
+				<a class="lp-btn lp-btn-ghost lp-btn-large" href="#services">See the services</a>
+			</div>
+			<p class="lp-action-note">Tell me what you run and what worries you. I'll reply with a proposed scope and a quote.</p>
+		</div>
+		<div class="lp-hero-art">
+			<img src="{{ site.baseurl }}{{ page.lcp_image }}" width="1100" height="733" fetchpriority="high" decoding="async"
+				alt="Pixel art of an engineer on a factory gantry pointing at a backlog of orange crates piling up on a conveyor belt."/>
+		</div>
+		<ul class="lp-proof">
+			<li><strong>Microsoft MVP</strong> Azure Application PaaS</li>
+			<li><strong>10+ years</strong> hands-on in Azure, DevOps and AI engineering</li>
+			<li><strong>{{ site.tags["azure-event-hubs"] | size }} articles</strong> on how Azure Event Hubs behaves at runtime</li>
+		</ul>
+	</section>
+
+	<section class="lp-trust" aria-labelledby="lp-trust-title">
+		<div class="lp-container lp-trust-inner">
+			<p class="lp-trust-caption"><strong id="lp-trust-title">Recognized and certified by Microsoft</strong> Each badge links to its official verification page.</p>
+			<ul class="lp-badges">
+				<li>
+					<a href="https://mvp.microsoft.com/en-US/mvp/profile/b050eff8-3c8f-4290-8d07-6738cf3724b2" title="Verify Microsoft MVP profile">
+						<img class="lp-badge-mvp" src="{{ site.baseurl }}/imgs/MVPBadgeHorizontal.optimized.webp" alt="Microsoft MVP badge" loading="lazy" width="693" height="260"/>
+					</a>
+				</li>
+				{% assign proof_exams = "AZ-305,AZ-400,AI-103" | split: "," %}
+				{% for exam in proof_exams %}
+				{% assign cert = active_certifications | where: "exam", exam | first %}
+				{% if cert %}
+				<li>
+					<a href="{{ cert.credential_url }}" title="Verify {{ cert.name }}">
+						<img src="{{ site.baseurl }}{{ cert.badge }}" alt="{{ cert.name }} badge" loading="lazy" width="96" height="96"/>
+					</a>
+				</li>
+				{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	</section>
+
+	<section class="lp-section" id="services" aria-labelledby="lp-services-title">
+		<div class="lp-container">
+			<h2 id="lp-services-title">Two ways I can help</h2>
+			<div class="lp-services">
+				{% for service in site.data.services.services %}
+				{% assign service_subject = service.name | cgi_escape | replace: "+", "%20" %}
+				<article class="lp-service" id="{{ service.id }}">
+					<img class="lp-service-art" src="{{ site.baseurl }}{{ service.image }}" alt="{{ service.image_alt }}" loading="lazy" width="720" height="480"/>
+					<div class="lp-service-body">
+						<h3>{{ service.name }}</h3>
+						<p class="lp-service-audience">{{ service.audience }}</p>
+						<p class="lp-service-label">{{ service.scope_title }}</p>
+						<ul>
+							{% for item in service.scope %}
+							<li>{{ item }}</li>
+							{% endfor %}
+						</ul>
+						<p class="lp-service-outcome"><strong>You get:</strong> {{ service.outcome }}</p>
+						<a class="lp-btn lp-btn-dark" href="mailto:{{ contact_email }}?subject={{ service_subject }}&amp;body={{ email_body }}" data-lead="{{ service.id }}">{{ service.cta }}</a>
+					</div>
+				</article>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+
+	<section class="lp-dark" aria-labelledby="lp-finding-title">
+		<div class="lp-container">
+			<h2 id="lp-finding-title">What a review finding looks like</h2>
+			<p class="lp-finding-intro">This is an example of the format, not a client finding. The reasoning comes from my article on <a class="lp-text-link" href="{{ site.baseurl }}/article/load-testing-event-hubs-processing-with-locust.html">load testing Event Hubs processing</a>.</p>
+			<figure class="lp-flow" role="img" aria-label="Diagram: a load test sends events to Event Hubs and gets an acknowledgment, which is all the test reports. Events then wait in a backlog until consumers pull and process them, which the test misses.">
+				<div class="lp-flow-node">Load test</div>
+				<div class="lp-flow-link">send, ack</div>
+				<div class="lp-flow-node lp-flow-hub">
+					Event Hubs
+					<div class="lp-flow-queue">{% for i in (1..16) %}<span></span>{% endfor %}</div>
+				</div>
+				<div class="lp-flow-link">pull</div>
+				<div class="lp-flow-node">Consumers</div>
+				<div class="lp-flow-scope">
+					<p><strong>What the test reports</strong> How long the send takes</p>
+					<p><strong>What it misses</strong> Time waiting in the backlog, and time to process</p>
+				</div>
+			</figure>
+			<dl class="lp-finding">
+				<dt>finding</dt>
+				<dd class="lp-finding-title">Load test passes while consumers fall behind</dd>
+				<dt>observed</dt>
+				<dd>The test reports response times from the producer side. An Event Hubs acknowledgment only confirms that the broker accepted the event, not that it was processed.</dd>
+				<dt>impact</dt>
+				<dd>A backlog can build up without showing in the results, so a passing test says little about how much load the consumers can handle.</dd>
+				<dt>recommendation</dt>
+				<dd>Track enqueue-to-processed lead time as a pre-aggregated custom metric with <code>GetMetric</code>, and read it alongside the load test results.</dd>
+				<dt>tradeoff</dt>
+				<dd>The consumer code gains instrumentation, and you have one more custom metric to maintain.</dd>
+			</dl>
+		</div>
+	</section>
+
+	<section class="lp-section" aria-labelledby="lp-steps-title">
+		<div class="lp-container">
+			<h2 id="lp-steps-title">How it works</h2>
+			<ol class="lp-steps">
+				<li>
+					<img class="lp-step-icon" src="{{ site.baseurl }}/imgs/LandingStepEmail.optimized.webp" alt="" loading="lazy" width="240" height="240"/>
+					<h3>You email me</h3>
+					Tell me what you run on Azure, what worries you, and when you need this done.
+				</li>
+				<li>
+					<img class="lp-step-icon" src="{{ site.baseurl }}/imgs/LandingStepQuote.optimized.webp" alt="" loading="lazy" width="240" height="240"/>
+					<h3>I propose a scope and a quote</h3>
+					You see what's covered and what it costs before you commit to anything.
+				</li>
+				<li>
+					<img class="lp-step-icon" src="{{ site.baseurl }}/imgs/LandingStepWork.optimized.webp" alt="" loading="lazy" width="240" height="240"/>
+					<h3>We do the work</h3>
+					I review your system or run the workshop with your team, then hand over what you need to act on it.
+				</li>
+			</ol>
+		</div>
+	</section>
+
+	<section class="lp-section" aria-labelledby="lp-who-title">
+		<div class="lp-container">
+			<h2 id="lp-who-title">Who you'd work with</h2>
+			<div class="lp-who">
+				<img class="lp-portrait" src="{{ site.baseurl }}/imgs/Chedy.optimized.webp" alt="Chedy Missaoui" loading="lazy" width="347" height="462"/>
+				<div>
+					<p>I'm a software and cloud practitioner from Tunisia, with over a decade of hands-on work in Azure architecture, DevOps and, more recently, AI engineering. I care about systems that are useful in production rather than only impressive in demos.</p>
+					<p>You can check how I reason before you write to me: my <a class="lp-text-link" href="{{ site.baseurl }}/posts.html">articles</a> publish the mechanisms, measurements and working samples, and the <a class="lp-text-link" href="{{ site.baseurl }}/slides.html">slides from my talks</a> are online. My <a class="lp-text-link" href="{{ site.baseurl }}/about-chedy-missaoui.html#certifications">about page</a> has the full background.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="lp-final" aria-labelledby="lp-final-title">
+		<div class="lp-container lp-final-inner">
+			<img class="lp-final-art" src="{{ site.baseurl }}/imgs/LandingStepEmail.optimized.webp" alt="" loading="lazy" width="240" height="240"/>
+			<div class="lp-final-copy">
+				<h2 id="lp-final-title">Tell me what you're running</h2>
+				<p>A short email is enough to start. If I'm not the right fit for the problem, I'll tell you.</p>
+				<a class="lp-btn lp-btn-dark lp-btn-large" href="{{ contact_href }}" data-lead="final">Email me about your system</a>
+				<p class="lp-email">Or write to <a href="{{ contact_href }}" data-lead="final-address">{{ contact_email }}</a></p>
+			</div>
+		</div>
+	</section>
+
+	<section class="lp-latest lp-container" aria-labelledby="lp-latest-title">
+		<h2 id="lp-latest-title">Latest articles</h2>
+		<ul>
+			{% for post in site.posts limit: 3 %}
+			<li>
+				<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %Y" }}</time>
+				<a href="{{ post.url }}">{{ post.title }}</a>
+			</li>
+			{% endfor %}
+		</ul>
+		<p class="lp-latest-all"><a href="{{ site.baseurl }}/posts.html">All posts</a></p>
+	</section>
 </div>

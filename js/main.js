@@ -96,6 +96,15 @@ function initShareControls() {
 	});
 }
 
+// Reports home page button clicks to analytics, gtag only exists once ga.html has loaded it.
+function initLeadTracking() {
+	$('a[data-lead]').on('click', function () {
+		if (window.gtag) {
+			window.gtag('event', 'generate_lead', { lead_source: $(this).attr('data-lead') });
+		}
+	});
+}
+
 function addHeadingLinkIcon(elem) {
 	var heading = $(elem);
 	if (heading.find('.heading-anchor-link').length > 0) {
@@ -191,7 +200,8 @@ $(document).ready(function () {
 	});
 	trackOutlineSections();
 	initShareControls();
-	
+	initLeadTracking();
+
 	if ($('#disqus_thread').children().length == 0) {
 		$('#disqus_thread').append('<p class="comment-error-message">Your browser settings(Tracking Protection) are maybe blocking the comment section !</p>')
 	}

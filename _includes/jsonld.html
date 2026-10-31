@@ -2,7 +2,7 @@
   Site-wide JSON-LD structured data (@graph):
   - Every page: WebSite + Person (author) nodes; on the about page the Person also lists
     active certifications as hasCredential (see _includes/active-certifications.html).
-  - Home page:  Blog node.
+  - Home page:  Blog node, plus one Service node per entry of _data/services.yml.
   - Post pages: BlogPosting + BreadcrumbList nodes.
   The Person @id matches the microdata itemid used in _includes/article.html.
 {% endcomment %}
@@ -89,7 +89,7 @@
     ,{
       "@type": "Blog",
       "@id": "{{ site.url }}/#blog",
-      "url": "{{ site.url }}/",
+      "url": "{{ site.url }}/posts.html",
       "name": {{ site.title | jsonify }},
       "description": {{ site.description | strip_newlines | strip | jsonify }},
       "inLanguage": "en",
@@ -98,6 +98,16 @@
       "isPartOf": { "@id": "{{ site.url }}/#website" },
       "license": "https://creativecommons.org/licenses/by/4.0/"
     }
+    {%- for service in site.data.services.services -%}
+    ,{
+      "@type": "Service",
+      "@id": "{{ site.url }}/#{{ service.id }}",
+      "url": "{{ site.url }}/#{{ service.id }}",
+      "name": {{ service.name | jsonify }},
+      "description": {{ service.audience | append: " " | append: service.outcome | jsonify }},
+      "provider": { "@id": "{{ author_id }}" }
+    }
+    {%- endfor -%}
     {%- endif -%}
     {%- if page.layout == 'post' -%}
     ,{

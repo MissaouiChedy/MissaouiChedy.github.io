@@ -1,0 +1,32 @@
+# Paid services sold on the home page (index.html).
+# The same list feeds the Service JSON-LD in _includes/jsonld.html.
+# `id` is the card's anchor; `name` is also the subject of the email its button opens.
+services:
+  - id: "architecture-review"
+    name: "Azure architecture review"
+    image: "/imgs/LandingReview.optimized.webp"
+    image_alt: "Pixel art of an engineer inspecting a system blueprint through a magnifying glass, with one node flagged by a warning marker."
+    audience: "For teams running an event-driven or PaaS workload on Azure, or about to launch one."
+    scope_title: "What I look at"
+    scope:
+      - "Event Hubs partitioning, capacity and consumer scaling"
+      - "Checkpointing, rewinding and recovery after consumer failures"
+      - "Your load testing approach and the metrics behind it"
+      - "Azure PaaS choices, DevOps practices and infrastructure tradeoffs"
+    outcome: "Written findings ranked by risk and effort, plus a walkthrough with your team."
+    cta: "Ask about a review"
+
+  - id: "team-workshop"
+    name: "Team workshop"
+    image: "/imgs/LandingWorkshop.optimized.webp"
+    image_alt: "Pixel art of a presenter explaining a diagram on a wall screen to a team of developers at their laptops."
+    audience: "For engineering teams adopting Azure PaaS, or moving AI agents from demo to production."
+    scope_title: "Based on sessions I've presented"
+    scope:
+      - "Modern AI-first architectures on Azure"
+      - "Getting started with Azure PaaS"
+      - "Running LLMs locally"
+      - "Securing Microsoft Foundry agents"
+      - "The people and process side of Azure DevOps"
+    outcome: "A session adapted to your stack and your team, in English or French."
+    cta: "Ask about a workshop"

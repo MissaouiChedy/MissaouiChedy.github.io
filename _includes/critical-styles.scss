@@ -200,45 +200,178 @@ hr {
 	border-color: black;
 	border-style: solid;
 }
+// Sales strip above the header. It scrolls away while the header below stays visible on desktop.
+.site-trustbar {
+	padding: 0.35em 1em;
+	color: black;
+	background-color: $my-orange;
+	font-family: $time-fonts;
+	font-size: 0.95rem;
+	line-height: 1.3;
+	letter-spacing: 0.03em;
+	text-align: center;
+	strong {
+		font-weight: 700;
+	}
+	@include on-mobile() {
+		font-size: 0.85rem;
+		.site-trustbar-detail {
+			display: none;
+		}
+	}
+}
+
 header.site-header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5em 1.5em;
+	padding: 0.6em 1.5em;
 	color: white;
 	background-color: black;
-	border-bottom: 4px solid $my-orange;
+	border-bottom: 1px solid #2a2a2a;
 	a {
 		color: white;
 	}
-	.site-title {
-		box-sizing: border-box;
-		max-width: 100%;
-		overflow-wrap: anywhere;
-		padding: 1em;
-		padding-top: 0.8em;
-		padding-bottom: 0.15em;
-		text-transform: capitalize;
-		font-family: $header-font;
+	.site-brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.6em;
+		min-width: 0;
 	}
-	ul {
-		padding: 0.4em;
-		padding-top: 0.1em;
-		padding-bottom: 0.1em;
-		text-align: right;
-		li {
-
+	.site-mark {
+		display: inline-flex;
+		flex: 0 0 auto;
+		align-items: center;
+		justify-content: center;
+		width: 2.1rem;
+		height: 2.1rem;
+		color: black;
+		background-color: $my-orange;
+		border-radius: 3px;
+		font-family: $header-font;
+		font-size: 1.15rem;
+		font-weight: 700;
+		line-height: 1;
+	}
+	.site-title {
+		display: block;
+		padding: 0;
+		font-family: $header-font;
+		font-size: 1.6rem;
+		overflow-wrap: anywhere;
+		text-transform: capitalize;
+	}
+	ul.site-nav {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.15em 1em;
+		margin-left: auto;
+		a {
 			display: inline-block;
-			padding-left: 0.5em;
-			.nav-label {
-				font-family: $header-font;
-				font-size: 1.414em;
-				font-weight: 600;
-				line-height: 1.05;
-				text-transform: lowercase;
-				letter-spacing: 0.02em;
-			}
-			a:hover {
+			padding: 0.25em 0;
+			&:hover,
+			&:focus-visible {
 				color: $my-orange;
-				
 			}
 		}
+		.nav-label {
+			font-family: $header-font;
+			font-size: 1.1rem;
+			font-weight: 500;
+			line-height: 1.2;
+			text-transform: lowercase;
+			letter-spacing: 0.02em;
+		}
+	}
+	// The one thing that should stand out in the header.
+	a.site-cta {
+		display: inline-block;
+		flex: 0 0 auto;
+		padding: 0.5em 1em;
+		color: black;
+		background-color: $my-orange;
+		border-radius: 3px;
+		font-family: $header-font;
+		font-size: 1.05rem;
+		font-weight: 600;
+		line-height: 1.2;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		transition: color 0.2s ease, background-color 0.2s ease;
+		&:hover,
+		&:focus-visible {
+			color: black;
+			background-color: white;
+		}
+		&:focus-visible {
+			outline: 2px solid $my-orange;
+			outline-offset: 2px;
+		}
+	}
+	// Between phone and desktop, the full-size row would push the button onto its own line.
+	@media screen and (min-width: 48.01em) and (max-width: 60em) {
+		gap: 0.5em 1em;
+		padding: 0.6em 1em;
+		.site-title {
+			font-size: 1.35rem;
+		}
+		ul.site-nav {
+			gap: 0.15em 0.7em;
+			.nav-label {
+				font-size: 1rem;
+			}
+		}
+		a.site-cta {
+			font-size: 0.95rem;
+		}
+	}
+	// Brand and button on one row, nav on the next, so the header stays out of the content's way.
+	@include on-mobile() {
+		gap: 0.3em 0.5em;
+		padding: 0.5em 1em 0.3em;
+		.site-brand {
+			gap: 0.45em;
+		}
+		.site-mark {
+			width: 1.8rem;
+			height: 1.8rem;
+			font-size: 1rem;
+		}
+		.site-title {
+			font-size: 1.2rem;
+		}
+		a.site-cta {
+			margin-left: auto;
+			padding: 0.4em 0.7em;
+			font-size: 0.85rem;
+			letter-spacing: 0.03em;
+			white-space: nowrap;
+		}
+		ul.site-nav {
+			order: 3;
+			width: 100%;
+			margin-left: 0;
+			justify-content: space-between;
+			gap: 0 0.3em;
+			.nav-label {
+				font-size: 1rem;
+			}
+		}
+	}
+}
+
+// Sticky on desktop only: on a phone it would take too much of the screen.
+@media screen and (min-width: 48.01em) {
+	html {
+		// Keeps anchor targets clear of the sticky header.
+		scroll-padding-top: 5rem;
+	}
+	header.site-header {
+		position: sticky;
+		top: 0;
+		z-index: 20;
 	}
 }
 
