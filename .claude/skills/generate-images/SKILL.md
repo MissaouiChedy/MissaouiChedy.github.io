@@ -1,12 +1,12 @@
 ---
 name: generate-images
-description: Generates images from text prompts using the gpt-image-2 model on Azure AI Foundry via the New-Image.ps1 script. WHEN: "generate an image", "create a picture", "make an illustration", "render an image of", "produce artwork", "I need an image for".
+description: Generates images from text prompts using the gpt-image-2 model on Microsoft Foundry via the New-Image.ps1 script. Use when: "generate an image", "create a picture", "make an illustration", "render an image of", "produce artwork", "I need an image for".
 ---
 
 # Generate Images
 
 Generates one or more images from a text prompt by calling the `gpt-image-2`
-deployment on Azure AI Foundry, then saving the returned image bytes to disk.
+deployment on Microsoft Foundry, then saving the returned image bytes to disk.
 
 Always use the bundled `scripts/New-Image.ps1` script rather than hand-rolling a
 new HTTP call. The script already encodes the model's request quirks (see
