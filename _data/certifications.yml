@@ -4,6 +4,14 @@
 # `badge` is the image shown in the about page certifications section;
 # `hide: true` keeps an entry off that section.
 certifications:
+  - name: "Microsoft Certified: Security, Compliance, and Identity Fundamentals (SC-900)"
+    issuer: "Microsoft"
+    exam: "SC-900"
+    issued: "2026-11"
+    credential_id: "A724DE53B24B88FC"
+    credential_url: "https://learn.microsoft.com/api/credentials/share/en-us/ChedyMissaoui-3589/A724DE53B24B88FC?sharingId=MVP_503336"
+    badge: "/imgs/badges/microsoft-certified-sc-900.optimized.webp"
+
   - name: "Microsoft Certified: AI Agent Builder Associate (AB-620)"
     issuer: "Microsoft"
     exam: "AB-620"
